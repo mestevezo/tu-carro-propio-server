@@ -136,4 +136,10 @@ export const SocialIconLink = styled.a`
 color: #fff;
 font-size: 24px;
 margin: 10px;
+
+&:hover {
+    color: #f7df1e;
+    transform: scale(1.1);
+    transition: 0.3s ease-out;
+ }
 `
