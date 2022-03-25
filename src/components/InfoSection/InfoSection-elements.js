@@ -16,7 +16,7 @@ flex-direction: ${({ imgStart }) => (imgStart ? 'row-reverse' : 'row')};
 
 export const InfoColumn = styled.div`
 margin-bottom: 15px;
-padding-right: 15px;
+padding-right: 5px;
 padding-left: 15px;
 flex: 1;
 max-width: 50%;
@@ -64,7 +64,6 @@ color: ${({ lightTextDesc }) => (lightTextDesc ? '#a9b3c1' : '#202020')};
 `;
 
 export const ImgWrapper = styled.div`
-max-width: 555px;
 display: flex;
 justify-content: ${({ start }) => (start ? 'flex-start' : 'flex-end')};
 `;
@@ -76,4 +75,5 @@ max-width: 100%;
 vertical-align: middle;
 display: inline-block;
 max-height: 500px;
-`
+`;
+

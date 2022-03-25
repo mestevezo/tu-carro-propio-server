@@ -6,13 +6,14 @@ export const homeObjOne = {
     lightTextDesc: true,
     buttonLabel1: 'Comprar un auto',
     buttonLabel2: 'Vender un auto',
-    description: ' Te ofrecemos la mejor experiencia de compra y venta de autos en Caracas',
-    headline: 'Los mejores precios en autos',
+    description: ' Te ofrecemos la mejor experiencia de compra y venta de autos en Caracas.',
+    headline: 'Los mejores precios en autos.',
     lightText: true,
-    topLine: '',
-    img: require('../../images/corolla.png'),
+    topLine: 'Concesionario de vehículos',
+    img: require('../../images/tundra.png'),
     alt: 'Image',
-    start: ''
+    start: '',
+    buttonDisplay: true,
 };
 
 export const homeObjTwo = {
@@ -23,12 +24,13 @@ export const homeObjTwo = {
     lightTextDesc: false,
     buttonLabel1: 'Comprar un auto',
     buttonLabel2: 'Vender un auto',
-    description: 'La mejor experiencia de compra y venta de autos en Caracas',
-    headline: 'Los mejores precios en autos',
+    description: 'Programamos la inspección de manera rápida y segura en nuestra sede',
+    headline: '¿Quieres vender tu auto?',
     lightText: false,
     topLine: '',
-    img: require('../../images/corolla.png'),
+    img: require('../../images/iphone13.png'),
     alt: 'Image',
-    start: ''
+    start: '',
+    buttonDisplay: false,
 };
 

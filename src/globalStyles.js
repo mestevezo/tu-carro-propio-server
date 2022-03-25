@@ -25,6 +25,7 @@ padding-left: 50px;
 `;
 
 export const Button = styled.button`
+display: ${({ buttonDisplay }) => (buttonDisplay ? 'inline-block' : 'none')};
 border-radius: 4px;
 width: 300px;
 margin-bottom: 10px;
