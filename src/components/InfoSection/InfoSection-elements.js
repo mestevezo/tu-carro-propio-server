@@ -41,7 +41,7 @@ padding-bottom: 60px;
 `
 
 export const TopLine = styled.div`
-color: ${({ lightTopLine }) => (lightTopLine ? '#a9b3c1' : '#4B59F7')};
+color: ${({ lightTopLine }) => (lightTopLine ? '#a9b3c1' : '#202020')};
 font-size: 13px;
 line-height: 16px;
 letter-spacing: 1.4px;
@@ -52,7 +52,7 @@ export const Heading = styled.h1`
 margin-bottom: 24px;
 font-size: 48px;
 line-height: 1.1;
-color: ${({ lightText }) => (lightText ? '#f7f8fa' : '#1c2237')};
+color: ${({ lightText }) => (lightText ? '#f7f8fa' : '#202020')};
 `
 
 export const Subtitle = styled.p`
@@ -60,7 +60,7 @@ max-width: 440px;
 margin-bottom: 35px;
 font-size: 18px;
 line-height: 24px;
-color: ${({ lightTextDesc }) => (lightTextDesc ? '#a9b3c1' : '#1c2237')}; 
+color: ${({ lightTextDesc }) => (lightTextDesc ? '#a9b3c1' : '#202020')}; 
 `;
 
 export const ImgWrapper = styled.div`
