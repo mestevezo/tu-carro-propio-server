@@ -31,3 +31,4 @@ export const homeObjTwo = {
     alt: 'Image',
     start: ''
 };
+

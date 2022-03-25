@@ -69,7 +69,7 @@ text-align: center;
     left: ${({ click }) => (click ? 0 : '-100%')};
     opacity: 1;
     transition: all 0.5s ease;
-    background: #f7df1e;
+    background: #202020;
 }
 `;
 
@@ -99,14 +99,16 @@ padding: 0.5rem 1rem;
 height: 100%;
 
 @media screen and (max-width: 960px) {
+    color: #fff;
     text-align: center;
     padding: 2rem;
     width: 100%;
     display: table;
 
     &:hover {
-        color: #fff;
+        color: #f7df1e;
         transition: all 0.3s ease;
     }
 }
 `;
+

@@ -42,7 +42,7 @@ const Footer = () => {
                 </FooterLinksContainer>
                 <SocialMedia>
                     <SocialMediaWrap>
-                        <WebsiteRights>TUCARROPROPIO 2022</WebsiteRights>
+                        <WebsiteRights>TU CARRO PROPIO - 2022</WebsiteRights>
                     </SocialMediaWrap>
                 </SocialMedia>
             </FooterContainer>

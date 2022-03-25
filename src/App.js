@@ -1,18 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import GlobalStyle from './globalStyles';
-import { Navbar, Footer } from "./components";
-import Home from './pages/HomePage/Home';
+import Landing from "./pages/HomePage/Landing";
+import Catalogo from "./pages/Catálogo/Catalogo";
 
 function App() {
   return (
     <Router>
-      <GlobalStyle />
-      <Navbar />
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Landing />} />
+        <Route exact path='/Catalogo' element={<Catalogo />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

@@ -23,7 +23,7 @@ const Navbar = () => {
                     <NavMenu onClick={handleClick} click={click}>
                         <NavItem>
                             <NavLinks to='/'>
-                                Home
+                                Inicio
                             </NavLinks>
                         </NavItem>
                         <NavItem>
@@ -37,7 +37,7 @@ const Navbar = () => {
                             </NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='/'>
+                            <NavLinks to='/Catalogo'>
                                 Catálogo
                             </NavLinks>
                         </NavItem>

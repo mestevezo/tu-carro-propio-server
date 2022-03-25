@@ -22,7 +22,7 @@ color: #fff;
 `
 
 export const FooterSubHeading = styled.p`
-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+font-family: 'Poppins' sans-serif;
 margin-bottom: 24px;
 font-size: 20px;
 `
@@ -135,7 +135,8 @@ width: 245px;
 export const SocialIconLink = styled.a`
 color: #fff;
 font-size: 24px;
-margin: 10px;
+margin: 5%;
+margin-right: 10px;
 
 &:hover {
     color: #f7df1e;
