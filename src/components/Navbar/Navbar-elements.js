@@ -63,10 +63,10 @@ text-align: center;
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     position: absolute;
     top: 80px;
-    left: ${({ click }) => (click ? 0 : '-100%')};
+    left: ${({ click }) => (click ? 0 : '-110%')};
     opacity: 1;
     transition: all 0.5s ease;
     background: #202020;
@@ -111,4 +111,24 @@ height: 100%;
     }
 }
 `;
+
+export const SocialMediaLink = styled(Link)`
+    display: none;
+
+@media screen and (max-width: 960px) {
+    display: ${({ click }) => (click ? '' : '')};
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+    background-color: #fff;
+
+    &:hover {
+        color: #f7df1e;
+        transition: all 0.3s ease;
+    }
+}
+`;
+
 

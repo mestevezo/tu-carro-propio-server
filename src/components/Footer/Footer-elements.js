@@ -100,16 +100,6 @@ margin: 40px auto 0 auto;
     flex-direction: column;
 }
 `
-export const SocialLogo = styled(Link)` 
-color: #fff;
-justify-self: center;
-cursor: pointer;
-text-decoration: none;
-font-size: 2rem;
-display: flex;
-align-items: center;
-margin-bottom: 16px;
-`
 
 export const SocialIcon = styled.img`
 margin-right: 2px;

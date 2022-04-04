@@ -15,7 +15,7 @@ const Navbar = () => {
                 <NavbarContainer>
                     <NavLogo to="/">
                         <Img src={logo} loading="lazy" alt='img' />
-                        TU CARRO PROPIO
+                        TUCARROPROPIO
                     </NavLogo>
                     <MobileIcon onClick={handleClick}>
                         {click ? <FaTimes /> : <FaBars />}
