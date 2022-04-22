@@ -3,19 +3,44 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
-const FilerContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-`;
-const Filter = styled.div`
-font-weight: 500;
-margin: 20px;
-`;
-const Select = styled.select`
-margin: 5px;
-`;
-const Option = styled.option`
+const Container = styled.div`
+width: 100%;
+align-items: center;
+display: flex;
+justify-content: space-evenly;
+position: fixed;
+z-index: 998;
+background: #fff;
+padding: 1rem;
 
+@media screen and (max-width: 768px) {
+    margin-left: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+`;
+
+
+const Filter = styled.div`
+
+
+@media screen and (max-width: 768px) {
+}
+`;
+
+const Select = styled.select`
+border-radius: 5px;
+background: #fff;
+
+@media screen and (max-width: 768px) {
+    align-content: flex-end;
+    background: #fff;
+    margin-left: 3rem;  
+}
+`;
+
+const Option = styled.option`
 `;
 
 
@@ -36,7 +61,7 @@ const Productfilter = () => {
 
     return (
         <div>
-            <FilerContainer>
+            <Container>
                 <Filter>Tipo
                     <Select name='type' onChange={handleFilters}>
                         <Option disabled>
@@ -88,9 +113,10 @@ const Productfilter = () => {
                         <Option value="descendente">Precio descendente</Option>
                     </Select>
                 </Filter>
-            </FilerContainer>
+            </Container>
         </div>
     )
 }
 
 export default Productfilter
+

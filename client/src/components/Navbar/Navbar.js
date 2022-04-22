@@ -27,18 +27,18 @@ const Navbar = () => {
                             </NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='/'>
-                                Acerca de nosotros
+                            <NavLinks to='/catalogo'>
+                                Catálogo
                             </NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='/'>
+                            <NavLinks to='/agendaunacita'>
                                 Agenda una cita
                             </NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='/Catalogo'>
-                                Catálogo
+                            <NavLinks to='/'>
+                                Acerca de nosotros
                             </NavLinks>
                         </NavItem>
                     </NavMenu>
