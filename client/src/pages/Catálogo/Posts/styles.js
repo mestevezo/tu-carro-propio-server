@@ -5,6 +5,9 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
+  loader: {
+    primary: '#f7df1e', //theme.spacing(1),
+  },
   smMargin: {
     margin: '8 px', //theme.spacing(1),
   },

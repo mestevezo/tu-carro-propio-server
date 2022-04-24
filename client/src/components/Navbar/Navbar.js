@@ -32,7 +32,7 @@ const Navbar = () => {
                             </NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='/agendaunacita'>
+                            <NavLinks to='/cita'>
                                 Agenda una cita
                             </NavLinks>
                         </NavItem>
