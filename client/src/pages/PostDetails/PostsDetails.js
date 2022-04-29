@@ -64,7 +64,7 @@ const Post = () => {
 
             {recommendedPosts.map(({ brand, model, year, _id, mainImg }) => (
               <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
-                <img src={mainImg} width='200px' />
+                <img src={mainImg} width='200px' alt='recomendados' />
                 <h4>{brand}</h4> <h4>{model}</h4> <h4>{year}</h4>
               </div>
 

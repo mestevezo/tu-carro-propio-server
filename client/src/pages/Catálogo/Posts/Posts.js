@@ -2,11 +2,15 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { LoadingDots } from '../../../components';
-import Footer from '../../../components/Footer/Footer'
-
+import LoadingDots from '../../../components/Loading/Loading';
 import Post from './Post/Post';
-import useStyles from './styles';
+
+const useStyles = ((theme) => ({
+  mainContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+}));
 
 const Box = styled.div`
   margin-top: 10rem;
@@ -33,7 +37,6 @@ const Posts = ({ setCurrentId }) => {
             ))}
           </Grid>
         </Box>
-        <Footer />
       </>
     )
   );
