@@ -3,15 +3,19 @@ import { Pagination,PaginationItem } from "@mui/material";
 //import { Pagination, PaginationItem } from "@material-ui/lab";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
-import { getPosts } from "../../actions/posts";
+import { getPosts , getPostsByCategory} from "../../actions/posts";
 
 
 const Paginate = ( {page} ) => {
 
     
     const {numberOfPages} = useSelector( (state) => state.posts);
+    const filter = useSelector( (state) => state.posts.filter);
+    //console.log(filter)
     const dispatch = useDispatch();
+  
 
     useEffect(() => {       
 
@@ -20,7 +24,9 @@ const Paginate = ( {page} ) => {
         }
 
     },[dispatch, page]);
-    
+
+
+      
 
     return (
         <Pagination
@@ -30,7 +36,7 @@ const Paginate = ( {page} ) => {
             variant = "outlined"
             color = "primary"
             renderItem = {(item) => (
-                <PaginationItem {...item} component = {Link} to={`/Catalogo?page=${item.page}`}/>
+                <PaginationItem {...item} component = {Link} to={`/catalogo?page=${item.page}`}/>
             ) }
         />
         

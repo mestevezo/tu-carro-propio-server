@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Landing />} />
         <Route exact path='/catalogo' element={<Catalogo />} />
+        <Route exact path='/catalogo/search' element={<Catalogo />} />
         <Route exact path="/catalogo/:id" element={<Details />} />
         <Route exact path='/cita' element={<Cita />} />
       </Routes>

@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from 'styled-components';
 
 const Background = styled.div`
     position: fixed;
@@ -14,7 +14,7 @@ const Background = styled.div`
 
 const Loader = styled.div`
     position: fixed;
-    top: 0;
+    top: 40vh;
     left: 0;
     bottom: 0;
     right: 0;
@@ -135,20 +135,20 @@ const Loader = styled.div`
 // `;
 
 const LoadingDots = () => {
-    return (
+  return (
 
-        <div>
-            <Background>
-                <Loader />
-            </Background>
-        </div>
-        /* <DotWrapper>
-            Cargando
-            <Dot delay="0s" />
-            <Dot delay=".1s" />
-            <Dot delay=".2s" />
-        </DotWrapper> */
-    )
+    <div>
+      <Background>
+        <Loader />
+      </Background>
+    </div>
+    /* <DotWrapper>
+        Cargando
+        <Dot delay="0s" />
+        <Dot delay=".1s" />
+        <Dot delay=".2s" />
+    </DotWrapper> */
+  )
 }
 
 export default LoadingDots;

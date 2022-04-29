@@ -4,11 +4,13 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { Route, useNavigate } from 'react-router-dom';
+import { Pagination, PaginationItem } from "@mui/material";
+import { Link } from "react-router-dom";
 
 import { getPostsByCategory, getAll } from '../../actions/posts';
 
-import { FETCH_BY } from '../../constants/actionTypes';
-import { useDispatch } from 'react-redux';
+import { FETCH_ALL, FETCH_BY } from '../../constants/actionTypes';
+import { useDispatch, useSelector } from "react-redux";
 
 const Container = styled.div`
 text-align: center;
@@ -19,7 +21,7 @@ align-items: center;
 display: flex;
 justify-content: space-evenly;
 position: fixed;
-z-index: 998;
+z-index: 3000;
 background: #202020;
 color: #f7df1e;
 padding: 1rem;
@@ -78,18 +80,23 @@ const Productfilter = () => {
     const [sorteredProducts, setSorteredProducts] = useState([]);
     const dispatch = useDispatch();
     const [datalist, setDataList] = useState([]);
-
+    const location = useLocation();
     const navigate = useNavigate();
+    const { numberOfPages } = useSelector((state) => state.posts);
 
-    //const cat = location.pathname.split("/");
+
+
+
 
     const [filters, setFilters] = useState({})
     const [sort, setSort] = useState("")
     const [list, setList] = useState(datalist);
+    const cat = location.pathname.split("/")[1];
 
 
     const writer = (e) => {
         const value = e.target.value;
+
 
         setFilters({
             ...filters,
@@ -97,107 +104,45 @@ const Productfilter = () => {
         });
 
     }
+    const key = Object.keys(filters);
 
-    const handleFilters = () => {
+    const value = filters[key];
+    var element = '';
 
-        let updatedList = datalist;
+    if (filters !== {}) {
+        for (let i = 0; i < key.length; i++) {
 
+            if (key[i] === 'price') {
 
-        if (filters.type) {
+                element = `minPrice=${filters[key[i]].split(',')[0]}&maxPrice=${filters[key[i]].split(',')[1]}&${element}`;
 
-            if (filters.type === 'all') {
-                updatedList = Object.values(updatedList).filter(user => user.type !== filters.type);
+            } else {
+                element = `${key[i]}=${filters[key[i]]}&${element}`;
             }
-            else {
-                updatedList = Object.values(updatedList).filter(user => user.type === filters.type);
-            }
-
         }
 
-        if (filters.brand) {
-            if (filters.brand === 'all') {
-                updatedList = Object.values(updatedList).filter(user => user.brand !== filters.brand);
-
-            }
-            else { updatedList = Object.values(updatedList).filter(user => user.brand === filters.brand); }
-
-        }
-
-        if (filters.transmission) {
-            updatedList = Object.values(updatedList).filter(user => user.transmission === filters.transmission);
-        }
-
-        if (filters.price) {
-
-            if (filters.price === 'all') {
-                updatedList = updatedList.filter(item => item.price >= 0);
-            }
-
-            else if (filters.price === '20k+') {
-                updatedList = updatedList.filter(item => item.price >= 20000);
-            }
-
-            else {
-                const minPrice = filters.price.split(',')[0];
-                const maxPrice = filters.price.split(',')[1];
-
-                updatedList = updatedList.filter(item => item.price >= minPrice && item.price <= maxPrice);
-
-            }
-
-        }
-
-        if (sort === 'reciente') {
-
-            updatedList.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-
-        }
-
-        if (sort === 'ascendente') {
-
-            updatedList.sort((a, b) => a.price - b.price);
-
-        }
-
-        if (sort === 'descendente') {
-
-            updatedList.sort((a, b) => b.price - a.price);
-
-        }
-
-        setList(updatedList);
-        setSorteredProducts(updatedList);
-
-        dispatch({ type: FETCH_BY, payload: updatedList });
-
+        var test = new URLSearchParams(element)
     }
 
 
-    useEffect(() => {
-        const getProducts = async () => {
-            try {
-                const res = await axios.get(`http://localhost:5000/posts/Catalogo?page=${page}`);
-
-                setDataList(res.data.data);
 
 
-            } catch (err) { }
-        };
-        getProducts();
-    }, [page]);
 
 
 
     useEffect(() => {
-        handleFilters();
-    }, [dispatch, filters, sort])
+
+        if (filters) {
+
+            dispatch(getPostsByCategory(filters, page, test));
 
 
-    ///if(cat && filters!={} ){navigate(`/Catalogo/search?type=${filters.type}`)}else{navigate('/Catalogo')}
+        }
+        //if(filters !==[]){ navigate(`/catalogo/search?page=${page}&${key}=${value || ''}`)}
 
+    }, [dispatch, filters]);
 
-
-
+    //if(filters!=={}){navigate(`/catalogo/search?type=${filters.type || ''}`)}
 
     return (
         <div>
@@ -249,16 +194,28 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Ordenar por </Title>
-                    <Select onChange={(e) => setSort(e.target.value)}>
+                    <Select name='sort' onChange={writer}>
                         <Option>
                             -
                         </Option>
-                        <Option value="reciente">Más reciente</Option>
-                        <Option value="ascendente">Precio ascendente</Option>
-                        <Option value="descendente">Precio descendente</Option>
+                        <Option value={"reciente"}>Más reciente</Option>
+                        <Option value={"ascendente"}>Precio ascendente</Option>
+                        <Option value={"descendente"}>Precio descendente</Option>
                     </Select>
                 </Filter>
             </Container>
+
+
+            <Pagination
+                //classes = {{ul: classes.ul}}
+                count={numberOfPages}
+                page={Number(page) || 1}
+                variant="outlined"
+                color="primary"
+                renderItem={(item) => (
+                    <PaginationItem {...item} component={Link} to={`/catalogo/search?page=${page}`} />
+                )}
+            />
         </div>
     )
 }

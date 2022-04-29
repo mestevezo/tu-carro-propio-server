@@ -9,7 +9,7 @@ import Pagination from './Pagination';
 import { Paper } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 
-function useQuery(){
+function useQuery() {
     return new URLSearchParams(useLocation().search)
 }
 
@@ -18,12 +18,7 @@ const CatalogoHome = () => {
     const dispatch = useDispatch();
     const query = useQuery();
     const page = query.get('page') || 1;
-    
-    /*
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [currentId, dispatch])
-*/
+
 
     return (
         <>
@@ -32,8 +27,8 @@ const CatalogoHome = () => {
                     <Container>
                         <Grid item xs={12} sm={7} md={9}>
                             <Posts setCurrentId={setCurrentId} />
-                            <Paper elevation= {6}>
-                                <Pagination page = {page}/>
+                            <Paper elevation={6}>
+                                <Pagination page={page} />
                             </Paper>
                         </Grid>
                     </Container>

@@ -1,16 +1,14 @@
 import express from 'express';
 
-import {getPostsByCategory, getPosts , getPost} from '../controllers/posts.js';
+import { getPostsByCategory, getPosts, getPost } from '../controllers/posts.js';
 
 const router = express.Router();
 
-router.get('/Catalogo', getPosts);
+router.get('/catalogo', getPosts);
 
-//router.get('/Catalogo/:id', getPost);
+router.get('/catalogo/search', getPostsByCategory);
 
-router.get('/Catalogo', getPostsByCategory);
-
-router.get('/Catalogo/:id', getPost);
+router.get('/catalogo/:id', getPost);
 //router.get('/:id', getPost);
 
 

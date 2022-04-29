@@ -1,8 +1,9 @@
 import React from "react";
-import GlobalStyle from "../../globalStyles";
-import { Navbar, Footer } from "../../components";
+import { Navbar } from "../../components";
 import CatalogoHome from "../Catálogo/Catalogo-home";
+import GlobalStyle from "../../globalStyles";
 import Productfilter from "./Product-filter";
+
 
 function Catalogo() {
     return (
@@ -11,7 +12,6 @@ function Catalogo() {
             <Navbar />
             <Productfilter />
             <CatalogoHome />
-            <Footer />
         </>
     );
 }

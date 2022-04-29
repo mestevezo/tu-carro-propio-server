@@ -11,7 +11,7 @@ align-items: center;
 font-size: 1.2rem;
 position: sticky;
 top: 0;
-z-index: 999;
+z-index: 2000;
 `;
 
 export const NavbarContainer = styled(Container)`
