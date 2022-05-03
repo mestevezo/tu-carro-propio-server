@@ -1,8 +1,6 @@
-import { FETCH_ALL, FETCH_POST, START_LOADING, END_LOADING, FETCH_BY } from '../constants/actionTypes';
-
-
+import { FETCH_ALL, FETCH_POST, START_LOADING, END_LOADING } from '../constants/actionTypes';
 import * as api from '../api/index.js';
-import { useNavigate } from 'react-router-dom';
+
 
 export const getPosts = (page) => async (dispatch) => {
   try {
@@ -34,12 +32,12 @@ export const getPostsByCategory = (filters, page, test, sort) => async (dispatch
 
 
   try {
-
+    dispatch({ type: START_LOADING });
     const { data: { data, currentPage, numberOfPages } } = await api.fetchPostsByCategory(filters, page, test);
     //console.log(data)
 
-    dispatch({ type: FETCH_ALL, payload: { data, currentPage, numberOfPages } });
-
+    dispatch({ type: FETCH_ALL, payload: { data, currentPage, numberOfPages, filters } });
+    dispatch({ type: END_LOADING });
 
   } catch (error) {
     console.log(error.message);

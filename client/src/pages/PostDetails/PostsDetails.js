@@ -22,14 +22,17 @@ const Post = () => {
     dispatch(getPost(id));
   }, [dispatch, id]);
 
-  /*
-    useEffect(() =>{
-      if(post) {
-  
-        dispatch(getPostsByCategory({brand:post.brand}))
-      }
-  
-    }, [post])*/
+
+  useEffect(() => {
+    if (post) {
+      const test = new URLSearchParams({ brand: post.brand });
+      const page = 1;
+      const filter = { brand: post.brand }
+
+      dispatch(getPostsByCategory(filter, page, test))
+    }
+
+  }, [post])
 
   if (!post) return null;
 

@@ -6,13 +6,14 @@ import Productfilter from "./Product-filter";
 import { Footer } from "../../components";
 
 
+
 function Catalogo() {
     return (
         <>
+            <GlobalStyle />
             <Navbar />
             <Productfilter />
             <CatalogoHome />
-            <GlobalStyle />
             <Footer />
         </>
     );

@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { Route, useNavigate } from 'react-router-dom';
-import { Pagination, PaginationItem } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { getPostsByCategory, getAll } from '../../actions/posts';
 
-import { FETCH_ALL, FETCH_BY } from '../../constants/actionTypes';
-import { useDispatch, useSelector } from "react-redux";
+import { getPostsByCategory } from '../../actions/posts';
 
 const Container = styled.div`
 text-align: center;
@@ -21,7 +17,7 @@ align-items: center;
 display: flex;
 justify-content: space-evenly;
 position: fixed;
-z-index: 3000;
+z-index: 2000;
 background: #202020;
 color: #f7df1e;
 padding: 1rem;
@@ -76,22 +72,17 @@ function useQuery() {
 
 const Productfilter = () => {
     const query = useQuery();
-    const page = query.get('page') || 1;
-    const [sorteredProducts, setSorteredProducts] = useState([]);
+
     const dispatch = useDispatch();
-    const [datalist, setDataList] = useState([]);
     const location = useLocation();
     const navigate = useNavigate();
-    const { numberOfPages } = useSelector((state) => state.posts);
-
-
-
-
+    const cat = location.pathname.split('/')[1];
+    console.log(cat);
+    //    const { numberOfPages } = useSelector((state) => state.posts);
 
     const [filters, setFilters] = useState({})
-    const [sort, setSort] = useState("")
-    const [list, setList] = useState(datalist);
-    const cat = location.pathname.split("/")[1];
+
+
 
 
     const writer = (e) => {
@@ -105,9 +96,7 @@ const Productfilter = () => {
 
     }
     const key = Object.keys(filters);
-
-    const value = filters[key];
-    var element = '';
+    let element = '';
 
     if (filters !== {}) {
         for (let i = 0; i < key.length; i++) {
@@ -121,28 +110,25 @@ const Productfilter = () => {
             }
         }
 
-        var test = new URLSearchParams(element)
+
     }
 
-
-
-
-
-
+    let page = query.get('page') || 1;
 
     useEffect(() => {
-
-        if (filters) {
-
-            dispatch(getPostsByCategory(filters, page, test));
-
-
-        }
-        //if(filters !==[]){ navigate(`/catalogo/search?page=${page}&${key}=${value || ''}`)}
-
+        page = 1;
     }, [dispatch, filters]);
 
-    //if(filters!=={}){navigate(`/catalogo/search?type=${filters.type || ''}`)}
+    useEffect(() => {
+        let test = new URLSearchParams(element)
+        if (Object.keys(filters).length > 0) {
+            dispatch(getPostsByCategory(filters, page, test));
+            navigate(`/catalogo/search?page=${page}&${test}`)
+        }
+
+    }, [dispatch, filters, page]);
+
+
 
     return (
         <div>
@@ -204,18 +190,6 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
             </Container>
-
-
-            <Pagination
-                //classes = {{ul: classes.ul}}
-                count={numberOfPages}
-                page={Number(page) || 1}
-                variant="outlined"
-                color="primary"
-                renderItem={(item) => (
-                    <PaginationItem {...item} component={Link} to={`/catalogo/search?page=${page}`} />
-                )}
-            />
         </div>
     )
 }

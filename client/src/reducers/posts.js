@@ -12,6 +12,7 @@ const reducer = (state = { isLoading: true, posts: [] }, action) => {
         posts: action.payload.data,
         currentPage: action.payload.currentPage,
         numberOfPages: action.payload.numberOfPages,
+        filters: action.payload.filters
       };
     case FETCH_BY:
       return { ...state, posts: action.payload, filter: action.payload.filter }
