@@ -64,25 +64,9 @@ export const getPostsByCategory = async (req, res) => {
       const total = await PostMessage.find(arrayQuery);
 
 
-      if (sort === 'reciente') {
 
-        posts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-      }
-
-      if (sort === 'descendente') {
-
-        posts.sort((a, b) => a.price - b.price);
-
-      }
-
-      if (sort === 'ascendente') {
-
-        posts.sort((a, b) => b.price - a.price);
-
-      }
-
-      res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total.length / LIMIT) });
+      res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total.length / LIMIT), filters: arrayQuery });
 
     } else {
       const posts = await PostMessage.find(arrayQuery).limit(LIMIT).skip(startIndex);
@@ -96,19 +80,19 @@ export const getPostsByCategory = async (req, res) => {
 
       }
 
-      if (sort === 'ascendente') {
-
-        posts.sort((a, b) => a.price - b.price);
-
-      }
-
       if (sort === 'descendente') {
 
         posts.sort((a, b) => b.price - a.price);
 
       }
 
-      res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total.length / LIMIT) });
+      if (sort === 'ascendente') {
+
+        posts.sort((a, b) => a.price - b.price);
+
+      }
+
+      res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total.length / LIMIT), filters: arrayQuery });
 
     }
 
