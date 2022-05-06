@@ -13,7 +13,7 @@ const Paginate = ({ page }) => {
     const { filters } = useSelector((state) => state.posts);
     const { isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
-    console.log(filters)
+    //console.log(filters);
 
     let location = useLocation();
     let route = location.pathname + location.search;
