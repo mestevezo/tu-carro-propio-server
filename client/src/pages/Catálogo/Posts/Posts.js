@@ -14,6 +14,11 @@ const useStyles = ((theme) => ({
 const Box = styled.div`
   margin-top: 10rem;
   margin-bottom: 3rem;
+  gap: 5rem;
+
+  @media screen and (max-width: 760px) {
+        margin-top: 15rem;
+    }
 `;
 
 const Posts = ({ setCurrentId }) => {

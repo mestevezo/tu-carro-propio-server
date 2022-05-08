@@ -5,8 +5,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-
-import { getPostsByCategory } from '../../actions/posts';
+import { getPostsByCategory, getPosts } from '../../actions/posts';
 
 const Container = styled.div`
 text-align: center;
@@ -66,68 +65,53 @@ align-items: center;
 `;
 
 
-function useQuery() {
-    return new URLSearchParams(useLocation().search)
-}
-
 const Productfilter = () => {
-    const query = useQuery();
-
+    
     const dispatch = useDispatch();
-    const location = useLocation();
     const navigate = useNavigate();
-    const cat = location.pathname.split('/')[1];
-    console.log(cat);
-    //    const { numberOfPages } = useSelector((state) => state.posts);
-
     const [filters, setFilters] = useState({})
-
-
-
+    const page = 1;
 
     const writer = (e) => {
+
         const value = e.target.value;
-
-
-        setFilters({
-            ...filters,
-            [e.target.name]: value
-        });
+        if (value !== '-') {
+            setFilters({
+                ...filters,
+                [e.target.name]: value
+            });
+        } else {
+            delete filters[e.target.name];
+            setFilters({...filters});
+        };
 
     }
-    const key = Object.keys(filters);
-    let element = '';
+    
+    useEffect(() => {
 
-    if (filters !== {}) {
-        for (let i = 0; i < key.length; i++) {
+        let element = '';
 
-            if (key[i] === 'price') {
-
-                element = `minPrice=${filters[key[i]].split(',')[0]}&maxPrice=${filters[key[i]].split(',')[1]}&${element}`;
-
-            } else {
-                element = `${key[i]}=${filters[key[i]]}&${element}`;
+        if (Object.keys(filters).length !== 0) {
+            for (let key in filters) {
+                if (key === 'price') {
+                    element = `minPrice=${filters[key].split(',')[0]}&maxPrice=${filters[key].split(',')[1]}&${element}`;
+                } else {
+                    element = `${key}=${filters[key]}&${element}`;
+                }
             }
         }
 
+        let test = new URLSearchParams(element);
 
-    }
-
-    let page = query.get('page') || 1;
-
-    useEffect(() => {
-        page = 1;
-    }, [dispatch, filters]);
-
-    useEffect(() => {
-        let test = new URLSearchParams(element)
         if (Object.keys(filters).length > 0) {
+            navigate(`/catalogo/search?page=${page}&${test}`);
             dispatch(getPostsByCategory(filters, page, test));
-            navigate(`/catalogo/search?page=${page}&${test}`)
+        } else {
+            navigate(`/catalogo/search?page=${page}`);
+            dispatch(getPosts(page));        
         }
 
     }, [dispatch, filters, page]);
-
 
 
     return (
@@ -135,9 +119,7 @@ const Productfilter = () => {
             <Container>
                 <Filter><Title>Tipo </Title>
                     <Select name='type' onChange={writer}>
-                        <Option value={'all'}>
-                            Todos
-                        </Option>
+                        <Option value={'-'}>Todos</Option>
                         <Option value={'Carro'} >Carro</Option>
                         <Option value={'Camioneta'} >Camioneta</Option>
                         <Option value={'Camion'} >Camión</Option>
@@ -145,10 +127,7 @@ const Productfilter = () => {
                 </Filter>
                 <Filter><Title>Marca </Title>
                     <Select name='brand' onChange={writer}>
-                        <Option disabled>
-                            -
-                        </Option>
-                        <Option value={'all'}>Todos</Option>
+                        <Option value={'-'}>Todos</Option>
                         <Option value={'Toyota'}>Toyota</Option>
                         <Option value={'Ford'}>Ford</Option>
                         <Option value={'Chevrolet'}>Chevrolet</Option>
@@ -158,10 +137,7 @@ const Productfilter = () => {
                 </Filter>
                 <Filter><Title>Precio </Title>
                     <Select name='price' onChange={writer}>
-                        <Option disabled>
-                            -
-                        </Option>
-                        <Option value={'all'}>Todos</Option>
+                        <Option value={'-'}>Todos</Option>
                         <Option value={[500, 2000]}>500$ - 2000$</Option>
                         <Option value={[2000, 4000]}>2000$ - 4000$</Option>
                         <Option value={[4000, 8000]}>4000$ - 8000$</Option>
@@ -172,18 +148,14 @@ const Productfilter = () => {
                 </Filter>
                 <Filter><Title>Transmisión </Title>
                     <Select name='transmission' onChange={writer}>
-                        <Option >
-                            -
-                        </Option>
+                        <Option value={'-'}>-</Option>
                         <Option value={'Automatico'}>Automático</Option>
                         <Option value={'Sincronico'}>Sincrónico</Option>
                     </Select>
                 </Filter>
                 <Filter><Title>Ordenar por </Title>
                     <Select name='sort' onChange={writer}>
-                        <Option>
-                            -
-                        </Option>
+                        <Option value={'-'}>-</Option>
                         <Option value={"reciente"}>Más reciente</Option>
                         <Option value={"ascendente"}>Precio ascendente</Option>
                         <Option value={"descendente"}>Precio descendente</Option>
@@ -194,4 +166,4 @@ const Productfilter = () => {
     )
 }
 
-export default Productfilter
+export default Productfilter;

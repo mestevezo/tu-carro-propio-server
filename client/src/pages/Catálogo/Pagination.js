@@ -3,25 +3,30 @@ import { Pagination, PaginationItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadingDots } from "../../components";
-import { getPosts } from "../../actions/posts";
+import { getPosts, getPostsByCategory } from "../../actions/posts";
+import { useLocation } from 'react-router-dom';
 
 
 const Paginate = ({ page }) => {
-
 
     const { numberOfPages } = useSelector((state) => state.posts);
     const { filters } = useSelector((state) => state.posts);
     const { isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
+    //console.log(filters);
 
+    let location = useLocation();
+    let route = location.pathname + location.search;
 
     useEffect(() => {
 
-        if (page && filters === undefined) {
-            dispatch(getPosts(page));
+        if ((filters !== undefined) && (Object.keys(filters).length > 0)) {
+            dispatch(getPostsByCategory(filters, page, route.split(/page=\d+/)[1]));
+        } else {
+            dispatch(getPosts(page));        
         }
 
-    }, [dispatch, page, filters]);
+    }, [page]);
 
     if (isLoading) {
         return (
@@ -37,7 +42,7 @@ const Paginate = ({ page }) => {
             variant="outlined"
             color="primary"
             renderItem={(item) => (
-                <PaginationItem {...item} component={Link} to={`/catalogo?page=${item.page}`} />
+                <PaginationItem {...item} component={Link} to={route.replace(/page=\d+/, `page=${item.page}`)} />
             )}
         />
 
