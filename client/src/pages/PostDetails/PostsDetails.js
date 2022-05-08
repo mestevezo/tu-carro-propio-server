@@ -53,26 +53,27 @@ const Post = () => {
           <Slider Imgs={array}></Slider>
         </CarSlide>
         <Information>
-          <Title><h1>{post.brand + ' ' + post.model}</h1></Title>
-          <Subtitle><p>{post.price + ' USD'}</p></Subtitle>
-          <Description><p>{'Año ' + post.year + ' • ' + post.km + ' Km'}</p></Description>
+          <Title>{post.brand + ' ' + post.model}</Title>
+          <Subtitle>{post.price + ' USD'}</Subtitle>
+          <Description>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Description>
         </Information>
       </Container>
 
 
-      <div>
+      <Recommendations>
         {!!recommendedPosts.length && (
           <div>
-            <h1>Tambien te pueden interesar</h1>
+            <RecommendedTitle>También te puede interesar</RecommendedTitle>
+            <br></br>
             {recommendedPosts.map(({ brand, model, year, _id, mainImg }) => (
-              <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
-                <img src={mainImg} width='200px' alt='recomendados' />
-                <h4>{brand}</h4> <h4>{model}</h4> <h4>{year}</h4>
-              </div>
+              <RecommendedContainer onClick={() => openPost(_id)} key={_id}>
+                <RecommendedImg src={mainImg} width='100%' alt='recomendados' />
+                <h1>{brand + ' '}{model}</h1> <Description>{'Año ' + year}</Description>
+              </RecommendedContainer>
             ))}
           </div>
         )}
-      </div>
+      </Recommendations>
     </div >
   );
 };
@@ -82,7 +83,7 @@ const Container = styled.div`
   margin: 2rem;
 
 @media screen and (max-width: 780px) {
-  width: 90%;
+  width: 85%;
   align-items: center;
   text-align: center;
   flex-direction: column;
@@ -115,18 +116,17 @@ const Information = styled.div`
 `
 
 const Title = styled.h1`
-font-size: larger;
-line-height: 2em;
+  font-size: 2rem;
+  line-height: 1em;
 
 @media screen and (max-width: 780px) {
-  line-height: 2em;
+  line-height: 1em;
     }
 `
 const Subtitle = styled.p`
-width: 50%;
-border-radius: 5px;
-font-size: 1.5rem;
-font-weight: 700;
+  width: 50%;
+  font-size: 1.2rem;
+  font-weight: 500;
 
 @media screen and (max-width: 780px) {
     text-align: center;
@@ -136,8 +136,57 @@ font-weight: 700;
 `
 
 const Description = styled.p`
-font-size: 1.2rem;
-font-weight: 300;
+  font-size: 1.2rem;
+  font-weight: 300;
+`
+const Recommendations = styled.div` 
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 5%;
+  align-items: center;
+
+@media screen and (max-width: 780px) {
+  width: 90%;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+`
+const RecommendedTitle = styled.h1`
+  margin-left: 95%;
+  margin-bottom: 2rem;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  line-height: 1em;
+
+@media screen and (max-width: 780px) {
+  width: 100%;
+  margin-left: 0;
+  font-size: 2rem;
+  line-height: 1em;
+}
+`
+
+const RecommendedContainer = styled.div`
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+
+@media screen and (max-width: 780px) {
+ font-size: medium;
+}
+`
+const RecommendedImg = styled.img`
+border-radius: 25px;
+
+@media screen and (max-width: 780px) {
+  border-radius: 20px;
+  width: 70%;
+  height: 70%;
+}
 `
 
 export default Post;
