@@ -6,14 +6,13 @@ import { LoadingDots } from "../../components";
 import { getPosts, getPostsByCategory } from "../../actions/posts";
 import { useLocation } from 'react-router-dom';
 
-
 const Paginate = ({ page }) => {
 
     const { numberOfPages } = useSelector((state) => state.posts);
     const { filters } = useSelector((state) => state.posts);
     const { isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
-    //console.log(filters);
+
 
     let location = useLocation();
     let route = location.pathname + location.search;
@@ -23,7 +22,7 @@ const Paginate = ({ page }) => {
         if ((filters !== undefined) && (Object.keys(filters).length > 0)) {
             dispatch(getPostsByCategory(filters, page, route.split(/page=\d+/)[1]));
         } else {
-            dispatch(getPosts(page));        
+            dispatch(getPosts(page));
         }
 
     }, [page]);
@@ -39,15 +38,14 @@ const Paginate = ({ page }) => {
         <Pagination
             count={numberOfPages}
             page={Number(page) || 1}
-            variant="outlined"
-            color="primary"
+            shape='rounded'
+            size='large'
             renderItem={(item) => (
                 <PaginationItem {...item} component={Link} to={route.replace(/page=\d+/, `page=${item.page}`)} />
             )}
         />
-
     )
-
 }
+
 
 export default Paginate;

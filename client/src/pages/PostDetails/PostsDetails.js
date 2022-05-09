@@ -63,12 +63,12 @@ const Post = () => {
       <Recommendations>
         {!!recommendedPosts.length && (
           <div>
-            <RecommendedTitle>También te puede interesar</RecommendedTitle>
+            <RecommendedTitle>También te pueden interesar estos vehículos</RecommendedTitle>
             <br></br>
             {recommendedPosts.map(({ brand, model, year, _id, mainImg }) => (
               <RecommendedContainer onClick={() => openPost(_id)} key={_id}>
                 <RecommendedImg src={mainImg} width='100%' alt='recomendados' />
-                <h1>{brand + ' '}{model}</h1> <Description>{'Año ' + year}</Description>
+                <h2>{brand + ' '}{model}</h2> <Description>{'Año ' + year}</Description>
               </RecommendedContainer>
             ))}
           </div>
@@ -154,13 +154,13 @@ const Recommendations = styled.div`
   flex-direction: column;
 }
 `
-const RecommendedTitle = styled.h1`
+const RecommendedTitle = styled.h2`
   margin-left: 95%;
   margin-bottom: 2rem;
   width: 100%;
-  justify-content: center;
   text-align: center;
   line-height: 1em;
+  font-size: 1.8rem;
 
 @media screen and (max-width: 780px) {
   width: 100%;
