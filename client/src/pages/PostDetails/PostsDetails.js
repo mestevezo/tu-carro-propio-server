@@ -114,7 +114,6 @@ const Information = styled.div`
     }
 
 `
-
 const Title = styled.h1`
   font-size: 2rem;
   line-height: 1em;
@@ -143,7 +142,6 @@ const Recommendations = styled.div`
   width: 30%;
   height: 100%;
   display: flex;
-  flex-direction: row;
   margin: 5%;
   align-items: center;
 
@@ -172,14 +170,19 @@ const RecommendedTitle = styled.h2`
 
 const RecommendedContainer = styled.div`
   cursor: pointer;
-  justify-content: center;
+  direction: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  margin: 5%;
 
 @media screen and (max-width: 780px) {
  font-size: medium;
 }
 `
 const RecommendedImg = styled.img`
+width: 80%;
+height: 90%;
 border-radius: 25px;
 
 @media screen and (max-width: 780px) {

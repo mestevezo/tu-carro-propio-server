@@ -3,51 +3,50 @@ import emailjs from "@emailjs/browser";
 import styled from "styled-components";
 
 const Contact = () => {
-    const form = useRef();
+  const form = useRef();
 
-    const sendEmail = (e) => {
-        e.preventDefault();
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-        emailjs
-            .sendForm(
-                "replace with service id",
-                "replace with template id",
-                form.current,
-                "replace with user id"
-            )
-            .then(
-                (result) => {
-                    console.log(result.text);
-                    console.log("message sent");
-                },
-                (error) => {
-                    console.log(error.text);
-                }
-            );
-    };
+    emailjs
+      .sendForm(
+        "replace with service id",
+        "replace with template id",
+        form.current,
+        "replace with user id"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message sent");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
-    return (
-        <StyledContactForm>
-            <form ref={form} onSubmit={sendEmail}>
-                <label>Nombre</label>
-                <input
-                    placeholder="Escribe tu nombre"
-                    type="text"
-                    name="user_name" />
-                <label>Email</label>
-                <input
-                    placeholder="ejemplo@gmail.com"
-                    type="email"
-                    name="user_email" />
-                <label>Mensaje</label>
-                <textarea name="message" />
-                <input
-                    placeholder="Escribe tu mensaje"
-                    type="submit"
-                    value="Enviar" />
-            </form>
-        </StyledContactForm>
-    );
+  return (
+    <StyledContactForm>
+      <form ref={form} onSubmit={sendEmail}>
+        <label>Nombre</label>
+        <input
+          placeholder="Escribe tu nombre"
+          type="text"
+          name="user_name" />
+        <label>Email</label>
+        <input
+          placeholder="ejemplo@gmail.com"
+          type="email"
+          name="user_email" />
+        <label>Mensaje</label>
+        <textarea name="message" placeholder="Escribe tu mensaje" />
+        <input
+          type="submit"
+          value="Enviar" />
+      </form>
+    </StyledContactForm>
+  );
 };
 
 export default Contact;
@@ -97,6 +96,16 @@ const StyledContactForm = styled.div`
       background: #f7df1e;
       color: #202020;
       border: none;
+
+      &:hover {
+    transition: all 0.3s ease-out;
+    background: #f7e76a; 
+
+    &:active {
+      transition: all 0.3s ease-out;
+      transform: scale(0.98);
+    }
+}
     }
   }
 `;

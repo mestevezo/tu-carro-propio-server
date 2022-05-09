@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Posts from './Posts/Posts';
 import Container from '@mui/material/Container';
-import Grow from '@mui/material/Grow';
-import Grid from '@mui/material/Grid';
 import Pagination from './Pagination';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -64,9 +63,8 @@ const Option = styled.option`
 align-items: center;
 `;
 
-
 const Productfilter = () => {
-    
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [filters, setFilters] = useState({})
@@ -82,11 +80,11 @@ const Productfilter = () => {
             });
         } else {
             delete filters[e.target.name];
-            setFilters({...filters});
+            setFilters({ ...filters });
         };
 
     }
-    
+
     useEffect(() => {
 
         let element = '';
@@ -108,10 +106,10 @@ const Productfilter = () => {
             dispatch(getPostsByCategory(filters, page, test));
         } else {
             navigate(`/catalogo/search?page=${page}`);
-            dispatch(getPosts(page));        
+            dispatch(getPosts(page));
         }
 
-    }, [dispatch, filters, page]);
+    }, [dispatch, filters, page, navigate]);
 
 
     return (
