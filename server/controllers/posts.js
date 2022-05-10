@@ -31,7 +31,7 @@ export const getPostsByCategory = async (req, res) => {
     'descendente': '-price',
     'ascendente': 'price'
   }
-  console.log(req.query)
+  
   const arrayQuery = req.query;
   const { sort } = req.query || 'id';
   const { page } = req.query
@@ -56,7 +56,6 @@ export const getPostsByCategory = async (req, res) => {
     
     const total = await PostMessage.countDocuments(finalQuery);
     const posts = await PostMessage.find(finalQuery).select('-othersImg').limit(LIMIT).skip(startIndex).sort(SORT_CASES[sort]);
-    //const posts = await PostMessage.find(finalQuery).select('-othersImg -mainImg').limit(LIMIT).skip(startIndex).sort(SORT_CASES[sort]);
     res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT), filters: arrayQuery });
 
   } catch (error) {

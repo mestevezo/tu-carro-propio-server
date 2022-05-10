@@ -27,7 +27,7 @@ const Navbar = () => {
                             </NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='/catalogo'>
+                            <NavLinks to='/catalogo/search?page=1'>
                                 Catálogo
                             </NavLinks>
                         </NavItem>

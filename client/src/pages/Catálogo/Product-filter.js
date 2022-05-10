@@ -69,8 +69,10 @@ const Productfilter = () => {
     
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [filters, setFilters] = useState({})
-    const page = 1;
+    let location = useLocation();
+    let route = location.pathname + location.search;   
+    const [filters, setFilters] = useState({});
+    var page = parseInt(route.match(/\d+/)[0]);
 
     const writer = (e) => {
 
@@ -84,6 +86,7 @@ const Productfilter = () => {
             delete filters[e.target.name];
             setFilters({...filters});
         };
+        navigate(route.replace(/page=\d+/, 'page=1'));
 
     }
     
@@ -99,10 +102,26 @@ const Productfilter = () => {
                     element = `${key}=${filters[key]}&${element}`;
                 }
             }
+        } else {
+            if (route.split(/page=\d+&/).length > 1) {
+                element = route.split(/page=\d+&/)[1];
+                if (element.split('&').length > 0) {
+                    let options = element.split('&');
+                    for (let i in options) {
+                        if (options[i].split('=')[0] === 'minPrice') {
+                            filters.price = [parseInt(options[i].split('=')[1])];
+                        } else if (options[i].split('=')[0] === 'maxPrice') {
+                            filters.price.push(parseInt(options[i].split('=')[1]));
+                        } else {
+                            filters[options[i].split('=')[0]] = options[i].split('=')[1];
+                        }
+                    }
+                }
+            }
         }
 
         let test = new URLSearchParams(element);
-
+        //console.log('req')
         if (Object.keys(filters).length > 0) {
             navigate(`/catalogo/search?page=${page}&${test}`);
             dispatch(getPostsByCategory(filters, page, test));
@@ -111,14 +130,14 @@ const Productfilter = () => {
             dispatch(getPosts(page));        
         }
 
-    }, [dispatch, filters, page]);
+    }, [filters, page, route]);
 
 
     return (
         <div>
             <Container>
                 <Filter><Title>Tipo </Title>
-                    <Select name='type' onChange={writer}>
+                    <Select name='type' onChange={writer} value={filters.type} defaultValue='-'>
                         <Option value={'-'}>Todos</Option>
                         <Option value={'Carro'} >Carro</Option>
                         <Option value={'Camioneta'} >Camioneta</Option>
@@ -126,7 +145,7 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Marca </Title>
-                    <Select name='brand' onChange={writer}>
+                    <Select name='brand' onChange={writer} value={filters.brand} defaultValue='-'>
                         <Option value={'-'}>Todos</Option>
                         <Option value={'Toyota'}>Toyota</Option>
                         <Option value={'Ford'}>Ford</Option>
@@ -136,7 +155,7 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Precio </Title>
-                    <Select name='price' onChange={writer}>
+                    <Select name='price' onChange={writer} value={filters.price} defaultValue='-'>
                         <Option value={'-'}>Todos</Option>
                         <Option value={[500, 2000]}>500$ - 2000$</Option>
                         <Option value={[2000, 4000]}>2000$ - 4000$</Option>
@@ -147,14 +166,14 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Transmisión </Title>
-                    <Select name='transmission' onChange={writer}>
+                    <Select name='transmission' onChange={writer} value={filters.transmission} defaultValue='-'>
                         <Option value={'-'}>-</Option>
                         <Option value={'Automatico'}>Automático</Option>
                         <Option value={'Sincronico'}>Sincrónico</Option>
                     </Select>
                 </Filter>
                 <Filter><Title>Ordenar por </Title>
-                    <Select name='sort' onChange={writer}>
+                    <Select name='sort' onChange={writer} value={filters.sort} defaultValue='-'>
                         <Option value={'-'}>-</Option>
                         <Option value={"reciente"}>Más reciente</Option>
                         <Option value={"ascendente"}>Precio ascendente</Option>

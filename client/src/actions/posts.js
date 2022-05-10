@@ -34,7 +34,7 @@ export const getPostsByCategory = (filters, page, test, sort) => async (dispatch
   try {
     dispatch({ type: START_LOADING });
     const { data: { data, currentPage, numberOfPages } } = await api.fetchPostsByCategory(filters, page, test);
-    //console.log(data)
+    //console.log(filters)
 
     dispatch({ type: FETCH_ALL, payload: { data, currentPage, numberOfPages, filters } });
     dispatch({ type: END_LOADING });
