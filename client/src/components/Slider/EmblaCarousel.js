@@ -68,6 +68,7 @@ const EmblaCarousel = ({ slides, Imgs }) => {
 
 const Embla = styled.div`
   .embla {
+    border-radius: 20px;
     position: relative;
     padding: 0px;
     max-width: 90%;
@@ -76,6 +77,7 @@ const Embla = styled.div`
   }
   
   .embla__viewport {
+    border-radius: 20px;
     overflow: hidden;
   }
   
@@ -100,6 +102,7 @@ const Embla = styled.div`
   }
   
   .embla__slide__inner {
+    border-radius: 20px;
     position: relative;
     overflow: hidden;
     height: 300px;

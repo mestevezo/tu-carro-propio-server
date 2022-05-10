@@ -38,9 +38,13 @@ outline: none;
 border: none;
 cursor: pointer;
 
+&:active {
+      transition: all 0.3s ease-out;
+      transform: scale(0.98);
+    }
+
 &:hover {
     transition: all 0.3s ease-out;
-    background: #fff;
     background: ${({ primary }) => (primary ? '#f7e76a' : '#404040')}; 
 }
 

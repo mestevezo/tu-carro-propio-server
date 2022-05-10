@@ -8,8 +8,6 @@ import styled from 'styled-components';
 import { LoadingDots } from '../../components';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const Post = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
 
@@ -32,7 +30,7 @@ const Post = () => {
       dispatch(getPostsByCategory(filter, page, test))
     }
 
-  }, [post])
+  }, [dispatch, post])
 
   if (!post) return null;
 
@@ -51,52 +49,148 @@ const Post = () => {
   return (
     <div >
       <Container>
-        <Slider Imgs={array}></Slider>
+        <CarSlide>
+          <Slider Imgs={array}></Slider>
+        </CarSlide>
+        <Information>
+          <Title>{post.brand + ' ' + post.model}</Title>
+          <Subtitle>{post.price + ' USD'}</Subtitle>
+          <Description>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Description>
+        </Information>
       </Container>
-      <div>
-        <h1>{post.brand + ' ' + post.model}</h1>
-        <h2>{post.year + ' | ' + post.km + ' Km'}</h2>
-        <h2>{post.price + ' USD'}</h2>
-      </div>
 
-      <div>
+
+      <Recommendations>
         {!!recommendedPosts.length && (
-
           <div>
-            <h1>Tambien te pueden interesar</h1>
-
+            <RecommendedTitle>También te pueden interesar estos vehículos</RecommendedTitle>
+            <br></br>
             {recommendedPosts.map(({ brand, model, year, _id, mainImg }) => (
-              <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
-                <img src={mainImg} width='200px' alt='recomendados' />
-                <h4>{brand}</h4> <h4>{model}</h4> <h4>{year}</h4>
-              </div>
-
+              <RecommendedContainer onClick={() => openPost(_id)} key={_id}>
+                <RecommendedImg src={mainImg} width='100%' alt='recomendados' />
+                <h2>{brand + ' '}{model}</h2> <Description>{'Año ' + year}</Description>
+              </RecommendedContainer>
             ))}
-
           </div>
-
         )}
-
-
-
-
-      </div>
-
-
-
+      </Recommendations>
     </div >
-
-
-
-
   );
 };
 
 const Container = styled.div`
-  width: 95%;
-  align-self: center;
-  margin: auto;
-  padding: 5%;
+  display: flex;
+  margin: 2rem;
+
+@media screen and (max-width: 780px) {
+  width: 85%;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+`
+
+const CarSlide = styled.div` 
+  position: relative;
+  height: 60%;
+  width: 60%;
+
+  @media screen and (max-width: 780px) {
+    width: 100%;
+}
+
+`
+const Information = styled.div` 
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-family: Poppins;
+
+  @media screen and (max-width: 780px) {
+    text-align: center;
+    margin-top: 10%;
+    width: 100%;
+    }
+
+`
+const Title = styled.h1`
+  font-size: 2rem;
+  line-height: 1em;
+
+@media screen and (max-width: 780px) {
+  line-height: 1em;
+    }
+`
+const Subtitle = styled.p`
+  width: 50%;
+  font-size: 1.2rem;
+  font-weight: 500;
+
+@media screen and (max-width: 780px) {
+    text-align: center;
+    width: 100%;
+    }
+
+`
+
+const Description = styled.p`
+  font-size: 1.2rem;
+  font-weight: 300;
+`
+const Recommendations = styled.div` 
+  width: 30%;
+  height: 100%;
+  display: flex;
+  margin: 5%;
+  align-items: center;
+
+@media screen and (max-width: 780px) {
+  width: 90%;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+`
+const RecommendedTitle = styled.h2`
+  margin-left: 95%;
+  margin-bottom: 2rem;
+  width: 100%;
+  text-align: center;
+  line-height: 1em;
+  font-size: 1.8rem;
+
+@media screen and (max-width: 780px) {
+  width: 100%;
+  margin-left: 0;
+  font-size: 2rem;
+  line-height: 1em;
+}
+`
+
+const RecommendedContainer = styled.div`
+  cursor: pointer;
+  direction: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5%;
+
+@media screen and (max-width: 780px) {
+ font-size: medium;
+}
+`
+const RecommendedImg = styled.img`
+width: 80%;
+height: 90%;
+border-radius: 25px;
+
+@media screen and (max-width: 780px) {
+  border-radius: 20px;
+  width: 70%;
+  height: 70%;
+}
 `
 
 export default Post;
+

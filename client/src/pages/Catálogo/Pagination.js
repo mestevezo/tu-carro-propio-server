@@ -6,7 +6,6 @@ import { LoadingDots } from "../../components";
 import { getPosts, getPostsByCategory } from "../../actions/posts";
 import { useLocation } from 'react-router-dom';
 
-
 const Paginate = ({ page }) => {
 
     const { numberOfPages } = useSelector((state) => state.posts);
@@ -41,15 +40,14 @@ const Paginate = ({ page }) => {
         <Pagination
             count={numberOfPages}
             page={Number(page) || 1}
-            variant="outlined"
-            color="primary"
+            shape='rounded'
+            size='large'
             renderItem={(item) => (
                 <PaginationItem {...item} component={Link} to={route.replace(/page=\d+/, `page=${item.page}`)} />
             )}
         />
-
     )
-
 }
+
 
 export default Paginate;

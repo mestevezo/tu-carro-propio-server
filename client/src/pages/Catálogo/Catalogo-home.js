@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import Posts from './Posts/Posts';
 import Container from '@mui/material/Container';
-import Grow from '@mui/material/Grow';
-import Grid from '@mui/material/Grid';
 import Pagination from './Pagination';
-import { Paper } from '@mui/material';
 import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 
 function useQuery() {
@@ -22,20 +20,30 @@ const CatalogoHome = () => {
 
     return (
         <>
-            <Container maxWidth="lg">
-                <Grow in>
-                    <Container>
-                        <Grid item xs={12} sm={7} md={9}>
-                            <Posts setCurrentId={setCurrentId} />
-                            <Paper elevation={6}>
-                                <Pagination page={page} />
-                            </Paper>
-                        </Grid>
-                    </Container>
-                </Grow>
+
+            <Container>
+                <Posts setCurrentId={setCurrentId} />
+                <PaginationLayout>
+                    <Pagination page={page} />
+                </PaginationLayout>
             </Container>
+
         </>
     )
 }
+
+const PaginationLayout = styled.div` 
+    align-items: center;
+    justify-content: center;
+    margin-left: 40%;
+    margin-bottom: 2rem;
+
+    @media screen and (max-width: 780px) {
+    align-items: center;
+    margin: 2rem;
+    margin-left: 4.5rem;
+    width: 100%;
+}
+`
 
 export default CatalogoHome;
