@@ -13,7 +13,7 @@ const InfoSection = ({ primary, lightBg, imgStart, lightTopLine, lightTextDesc, 
                             <TopLine lightTopLine={lightTopLine}>{topLine}</TopLine>
                             <Heading lightText={lightText}>{headline}</Heading>
                             <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
-                            <Link to='/catalogo'>
+                            <Link to='/catalogo/search?page=1'>
                                 <Button buttonDisplay={buttonDisplay} big fontBig primary={primary}>
                                     {buttonLabel1}
                                 </Button>

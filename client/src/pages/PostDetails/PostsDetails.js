@@ -60,32 +60,32 @@ const Post = () => {
       </Container>
 
 
-      <Recommendations>
+      <RecommendedTitle>También te pueden interesar estos vehículos</RecommendedTitle>
+
+
+      <div>
         {!!recommendedPosts.length && (
-          <div>
-            <RecommendedTitle>También te pueden interesar estos vehículos</RecommendedTitle>
-            <br></br>
+          <RecommendedDiv>
             {recommendedPosts.map(({ brand, model, year, _id, mainImg }) => (
               <RecommendedContainer onClick={() => openPost(_id)} key={_id}>
                 <RecommendedImg src={mainImg} width='100%' alt='recomendados' />
-                <h2>{brand + ' '}{model}</h2> <Description>{'Año ' + year}</Description>
+                <RecommendedDescription><h2>{brand + ' '}{model}</h2> {'Año ' + year}</RecommendedDescription>
               </RecommendedContainer>
             ))}
-          </div>
+          </RecommendedDiv>
         )}
-      </Recommendations>
+      </div>
     </div >
   );
 };
 
 const Container = styled.div`
   display: flex;
-  margin: 2rem;
+  margin: 1rem;
 
 @media screen and (max-width: 780px) {
-  width: 85%;
+  width: 90%;
   align-items: center;
-  text-align: center;
   flex-direction: column;
 }
 `
@@ -97,6 +97,7 @@ const CarSlide = styled.div`
 
   @media screen and (max-width: 780px) {
     width: 100%;
+    margin-left: 5%;
 }
 
 `
@@ -108,9 +109,9 @@ const Information = styled.div`
   font-family: Poppins;
 
   @media screen and (max-width: 780px) {
-    text-align: center;
     margin-top: 10%;
     width: 100%;
+    text-align: center;
     }
 
 `
@@ -128,7 +129,6 @@ const Subtitle = styled.p`
   font-weight: 500;
 
 @media screen and (max-width: 780px) {
-    text-align: center;
     width: 100%;
     }
 
@@ -138,22 +138,7 @@ const Description = styled.p`
   font-size: 1.2rem;
   font-weight: 300;
 `
-const Recommendations = styled.div` 
-  width: 30%;
-  height: 100%;
-  display: flex;
-  margin: 5%;
-  align-items: center;
-
-@media screen and (max-width: 780px) {
-  width: 90%;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-}
-`
 const RecommendedTitle = styled.h2`
-  margin-left: 95%;
   margin-bottom: 2rem;
   width: 100%;
   text-align: center;
@@ -161,36 +146,51 @@ const RecommendedTitle = styled.h2`
   font-size: 1.8rem;
 
 @media screen and (max-width: 780px) {
+  width: 90%;
+  margin: 5%;
+  line-height: 2rem;
+}
+`
+
+const RecommendedDiv = styled.div` 
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  margin-left: 0;
-  font-size: 2rem;
-  line-height: 1em;
+  margin-bottom: 2rem;
+
+  @media screen and (max-width: 780px) {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
 }
 `
 
 const RecommendedContainer = styled.div`
   cursor: pointer;
-  direction: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  margin: 5%;
+  margin: 2%;
 
 @media screen and (max-width: 780px) {
  font-size: medium;
 }
 `
 const RecommendedImg = styled.img`
-width: 80%;
-height: 90%;
-border-radius: 25px;
+width: 100%;
+height: 70%;
+border-radius: 15px;
 
 @media screen and (max-width: 780px) {
-  border-radius: 20px;
+  border-radius: 10px;
   width: 70%;
   height: 70%;
 }
 `
-
+const RecommendedDescription = styled.p`
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-align: center;
+`
 export default Post;
 
