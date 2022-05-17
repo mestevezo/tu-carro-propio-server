@@ -6,6 +6,8 @@ import { LoadingDots } from "../../components";
 import { getPosts, getPostsByCategory } from "../../actions/posts";
 import { useLocation } from 'react-router-dom';
 
+import Stack from '@mui/material/Stack';
+
 const Paginate = ({ page }) => {
 
     const { numberOfPages } = useSelector((state) => state.posts);
@@ -37,8 +39,11 @@ const Paginate = ({ page }) => {
 
 
     return (
+
+        <Stack spacing ={2}>
         <Pagination
             count={numberOfPages}
+            siblingCount={0}
             page={Number(page) || 1}
             shape='rounded'
             size='large'
@@ -46,6 +51,7 @@ const Paginate = ({ page }) => {
                 <PaginationItem {...item} component={Link} to={route.replace(/page=\d+/, `page=${item.page}`)} />
             )}
         />
+        </Stack>
     )
 }
 

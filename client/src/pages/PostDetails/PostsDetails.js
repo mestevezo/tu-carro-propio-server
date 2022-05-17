@@ -7,6 +7,7 @@ import Slider from '../../components/Slider/index';
 import styled from 'styled-components';
 import { LoadingDots } from '../../components';
 import { useNavigate } from 'react-router-dom';
+import { Paper } from '@mui/material';
 
 const Post = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
@@ -45,6 +46,11 @@ const Post = () => {
   const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
   const array = post.othersImg;
   array.unshift(post.mainImg)
+   let armor = ''
+  if(post.armor ){armor = 'Si'}else{armor = 'No'}
+
+  let t4x4 = ''
+  if(post.t4x4 ){t4x4 = 'Si'}else{t4x4 = 'No'}
 
   return (
     <div >
@@ -56,6 +62,15 @@ const Post = () => {
           <Title>{post.brand + ' ' + post.model}</Title>
           <Subtitle>{post.price + ' USD'}</Subtitle>
           <Description>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Description>
+
+          <Description>{'Transmision ' + post.transmission }</Description>
+          <Description>{'Blindaje ' +  armor}</Description>
+          <Description>{'4x4 ' + t4x4 }</Description>
+          <Description>{'Combustible ' + post.fuel }</Description>
+          <h3>Informacion Adicional</h3>
+          <Description>{ post.addInfo }</Description>
+
+          
         </Information>
       </Container>
 
