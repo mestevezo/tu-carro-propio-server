@@ -4,6 +4,8 @@ import axios from 'axios';
 const url = 'http://localhost:5000/posts/catalogo';
 
 const API = axios.create({ baseURL: 'https://tu-carro-propio.vercel.app' });
+//const API = axios.create({ baseURL: 'http://localhost:5000' });
+
 
 export const fetchPosts = (page) => API.get(`/posts/catalogo/search?page=${page}`)
 
