@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@headlessui/react": "^1.6.1"
+    "@headlessui/react": "^1.6.1",
+    "vercel": "^24.2.3"
   }
 }
