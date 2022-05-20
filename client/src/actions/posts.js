@@ -1,4 +1,4 @@
-import { FETCH_ALL, FETCH_POST, START_LOADING, END_LOADING } from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_POST, START_LOADING, END_LOADING, FETCH_LATEST } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 
@@ -45,3 +45,16 @@ export const getPostsByCategory = (filters, page, test, sort) => async (dispatch
 };
 
 
+export const getLatestPosts = () => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING });
+
+    const  {data}  = await api.fetchLatestPost();
+
+
+    dispatch({ type: FETCH_LATEST, payload: { latestPosts: data } });
+    dispatch({ type: END_LOADING });
+  } catch (error) {
+    console.log(error);
+  }
+};
