@@ -49,7 +49,7 @@ export const getLatestPosts = () => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
 
-    const  {data}  = await api.fetchLatestPost();
+    const { data } = await api.fetchLatestPost();
 
 
     dispatch({ type: FETCH_LATEST, payload: { latestPosts: data } });

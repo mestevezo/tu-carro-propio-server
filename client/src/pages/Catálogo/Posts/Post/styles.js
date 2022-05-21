@@ -6,6 +6,7 @@ export default makeStyles({
     paddingTop: '56.25%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
+    objectFit: 'cover'
   },
   border: {
     border: 'solid',
@@ -50,7 +51,7 @@ export default makeStyles({
     justifyContent: 'space-between',
   },
   cardAction: {
-    
+
     display: 'block',
     testAlign: 'initial',
   },

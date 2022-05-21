@@ -12,7 +12,7 @@ const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const openPost = (e) => {
+  const openPost = () => {
     navigate(`/catalogo/${post._id}`);
   }
 

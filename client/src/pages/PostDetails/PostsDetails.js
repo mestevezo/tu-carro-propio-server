@@ -7,7 +7,6 @@ import Slider from '../../components/Slider/index';
 import styled from 'styled-components';
 import { LoadingDots } from '../../components';
 import { useNavigate } from 'react-router-dom';
-import { Paper } from '@mui/material';
 
 const Post = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
@@ -44,13 +43,14 @@ const Post = () => {
   }
 
   const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
+  const recommendedPostsLimit = recommendedPosts.slice(0, 3)
   const array = post.othersImg;
   array.unshift(post.mainImg)
-   let armor = ''
-  if(post.armor ){armor = 'Si'}else{armor = 'No'}
+  let armor = ''
+  if (post.armor) { armor = 'Si' } else { armor = 'No' }
 
   let t4x4 = ''
-  if(post.t4x4 ){t4x4 = 'Si'}else{t4x4 = 'No'}
+  if (post.t4x4) { t4x4 = 'Si' } else { t4x4 = 'No' }
 
   return (
     <div >
@@ -63,14 +63,14 @@ const Post = () => {
           <Subtitle>{post.price + ' USD'}</Subtitle>
           <Description>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Description>
 
-          <Description>{'Transmision ' + post.transmission }</Description>
-          <Description>{'Blindaje ' +  armor}</Description>
-          <Description>{'4x4 ' + t4x4 }</Description>
-          <Description>{'Combustible ' + post.fuel }</Description>
+          <Description>{'Transmision ' + post.transmission}</Description>
+          <Description>{'Blindaje ' + armor}</Description>
+          <Description>{'4x4 ' + t4x4}</Description>
+          <Description>{'Combustible ' + post.fuel}</Description>
           <h3>Informacion Adicional</h3>
-          <Description>{ post.addInfo }</Description>
+          <Description>{post.addInfo}</Description>
 
-          
+
         </Information>
       </Container>
 
@@ -79,9 +79,9 @@ const Post = () => {
 
 
       <div>
-        {!!recommendedPosts.length && (
+        {!!recommendedPostsLimit.length && (
           <RecommendedDiv>
-            {recommendedPosts.map(({ brand, model, year, _id, mainImg }) => (
+            {recommendedPostsLimit.map(({ brand, model, year, _id, mainImg }) => (
               <RecommendedContainer onClick={() => openPost(_id)} key={_id}>
                 <RecommendedImg src={mainImg} width='100%' alt='recomendados' />
                 <RecommendedDescription><h2>{brand + ' '}{model}</h2> {'Año ' + year}</RecommendedDescription>
@@ -119,6 +119,7 @@ const CarSlide = styled.div`
 const Information = styled.div` 
   display: flex;
   flex-direction: column;
+  width: 50%;
   margin-left: 5%;
   margin-right: 5%;
   font-family: Poppins;

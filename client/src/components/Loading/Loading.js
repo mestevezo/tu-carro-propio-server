@@ -101,39 +101,6 @@ const Loader = styled.div`
   }
   `
 
-
-// const BounceAnimation = 
-//   0% { margin-bottom: 0; }
-//   50% { margin-bottom: 15px }
-//   100% { margin-bottom: 0 }
-// `;
-// const DotWrapper = styled.div`
-// position: fixed;
-//   top: 0;
-//   left: 0;
-//   bottom: 0;
-//   right: 0;
-//   overflow: auto;
-//   z-index: 1000;
-//   background-color: #fff;
-//     font-family: Poppins;
-//     font-size: 120px;
-//     font-weight: 800;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// `;
-// const Dot = styled.div`
-//   background-color: black;
-//   border-radius: 50%;
-//   width: 30px;
-//   height: 30px;
-//   margin: 0 5px;
-//   /* Animation */
-//   animation: ${BounceAnimation} 0.5s linear infinite;
-//   animation-delay: ${props => props.delay};
-// `;
-
 const LoadingDots = () => {
   return (
 
@@ -142,12 +109,6 @@ const LoadingDots = () => {
         <Loader />
       </Background>
     </div>
-    /* <DotWrapper>
-        Cargando
-        <Dot delay="0s" />
-        <Dot delay=".1s" />
-        <Dot delay=".2s" />
-    </DotWrapper> */
   )
 }
 

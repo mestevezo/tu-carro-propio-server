@@ -68,7 +68,7 @@ const Productfilter = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let location = useLocation();
-    let route = location.pathname + location.search;   
+    let route = location.pathname + location.search;
     const [filters, setFilters] = useState({});
     var page = parseInt(route.match(/\d+/)[0]);
 

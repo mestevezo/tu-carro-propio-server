@@ -114,10 +114,10 @@ const Embla = styled.div`
     top: 50%;
     left: 50%;
     width: auto;
-    min-height: 100%;
-    min-width: 100%;
+
     max-width: none;
     transform: translate(-50%, -50%);
+    object-fit: cover;
   }
   
   .embla__button {
