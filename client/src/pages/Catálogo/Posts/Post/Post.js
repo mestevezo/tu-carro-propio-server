@@ -27,10 +27,11 @@ const Post = ({ post, setCurrentId }) => {
         <div className={classes.overlay}>
           <h2>{post.price + ' USD'}</h2>
         </div>
+        <br></br>
+        <h2 className={classes.title} gutterBottom variant="h5" component="h2">{post.brand + ' ' + post.model + ' ' + post.year}</h2>
         <div className={classes.details}>
           <h3 variant="body2" color="textSecondary" component="h2">{post.km + ' Km'}</h3>
         </div>
-        <h2 className={classes.title} gutterBottom variant="h5" component="h2">{post.brand + ' ' + post.model + ' ' + post.year}</h2>
         <CardContent>
           <p>{post.transmission + ' / ' + post.fuel}</p>
         </CardContent>

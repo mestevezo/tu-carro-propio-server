@@ -36,7 +36,6 @@ const PaginationLayout = styled.div`
     direction: flex;
     flex-direction: row;
     align-items: center;
-    width: 100%;
     margin: 2rem;
     margin-left: 32%;
     margin-right: 32%;

@@ -62,15 +62,13 @@ const Post = () => {
           <Title>{post.brand + ' ' + post.model}</Title>
           <Subtitle>{post.price + ' USD'}</Subtitle>
           <Description>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Description>
-
           <Description>{'Transmision ' + post.transmission}</Description>
           <Description>{'Blindaje ' + armor}</Description>
           <Description>{'4x4 ' + t4x4}</Description>
           <Description>{'Combustible ' + post.fuel}</Description>
+          <br></br>
           <h3>Informacion Adicional</h3>
           <Description>{post.addInfo}</Description>
-
-
         </Information>
       </Container>
 
@@ -96,7 +94,7 @@ const Post = () => {
 
 const Container = styled.div`
   display: flex;
-  margin: 1rem;
+  margin: 2rem;
 
 @media screen and (max-width: 780px) {
   width: 90%;
