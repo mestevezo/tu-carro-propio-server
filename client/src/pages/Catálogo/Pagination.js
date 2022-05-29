@@ -5,36 +5,28 @@ import { LoadingDots } from "../../components";
 import { useLocation } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import styled from 'styled-components';
+//import { useState } from 'react';
+
+const StackContainer = styled.div`
+display: flex;
+flex-direction: row;
+margin-left: 5%;
+`
 
 const Paginate = ({ page }) => {
 
     const { numberOfPages } = useSelector((state) => state.posts);
-    //const { filters } = useSelector((state) => state.posts);
+    //let { filters } = useSelector((state) => state.posts);
+    //const [filters, setFilters] = useState(useSelector((state) => state.posts).filters || {});
     const { isLoading } = useSelector((state) => state.posts);
-    //const dispatch = useDispatch();
-
     let location = useLocation();
     let route = location.pathname + location.search;
-
-    /*
-    useEffect(() => {
-
-        if ((filters !== undefined) && (Object.keys(filters).length > 0)) {
-            dispatch(getPostsByCategory(filters, page, route.split(/page=\d+/)[1]));
-        } else {
-            console.log('pag')
-            dispatch(getPosts(page));        
-        }
-
-    }, [page]);
-    */
 
     if (isLoading) {
         return (
             <LoadingDots />
         );
     }
-
 
     return (
         <StackContainer>
@@ -53,11 +45,5 @@ const Paginate = ({ page }) => {
         </ StackContainer>
     )
 }
-
-const StackContainer = styled.div`
-display: flex;
-flex-direction: row;
-margin-left: 5%;
-`
 
 export default Paginate;

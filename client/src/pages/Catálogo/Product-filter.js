@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-
 import { getPostsByCategory, getPosts } from '../../actions/posts';
 
 const Container = styled.div`
@@ -30,7 +29,7 @@ padding: 1rem;
 
 const Title = styled.p`
     
-    @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
 }
 `
 
@@ -48,7 +47,6 @@ color: #f7df1e;
 width: 8rem;
 border-radius: 5px;
 font-size: 15px;
-
 
 @media screen and (max-width: 768px) {
     width: 8rem;
@@ -70,10 +68,18 @@ const Productfilter = () => {
     let location = useLocation();
     let route = location.pathname + location.search;
     const [filters, setFilters] = useState({});
-    var page = parseInt(route.match(/\d+/)[0]);
+    let params = new URLSearchParams(location.search);
+    let controls = {
+        type : params.get('type') || '-',
+        brand : params.get('brand') || '-',
+        price : params.has('minPrice') ? params.get('minPrice') + '-' + params.get('maxPrice') : '-',
+        transmission : params.get('transmission') || '-',
+        sort : params.get('sort') || '-'
+    }
 
     const writer = (e) => {
 
+        filters.page = 1;
         const value = e.target.value;
         if (value !== '-') {
             setFilters({
@@ -84,59 +90,70 @@ const Productfilter = () => {
             delete filters[e.target.name];
             setFilters({ ...filters });
         };
-        navigate(route.replace(/page=\d+/, 'page=1'));
 
     }
 
     useEffect(() => {
 
-        let element = '';
-
-        if (Object.keys(filters).length !== 0) {
-            for (let key in filters) {
-                if (key === 'price') {
-                    element = `minPrice=${filters[key].split(',')[0]}&maxPrice=${filters[key].split(',')[1]}&${element}`;
-                } else {
-                    element = `${key}=${filters[key]}&${element}`;
+        if (Object.keys(filters).length > 0) {
+            var pag = filters.page || parseInt(route.match(/\d+/)[0]);
+            delete filters.page;
+            let element = '';
+            console.log(filters)
+            if (Object.keys(filters).length > 0) {
+                for (let key in filters) {
+                    if (key === 'price') {
+                        element = `minPrice=${filters[key].split('-')[0]}&maxPrice=${filters[key].split('-')[1]}&${element}`;
+                    } else {
+                        element = `${key}=${filters[key]}&${element}`;
+                    }
                 }
+                let test = new URLSearchParams(element);
+                navigate(`/catalogo/search?page=${pag}&${test}`);
+            } else {
+                navigate(`/catalogo/search?page=${pag}`);
             }
         } else {
-            if (route.split(/page=\d+&/).length > 1) {
-                element = route.split(/page=\d+&/)[1];
-                if (element.split('&').length > 0) {
-                    let options = element.split('&');
-                    for (let i in options) {
-                        if (options[i].split('=')[0] === 'minPrice') {
-                            filters.price = [parseInt(options[i].split('=')[1])];
-                        } else if (options[i].split('=')[0] === 'maxPrice') {
-                            filters.price.push(parseInt(options[i].split('=')[1]));
-                        } else {
-                            filters[options[i].split('=')[0]] = options[i].split('=')[1];
-                        }
+            navigate(route);
+        }
+        //console.log('filter')
+        //console.log(filters)
+
+    }, [filters]);
+
+    useEffect(() => {
+
+        var pag = parseInt(route.match(/\d+/)[0]);
+        let test = '';
+        if (route.split(/page=\d+&/).length > 1) {
+            test = route.split(/page=\d+&/)[1];
+            if (test.split('&').length > 0) {
+                let options = test.split('&');
+                for (let i in options) {
+                    if (options[i].split('=')[0] === 'minPrice') {
+                        filters.price = options[i].split('=')[1];
+                    } else if (options[i].split('=')[0] === 'maxPrice') {
+                        filters.price += '-' + options[i].split('=')[1];
+                    } else {
+                        filters[options[i].split('=')[0]] = options[i].split('=')[1];
                     }
                 }
             }
         }
 
-        let test = new URLSearchParams(element);
-        //console.log('req')
         if (Object.keys(filters).length > 0) {
-            navigate(`/catalogo/search?page=${page}&${test}`);
-            dispatch(getPostsByCategory(filters, page, test));
+            dispatch(getPostsByCategory(filters, pag, test));
         } else {
-            navigate(`/catalogo/search?page=${page}`);
-            dispatch(getPosts(page));
+            dispatch(getPosts(pag));
         }
 
-    }, [filters, page, route]);
-    //}, [dispatch, filters, page, navigate]);
-
+    }, [route]);
 
     return (
         <div>
             <Container>
                 <Filter><Title>Tipo </Title>
-                    <Select name='type' onChange={writer} value={filters.type} defaultValue='-'>
+                    <Select name='type' onChange={writer} value={controls.type} defaultValue='-'>
                         <Option value={'-'}>Todos</Option>
                         <Option value={'Carro'} >Carro</Option>
                         <Option value={'Camioneta'} >Camioneta</Option>
@@ -144,7 +161,7 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Marca </Title>
-                    <Select name='brand' onChange={writer} value={filters.brand} defaultValue='-'>
+                    <Select name='brand' onChange={writer} value={controls.brand} defaultValue='-'>
                         <Option value={'-'}>Todos</Option>
                         <Option value={'Toyota'}>Toyota</Option>
                         <Option value={'Ford'}>Ford</Option>
@@ -154,25 +171,25 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Precio </Title>
-                    <Select name='price' onChange={writer} value={filters.price} defaultValue='-'>
+                    <Select name='price' onChange={writer} value={controls.price} defaultValue='-'>
                         <Option value={'-'}>Todos</Option>
-                        <Option value={[500, 2000]}>500$ - 2000$</Option>
-                        <Option value={[2000, 4000]}>2000$ - 4000$</Option>
-                        <Option value={[4000, 8000]}>4000$ - 8000$</Option>
-                        <Option value={[8000, 12000]}>8000$ - 12000$</Option>
-                        <Option value={[12000, 20000]}>12000$ - 20000$</Option>
-                        <Option value={'20k+'}>20000$ o más</Option>
+                        <Option value={'500-2000'}>500$ - 2000$</Option>
+                        <Option value={'2000-4000'}>2000$ - 4000$</Option>
+                        <Option value={'4000-8000'}>4000$ - 8000$</Option>
+                        <Option value={'8000-12000'}>8000$ - 12000$</Option>
+                        <Option value={'12000-20000'}>12000$ - 20000$</Option>
+                        <Option value={'20000-1000000'}>20000$ o más</Option>
                     </Select>
                 </Filter>
                 <Filter><Title>Transmisión </Title>
-                    <Select name='transmission' onChange={writer} value={filters.transmission} defaultValue='-'>
+                    <Select name='transmission' onChange={writer} value={controls.transmission} defaultValue='-'>
                         <Option value={'-'}>-</Option>
                         <Option value={'Automatico'}>Automático</Option>
                         <Option value={'Sincronico'}>Sincrónico</Option>
                     </Select>
                 </Filter>
                 <Filter><Title>Ordenar por </Title>
-                    <Select name='sort' onChange={writer} value={filters.sort} defaultValue='-'>
+                    <Select name='sort' onChange={writer} value={controls.sort} defaultValue='-'>
                         <Option value={'-'}>-</Option>
                         <Option value={"reciente"}>Más reciente</Option>
                         <Option value={"ascendente"}>Precio ascendente</Option>
