@@ -56,8 +56,8 @@ const Paginate = ({ page }) => {
 
 const StackContainer = styled.div`
 display: flex;
-flex-direction: row;
-margin-left: 5%;
+margin: 2%;
+justify-content: center;
 `
 
 export default Paginate;

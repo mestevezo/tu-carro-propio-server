@@ -11,22 +11,25 @@ const Background = styled.div`
 `
 const LoaderContainer = styled.div`
 display: flex;
-justify-content: space-between;
+justify-content: center;
 flex-wrap: wrap;
-margin: 5%;
+margin: 1%;
 margin-top: 15rem;
 `
 
 const Loader = styled.div`
- body {
-  background: #e3e3e3;
+  width: 60vh;
+  margin: 1%;
+
+@media screen and (max-width: 780px) {
+        width: 50vh;
+        margin: 1%
 }
 
 .movie--isloading {
-  width: 560px;
+  max-width: 560px;
   border-radius: 20px;
   overflow: hidden;
-  margin-bottom: 15px;
 }
 
 .movie--isloading .loading-image {

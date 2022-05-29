@@ -33,17 +33,11 @@ const CatalogoHome = () => {
 }
 
 const PaginationLayout = styled.div`
-    direction: flex;
-    flex-direction: row;
-    align-items: center;
+    justify-content: center;
     margin: 2rem;
-    margin-left: 32%;
-    margin-right: 32%;
 
     @media screen and (max-width: 780px) {
-    align-items: center;
-    margin: 1rem;
-    width: 100%;
+        justify-content: center;
 }
 `
 
