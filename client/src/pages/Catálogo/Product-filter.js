@@ -96,19 +96,19 @@ const Productfilter = () => {
     useEffect(() => {
 
         if (Object.keys(filters).length > 0) {
-            var pag = filters.page || parseInt(route.match(/\d+/)[0]);
+
+            var pag = filters.page || parseInt(params.get('page'));
             delete filters.page;
-            let element = '';
-            console.log(filters)
+            let test = new URLSearchParams('');
             if (Object.keys(filters).length > 0) {
                 for (let key in filters) {
                     if (key === 'price') {
-                        element = `minPrice=${filters[key].split('-')[0]}&maxPrice=${filters[key].split('-')[1]}&${element}`;
+                        test.append('minPrice', filters[key].split('-')[0]);
+                        test.append('maxPrice', filters[key].split('-')[1]);
                     } else {
-                        element = `${key}=${filters[key]}&${element}`;
+                        test.append(key, filters[key]);
                     }
                 }
-                let test = new URLSearchParams(element);
                 navigate(`/catalogo/search?page=${pag}&${test}`);
             } else {
                 navigate(`/catalogo/search?page=${pag}`);
@@ -116,14 +116,12 @@ const Productfilter = () => {
         } else {
             navigate(route);
         }
-        //console.log('filter')
-        //console.log(filters)
 
     }, [filters]);
 
     useEffect(() => {
 
-        var pag = parseInt(route.match(/\d+/)[0]);
+        var pag = parseInt(params.get('page'));
         let test = '';
         if (route.split(/page=\d+&/).length > 1) {
             test = route.split(/page=\d+&/)[1];

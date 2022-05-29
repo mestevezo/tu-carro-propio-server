@@ -5,7 +5,6 @@ import { LoadingDots } from "../../components";
 import { useLocation } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import styled from 'styled-components';
-//import { useState } from 'react';
 
 const StackContainer = styled.div`
 display: flex;
@@ -16,8 +15,6 @@ margin-left: 5%;
 const Paginate = ({ page }) => {
 
     const { numberOfPages } = useSelector((state) => state.posts);
-    //let { filters } = useSelector((state) => state.posts);
-    //const [filters, setFilters] = useState(useSelector((state) => state.posts).filters || {});
     const { isLoading } = useSelector((state) => state.posts);
     let location = useLocation();
     let route = location.pathname + location.search;
