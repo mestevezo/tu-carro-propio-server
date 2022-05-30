@@ -188,7 +188,7 @@ const Productfilter = () => {
                     <Select name='transmission' onChange={writer} value={controls.transmission} defaultValue='-'>
                         <Option value={'-'}>-</Option>
                         <Option value={'Automatico'}>Automático</Option>
-                        <Option value={'Sincronico'}>Sincrónico</Option>
+                        <Option value={'Manual'}>Manual</Option>
                     </Select>
                 </Filter>
                 <Filter><Title>Ordenar por </Title>
