@@ -11,7 +11,7 @@ export const getPosts = async (req, res) => {
 
   try {
 
-    const LIMIT = 10;
+    const LIMIT = 8;
     const startIndex = (Number(page) - 1) * LIMIT;
     const total = await PostMessage.countDocuments({});
     const posts = await PostMessage.find().select('-othersImg').sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
@@ -40,7 +40,7 @@ export const getPostsByCategory = async (req, res) => {
 
   try {
 
-    const LIMIT = 10;
+    const LIMIT = 8;
     const startIndex = (Number(page) - 1) * LIMIT;
     let finalQuery = {...arrayQuery};
 

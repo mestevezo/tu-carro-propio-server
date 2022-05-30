@@ -161,11 +161,16 @@ const Productfilter = () => {
                 <Filter><Title>Marca </Title>
                     <Select name='brand' onChange={writer} value={controls.brand} defaultValue='-'>
                         <Option value={'-'}>Todos</Option>
-                        <Option value={'Toyota'}>Toyota</Option>
-                        <Option value={'Ford'}>Ford</Option>
-                        <Option value={'Chevrolet'}>Chevrolet</Option>
-                        <Option value={'Honda'}>Honda</Option>
                         <Option value={'Chery'}>Chery</Option>
+                        <Option value={'Chevrolet'}>Chevrolet</Option>
+                        <Option value={'Chrysler'}>Chrysler</Option>
+                        <Option value={'Dodge'}>Dodge</Option>
+                        <Option value={'Ford'}>Ford</Option>
+                        <Option value={'Honda'}>Honda</Option>
+                        <Option value={'Hyundai'}>Hyundai</Option>
+                        <Option value={'Jeep'}>Jeep</Option>
+                        <Option value={'Mitsubishi'}>Mitsubishi</Option>
+                        <Option value={'Toyota'}>Toyota</Option>
                     </Select>
                 </Filter>
                 <Filter><Title>Precio </Title>
