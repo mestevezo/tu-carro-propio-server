@@ -31,7 +31,7 @@ export const getPostsByCategory = async (req, res) => {
     'descendente': '-price',
     'ascendente': 'price'
   }
-  
+  //console.log(req)
   const arrayQuery = req.query;
   const { sort } = req.query || 'id';
   const { page } = req.query
@@ -86,6 +86,41 @@ export const getLatestPosts = async (req, res) => {
     const LIMIT = 3;
     const latestPosts = await PostMessage.find().select('-othersImg').sort('-createdAt').limit(LIMIT);
     res.status(200).json({ latestPosts });
+    
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+
+export const getRecommendationPosts = async (req, res) => {
+
+  const arrayQuery = req.query;
+
+  try {
+
+    const LIMIT = 3;
+    let reqId = req.query.id;
+    delete arrayQuery.id;
+    let finalQuery = { $and: [arrayQuery, { _id: { $ne: reqId } }, ] }; 
+
+    const initialReq = await PostMessage.countDocuments(finalQuery);
+    //let recPosts = await PostMessage.find(finalQuery).select('-othersImg -mainImg').limit(LIMIT).sort('-createdAt');
+    let recPosts = await PostMessage.find(finalQuery).select('-othersImg').limit(LIMIT).sort('-createdAt');
+    if (initialReq >= LIMIT) {
+      res.status(200).json({ recPosts });
+    } else {
+      let reqIdList = [reqId];
+      if (initialReq > 0) {
+        for (let i in recPosts) {
+          reqIdList.push(recPosts[i]._id);
+        }
+      }
+      //const latestPosts = await PostMessage.find({ _id: { $nin: reqIdList } }).select('-othersImg -mainImg').limit(LIMIT - initialReq).sort('-createdAt');
+      const latestPosts = await PostMessage.find({ _id: { $nin: reqIdList } }).select('-othersImg').limit(LIMIT - initialReq).sort('-createdAt');
+      recPosts = recPosts.concat(latestPosts);
+      res.status(200).json({ recPosts });
+    }
     
   } catch (error) {
     res.status(404).json({ message: error.message });

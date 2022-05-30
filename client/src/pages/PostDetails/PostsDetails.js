@@ -2,15 +2,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getPost, getPostsByCategory } from '../../actions/posts';
+import { getPost, getRecommendationsPosts } from '../../actions/posts';
 import Slider from '../../components/Slider/index';
 import styled from 'styled-components';
 import { LoadingDots } from '../../components';
 import { useNavigate } from 'react-router-dom';
 
 const Post = () => {
-  const { post, posts, isLoading } = useSelector((state) => state.posts);
-
+  const { post, posts, isLoading, recPosts } = useSelector((state) => state.posts);
+  //const hola = useSelector((state) => state.posts);
+  //console.log(hola);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,11 +24,14 @@ const Post = () => {
 
   useEffect(() => {
     if (post) {
-      const test = new URLSearchParams({ brand: post.brand });
-      const page = 1;
-      const filter = { brand: post.brand }
+      const query = new URLSearchParams({ brand : post.brand,
+                                          id : post._id});
+      //const test = new URLSearchParams({ brand: post.brand });
+      //const page = 1;
+      //const filter = { brand: post.brand }
 
-      dispatch(getPostsByCategory(filter, page, test))
+      //dispatch(getPostsByCategory(filter, page, test))
+      dispatch(getRecommendationsPosts(query));
     }
 
   }, [dispatch, post])
@@ -42,15 +46,20 @@ const Post = () => {
     );
   }
 
-  const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
-  const recommendedPostsLimit = recommendedPosts.slice(0, 3)
+  //const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
+  //const recommendedPostsLimit = recommendedPosts.slice(0, 3)
+  //const recommendedPostsLimit = posts;
+  const recommendedPostsLimit = recPosts.recPosts.recPosts;
   const array = post.othersImg;
   array.unshift(post.mainImg)
-  let armor = ''
-  if (post.armor) { armor = 'Si' } else { armor = 'No' }
 
-  let t4x4 = ''
-  if (post.t4x4) { t4x4 = 'Si' } else { t4x4 = 'No' }
+  //let armor = ''
+  //if (post.armor) { armor = 'Si' } else { armor = 'No' }
+  //let t4x4 = ''
+  //if (post.t4x4) { t4x4 = 'Si' } else { t4x4 = 'No' }
+
+  let armor = post.armor ? 'Si' : 'No';
+  let t4x4 = post.t4x4 ? 'Si' : 'No';
 
   return (
     <div >

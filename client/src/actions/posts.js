@@ -1,4 +1,4 @@
-import { FETCH_ALL, FETCH_POST, START_LOADING, END_LOADING, FETCH_LATEST } from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_POST, START_LOADING, END_LOADING, FETCH_LATEST, FETCH_RECOMMENDATION } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 
@@ -30,7 +30,6 @@ export const getPost = (id) => async (dispatch) => {
 
 export const getPostsByCategory = (filters, page, test, sort) => async (dispatch) => {
 
-
   try {
     dispatch({ type: START_LOADING });
     const { data: { data, currentPage, numberOfPages } } = await api.fetchPostsByCategory(filters, page, test);
@@ -51,10 +50,25 @@ export const getLatestPosts = () => async (dispatch) => {
 
     const { data } = await api.fetchLatestPost();
 
-
     dispatch({ type: FETCH_LATEST, payload: { latestPosts: data } });
     dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error);
   }
+};
+
+
+export const getRecommendationsPosts = (query) => async (dispatch) => {
+
+  try {
+
+    dispatch({ type: START_LOADING });
+    const { data } = await api.fetchRecommendationPosts(query);
+    dispatch({ type: FETCH_RECOMMENDATION, payload: { recPosts : data} });
+    dispatch({ type: END_LOADING });
+
+  } catch (error) {
+    console.log(error.message);
+  }
+
 };
