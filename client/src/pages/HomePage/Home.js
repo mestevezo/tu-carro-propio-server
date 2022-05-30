@@ -6,7 +6,8 @@ import { getLatestPosts } from '../../actions/posts'
 import Post from '../Catálogo/Posts/Post/Post';
 import { useSelector } from 'react-redux';
 import Grid from '@mui/material/Grid';
-
+import { Services } from '../../components';
+import { Box } from '@mui/material';
 
 
 
@@ -33,24 +34,20 @@ const Home = () => {
         <>
             <InfoSection {...homeObjOne} />
             <InfoSection {...homeObjTwo} />
-
-            {latestPosts !== undefined ?
-
-
-                <Grid container alignItems="stretch" spacing={3}>
-                    {latestPosts.latestPosts.latestPosts.map((post) => (
-                        <Grid key={post._id} item xs={12} sm={6} md={6}>
-                            <Post post={post} setCurrentId={setCurrentId} />
-                        </Grid>
-                    ))}
-                </Grid>
-
-                : false}
-
-
-
-
-
+            <Services />
+            <br></br>
+            <Box m={4}>
+                <h1>¡Échale un vistazo a nuestras últimas incorporaciones!</h1>
+                {latestPosts !== undefined ?
+                    <Grid container alignItems="center" spacing={2}>
+                        {latestPosts.latestPosts.latestPosts.map((post) => (
+                            <Grid key={post._id} item xs={10} sm={4} md={4}>
+                                <Post post={post} setCurrentId={setCurrentId} />
+                            </Grid>
+                        ))}
+                    </Grid>
+                    : false}
+            </Box>
         </>
     )
 }

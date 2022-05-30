@@ -6,11 +6,6 @@ import { useLocation } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import styled from 'styled-components';
 
-const StackContainer = styled.div`
-display: flex;
-flex-direction: row;
-margin-left: 5%;
-`
 
 const Paginate = ({ page }) => {
 
@@ -42,5 +37,11 @@ const Paginate = ({ page }) => {
         </ StackContainer>
     )
 }
+
+const StackContainer = styled.div`
+display: flex;
+margin: 2%;
+justify-content: center;
+`
 
 export default Paginate;

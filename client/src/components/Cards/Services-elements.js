@@ -9,8 +9,10 @@ export const ServicesContainer = styled.div`
     background: #202020;
 
     @media screen and (max-width: 760px) {
-        padding-bottom: 2rem;
-        padding-top: 20%;
+        margin-bottom: 120px;
+        padding-bottom: 360px;
+        margin-top: 5rem;
+        padding-top: 360px;
         height: 1300px;
     }
 `

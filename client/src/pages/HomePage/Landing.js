@@ -1,6 +1,6 @@
 import React from "react";
 import GlobalStyle from "../../globalStyles";
-import { Navbar, Footer, Services } from "../../components";
+import { Navbar, Footer } from "../../components";
 import Home from "./Home";
 
 function Landing() {
@@ -9,7 +9,6 @@ function Landing() {
             <GlobalStyle />
             <Navbar />
             <Home />
-            <Services />
             <Footer />
         </>
     );
