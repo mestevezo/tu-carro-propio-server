@@ -70,11 +70,11 @@ const Productfilter = () => {
     const [filters, setFilters] = useState({});
     let params = new URLSearchParams(location.search);
     let controls = {
-        type : params.get('type') || '-',
-        brand : params.get('brand') || '-',
-        price : params.has('minPrice') ? params.get('minPrice') + '-' + params.get('maxPrice') : '-',
-        transmission : params.get('transmission') || '-',
-        sort : params.get('sort') || '-'
+        type: params.get('type') || '-',
+        brand: params.get('brand') || '-',
+        price: params.has('minPrice') ? params.get('minPrice') + '-' + params.get('maxPrice') : '-',
+        transmission: params.get('transmission') || '-',
+        sort: params.get('sort') || '-'
     }
 
     const writer = (e) => {
@@ -151,7 +151,7 @@ const Productfilter = () => {
         <div>
             <Container>
                 <Filter><Title>Tipo </Title>
-                    <Select name='type' onChange={writer} value={controls.type} defaultValue='-'>
+                    <Select name='type' onChange={writer} value={controls.type}>
                         <Option value={'-'}>Todos</Option>
                         <Option value={'Carro'} >Carro</Option>
                         <Option value={'Camioneta'} >Camioneta</Option>
@@ -159,7 +159,7 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Marca </Title>
-                    <Select name='brand' onChange={writer} value={controls.brand} defaultValue='-'>
+                    <Select name='brand' onChange={writer} value={controls.brand}>
                         <Option value={'-'}>Todos</Option>
                         <Option value={'Chery'}>Chery</Option>
                         <Option value={'Chevrolet'}>Chevrolet</Option>
@@ -174,7 +174,7 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Precio </Title>
-                    <Select name='price' onChange={writer} value={controls.price} defaultValue='-'>
+                    <Select name='price' onChange={writer} value={controls.price}>
                         <Option value={'-'}>Todos</Option>
                         <Option value={'500-2000'}>500$ - 2000$</Option>
                         <Option value={'2000-4000'}>2000$ - 4000$</Option>
@@ -185,14 +185,14 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Transmisión </Title>
-                    <Select name='transmission' onChange={writer} value={controls.transmission} defaultValue='-'>
+                    <Select name='transmission' onChange={writer} value={controls.transmission}>
                         <Option value={'-'}>-</Option>
                         <Option value={'Automatico'}>Automático</Option>
                         <Option value={'Manual'}>Manual</Option>
                     </Select>
                 </Filter>
                 <Filter><Title>Ordenar por </Title>
-                    <Select name='sort' onChange={writer} value={controls.sort} defaultValue='-'>
+                    <Select name='sort' onChange={writer} value={controls.sort}>
                         <Option value={'-'}>-</Option>
                         <Option value={"reciente"}>Más reciente</Option>
                         <Option value={"ascendente"}>Precio ascendente</Option>

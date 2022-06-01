@@ -5,9 +5,8 @@ import { useDispatch } from 'react-redux';
 import { getLatestPosts } from '../../actions/posts'
 import Post from '../Catálogo/Posts/Post/Post';
 import { useSelector } from 'react-redux';
-import Grid from '@mui/material/Grid';
 import { Services } from '../../components';
-import { Box } from '@mui/material';
+import styled from 'styled-components';
 
 
 
@@ -36,20 +35,32 @@ const Home = () => {
             <InfoSection {...homeObjTwo} />
             <Services />
             <br></br>
-            <Box m={4}>
-                <h1>¡Échale un vistazo a nuestras últimas incorporaciones!</h1>
+            <LatestTitle>¡Échale un vistazo a nuestras últimas incorporaciones!</LatestTitle>
+            <br></br>
+            <LatestPostsGrid>
                 {latestPosts !== undefined ?
-                    <Grid container alignItems="center" spacing={2}>
+                    <>
                         {latestPosts.latestPosts.latestPosts.map((post) => (
-                            <Grid key={post._id} item xs={10} sm={4} md={4}>
+                            <div>
                                 <Post post={post} setCurrentId={setCurrentId} />
-                            </Grid>
+                            </div>
                         ))}
-                    </Grid>
+                    </>
                     : false}
-            </Box>
+
+            </LatestPostsGrid>
         </>
     )
 }
+
+const LatestPostsGrid = styled.div`
+    width: 90%;
+    row-gap: 2%;
+    display: flex;
+    margin: 2%;
+`
+const LatestTitle = styled.h1`
+    text-align: center;
+`
 
 export default Home;
