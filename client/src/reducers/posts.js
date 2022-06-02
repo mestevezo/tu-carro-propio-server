@@ -12,7 +12,7 @@ const reducer = (state = { isLoading: true, posts: [] }, action) => {
                 numberOfPages: action.payload.numberOfPages
                 };
     case FETCH_POST:
-      return { ...state, post: action.payload.post }
+      return { ...state, post: action.payload.post, recposts:[] }
     case FETCH_LATEST:
       return { ...state, lasposts: action.payload.data.posts};
     case FETCH_RECOMMENDATION:
