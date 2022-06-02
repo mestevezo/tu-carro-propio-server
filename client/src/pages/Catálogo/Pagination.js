@@ -18,7 +18,7 @@ const Paginate = ({ page }) => {
         return (
             <LoadingDots />
         );
-    }
+    };
 
     return (
         <StackContainer>
@@ -35,13 +35,14 @@ const Paginate = ({ page }) => {
                 />
             </Stack>
         </ StackContainer>
-    )
-}
+    );
+
+};
 
 const StackContainer = styled.div`
-display: flex;
-margin: 2%;
-justify-content: center;
+    display: flex;
+    margin: 2%;
+    justify-content: center;
 `
 
 export default Paginate;

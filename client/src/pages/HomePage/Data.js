@@ -33,4 +33,3 @@ export const homeObjTwo = {
     start: '',
     buttonDisplay: false,
 };
-

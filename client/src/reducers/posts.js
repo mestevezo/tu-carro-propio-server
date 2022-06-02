@@ -1,4 +1,4 @@
-import { FETCH_ALL, FETCH_BY, FETCH_POST, START_LOADING, END_LOADING , FETCH_LATEST, FETCH_RECOMMENDATION} from '../constants/actionTypes';
+import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_POST, FETCH_LATEST, FETCH_RECOMMENDATION} from '../constants/actionTypes';
 
 const reducer = (state = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
@@ -7,21 +7,16 @@ const reducer = (state = { isLoading: true, posts: [] }, action) => {
     case END_LOADING:
       return { ...state, isLoading: false };
     case FETCH_ALL:
-      return {
-        ...state,
-        posts: action.payload.data,
-        currentPage: action.payload.currentPage,
-        numberOfPages: action.payload.numberOfPages,
-        filters: action.payload.filters
-      };
-    case FETCH_BY:
-      return { ...state, posts: action.payload, filter: action.payload.filter }
+      return { ...state, posts: action.payload.data,
+                currentPage: action.payload.currentPage,
+                numberOfPages: action.payload.numberOfPages
+                };
     case FETCH_POST:
       return { ...state, post: action.payload.post }
     case FETCH_LATEST:
-      return { ...state, latestPosts: action.payload};
+      return { ...state, lasposts: action.payload.data.posts};
     case FETCH_RECOMMENDATION:
-      return { ...state, recPosts: action.payload }      
+      return { ...state, recposts: action.payload.data.posts};
     default:
       return state;
   }

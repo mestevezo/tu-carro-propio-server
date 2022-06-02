@@ -47,6 +47,7 @@ const Contact = () => {
       </form>
     </StyledContactForm>
   );
+  
 };
 
 export default Contact;
@@ -98,15 +99,14 @@ const StyledContactForm = styled.div`
       border: none;
 
       &:hover {
-    transition: all 0.3s ease-out;
-    background: #f7e76a; 
+        transition: all 0.3s ease-out;
+        background: #f7e76a; 
 
-    &:active {
-      transition: all 0.3s ease-out;
-      transform: scale(0.98);
-    }
-}
+        &:active {
+          transition: all 0.3s ease-out;
+          transform: scale(0.98);
+        }
+      }
     }
   }
 `;
-

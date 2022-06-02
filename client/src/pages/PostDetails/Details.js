@@ -5,6 +5,7 @@ import GlobalStyle from "../../globalStyles";
 
 
 function Details() {
+
     return (
         <>
             <Navbar />
@@ -13,6 +14,7 @@ function Details() {
             <Footer />
         </>
     );
-}
+
+};
 
 export default Details;

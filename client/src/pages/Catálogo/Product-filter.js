@@ -1,64 +1,62 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { getPostsByCategory, getPosts } from '../../actions/posts';
+import { getPosts } from '../../actions/posts';
 
 const Container = styled.div`
-text-align: center;
-font-size: large;
-border: none;
-width: 100%;
-align-items: center;
-display: flex;
-justify-content: space-evenly;
-position: fixed;
-z-index: 2000;
-background: #202020;
-color: #f7df1e;
-padding: 1rem;
-
-@media screen and (max-width: 768px) {
-    gap: 2px;
+    text-align: center;
+    font-size: large;
+    border: none;
+    width: 100%;
+    align-items: center;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
+    justify-content: space-evenly;
+    position: fixed;
+    z-index: 2000;
+    background: #202020;
+    color: #f7df1e;
+    padding: 1rem;
+
+    @media screen and (max-width: 768px) {
+        gap: 2px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
 `;
 
 const Title = styled.p`
     
-@media screen and (max-width: 768px) {
-}
+    @media screen and (max-width: 768px) {
+    }
 `
 
 const Filter = styled.div`
-background-color: #202020;
-border-radius: 5px;
-
+    background-color: #202020;
+    border-radius: 5px;
 `;
 
 const Select = styled.select`
-text-align: center;
-border: none;
-background: #202020;
-color: #f7df1e;
-width: 8rem;
-border-radius: 5px;
-font-size: 15px;
-
-@media screen and (max-width: 768px) {
-    width: 8rem;
-    justify-items: center;
-    align-self: center;
-    flex-direction: column;
+    text-align: center;
+    border: none;
     background: #202020;
-}
+    color: #f7df1e;
+    width: 8rem;
+    border-radius: 5px;
+    font-size: 15px;
+
+    @media screen and (max-width: 768px) {
+        width: 8rem;
+        justify-items: center;
+        align-self: center;
+        flex-direction: column;
+        background: #202020;
+    }
 `;
 
 const Option = styled.option`
-align-items: center;
+    align-items: center;
 `;
 
 const Productfilter = () => {
@@ -67,91 +65,43 @@ const Productfilter = () => {
     const navigate = useNavigate();
     let location = useLocation();
     let route = location.pathname + location.search;
-    const [filters, setFilters] = useState({});
     let params = new URLSearchParams(location.search);
-    let controls = {
-        type : params.get('type') || '-',
-        brand : params.get('brand') || '-',
-        price : params.has('minPrice') ? params.get('minPrice') + '-' + params.get('maxPrice') : '-',
-        transmission : params.get('transmission') || '-',
-        sort : params.get('sort') || '-'
-    }
 
     const writer = (e) => {
 
-        filters.page = 1;
+        params.set('page', '1');
         const value = e.target.value;
         if (value !== '-') {
-            setFilters({
-                ...filters,
-                [e.target.name]: value
-            });
-        } else {
-            delete filters[e.target.name];
-            setFilters({ ...filters });
-        };
-
-    }
-
-    useEffect(() => {
-
-        if (Object.keys(filters).length > 0) {
-
-            var pag = filters.page || parseInt(params.get('page'));
-            delete filters.page;
-            let test = new URLSearchParams('');
-            if (Object.keys(filters).length > 0) {
-                for (let key in filters) {
-                    if (key === 'price') {
-                        test.append('minPrice', filters[key].split('-')[0]);
-                        test.append('maxPrice', filters[key].split('-')[1]);
-                    } else {
-                        test.append(key, filters[key]);
-                    }
-                }
-                navigate(`/catalogo/search?page=${pag}&${test}`);
+            if (e.target.name === 'price') {
+                params.set('minPrice', value.split('-')[0]);
+                params.set('maxPrice', value.split('-')[1]);
             } else {
-                navigate(`/catalogo/search?page=${pag}`);
-            }
+                params.set(e.target.name, value);
+            };
         } else {
-            navigate(route);
-        }
+            if (e.target.name === 'price') {
+                params.delete('minPrice');
+                params.delete('maxPrice');
+            } else {
+                params.delete(e.target.name);
+            };
+        };   
+        navigate(location.pathname + '?' + params);   
 
-    }, [filters]);
+    };
 
     useEffect(() => {
 
-        var pag = parseInt(params.get('page'));
-        let test = '';
-        if (route.split(/page=\d+&/).length > 1) {
-            test = route.split(/page=\d+&/)[1];
-            if (test.split('&').length > 0) {
-                let options = test.split('&');
-                for (let i in options) {
-                    if (options[i].split('=')[0] === 'minPrice') {
-                        filters.price = options[i].split('=')[1];
-                    } else if (options[i].split('=')[0] === 'maxPrice') {
-                        filters.price += '-' + options[i].split('=')[1];
-                    } else {
-                        filters[options[i].split('=')[0]] = options[i].split('=')[1];
-                    }
-                }
-            }
-        }
+        let query = route.split('?')[1];
+        dispatch(getPosts(query));
 
-        if (Object.keys(filters).length > 0) {
-            dispatch(getPostsByCategory(filters, pag, test));
-        } else {
-            dispatch(getPosts(pag));
-        }
-
-    }, [route]);
+    }, [route, dispatch]);
 
     return (
         <div>
             <Container>
                 <Filter><Title>Tipo </Title>
-                    <Select name='type' onChange={writer} value={controls.type} defaultValue='-'>
+                    <Select name='type' onChange={writer} value={params.get('type') || '-'} >
                         <Option value={'-'}>Todos</Option>
                         <Option value={'Carro'} >Carro</Option>
                         <Option value={'Camioneta'} >Camioneta</Option>
@@ -159,7 +109,7 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Marca </Title>
-                    <Select name='brand' onChange={writer} value={controls.brand} defaultValue='-'>
+                    <Select name='brand' onChange={writer} value={params.get('brand') || '-'} >
                         <Option value={'-'}>Todos</Option>
                         <Option value={'Chery'}>Chery</Option>
                         <Option value={'Chevrolet'}>Chevrolet</Option>
@@ -174,7 +124,7 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Precio </Title>
-                    <Select name='price' onChange={writer} value={controls.price} defaultValue='-'>
+                    <Select name='price' onChange={writer} value={params.has('minPrice') ? params.get('minPrice') + '-' + params.get('maxPrice') : '-'} >
                         <Option value={'-'}>Todos</Option>
                         <Option value={'500-2000'}>500$ - 2000$</Option>
                         <Option value={'2000-4000'}>2000$ - 4000$</Option>
@@ -185,14 +135,14 @@ const Productfilter = () => {
                     </Select>
                 </Filter>
                 <Filter><Title>Transmisión </Title>
-                    <Select name='transmission' onChange={writer} value={controls.transmission} defaultValue='-'>
+                    <Select name='transmission' onChange={writer} value={params.get('transmission') || '-'} >
                         <Option value={'-'}>-</Option>
                         <Option value={'Automatico'}>Automático</Option>
                         <Option value={'Manual'}>Manual</Option>
                     </Select>
                 </Filter>
                 <Filter><Title>Ordenar por </Title>
-                    <Select name='sort' onChange={writer} value={controls.sort} defaultValue='-'>
+                    <Select name='sort' onChange={writer} value={params.get('sort') || '-'} >
                         <Option value={'-'}>-</Option>
                         <Option value={"reciente"}>Más reciente</Option>
                         <Option value={"ascendente"}>Precio ascendente</Option>
@@ -201,7 +151,8 @@ const Productfilter = () => {
                 </Filter>
             </Container>
         </div>
-    )
-}
+    );
+
+};
 
 export default Productfilter;

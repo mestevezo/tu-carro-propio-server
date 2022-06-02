@@ -5,25 +5,8 @@ import PostMessage from '../models/Cars.js';
 
 const router = express.Router();
 
+
 export const getPosts = async (req, res) => {
-  
-  const { page } = req.query;
-
-  try {
-
-    const LIMIT = 8;
-    const startIndex = (Number(page) - 1) * LIMIT;
-    const total = await PostMessage.countDocuments({});
-    const posts = await PostMessage.find().select('-othersImg').sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
-    res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) });
-
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-}
-
-
-export const getPostsByCategory = async (req, res) => {
 
   const SORT_CASES = {
     'id' : '-_id',
@@ -31,32 +14,31 @@ export const getPostsByCategory = async (req, res) => {
     'descendente': '-price',
     'ascendente': 'price'
   }
-  //console.log(req)
-  const arrayQuery = req.query;
-  const { sort } = req.query || 'id';
-  const { page } = req.query
-  delete arrayQuery.page;
-  delete arrayQuery.sort;
 
   try {
 
     const LIMIT = 8;
+    let query = { ...req.query };
+    let filters = { ...req.query };
+    const { sort } = query || 'id';
+    const { page } = query || 1;
+    delete query.page;
+    delete query.sort;
     const startIndex = (Number(page) - 1) * LIMIT;
-    let finalQuery = {...arrayQuery};
 
-    if (arrayQuery.minPrice && arrayQuery.maxPrice !== '') {
+    if (query.hasOwnProperty('minPrice') && query.hasOwnProperty('maxPrice')) {
 
-      const minPrice = Number(finalQuery.minPrice);
-      const maxPrice = Number(finalQuery.maxPrice);
-      delete finalQuery.minPrice;
-      delete finalQuery.maxPrice;
-      finalQuery = { $and: [finalQuery, { $and: [{ price: { $gte: minPrice } }, { price: { $lte: maxPrice } }] }] };   
+      const minPrice = Number(query.minPrice);
+      const maxPrice = Number(query.maxPrice);
+      delete query.minPrice;
+      delete query.maxPrice;
+      query = { $and: [query, { $and: [{ price: { $gte: minPrice } }, { price: { $lte: maxPrice } }] }] };   
 
     } 
     
-    const total = await PostMessage.countDocuments(finalQuery);
-    const posts = await PostMessage.find(finalQuery).select('-othersImg').limit(LIMIT).skip(startIndex).sort(SORT_CASES[sort]);
-    res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT), filters: arrayQuery });
+    const count = await PostMessage.countDocuments(query);
+    const posts = await PostMessage.find(query).select('-othersImg').sort(SORT_CASES[sort]).skip(startIndex).limit(LIMIT);
+    res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(count / LIMIT), filters });
 
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -67,11 +49,12 @@ export const getPostsByCategory = async (req, res) => {
 
 export const getPost = async (req, res) => {
 
-  const { id } = req.params;
-
   try {
+
+    const { id } = req.params;
     const post = await PostMessage.findById(id);
     res.status(200).json(post);
+
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
@@ -84,47 +67,46 @@ export const getLatestPosts = async (req, res) => {
   try {
 
     const LIMIT = 3;
-    const latestPosts = await PostMessage.find().select('-othersImg').sort('-createdAt').limit(LIMIT);
-    res.status(200).json({ latestPosts });
+    const posts = await PostMessage.find().select('-othersImg').sort('-createdAt').limit(LIMIT);
+    res.status(200).json({ posts });
     
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
+
 }
 
 
 export const getRecommendationPosts = async (req, res) => {
 
-  const arrayQuery = req.query;
-
   try {
 
     const LIMIT = 3;
-    let reqId = req.query.id;
-    delete arrayQuery.id;
-    let finalQuery = { $and: [arrayQuery, { _id: { $ne: reqId } }, ] }; 
+    let query = { ...req.query };
+    const reqId = query.id;
+    delete query.id;
+    query = { $and: [query, { _id: { $ne: reqId } } ] }; 
 
-    const initialReq = await PostMessage.countDocuments(finalQuery);
-    //let recPosts = await PostMessage.find(finalQuery).select('-othersImg -mainImg').limit(LIMIT).sort('-createdAt');
-    let recPosts = await PostMessage.find(finalQuery).select('-othersImg').limit(LIMIT).sort('-createdAt');
+    const initialReq = await PostMessage.countDocuments(query);
+    let posts = await PostMessage.find(query).select('-othersImg').sort('-createdAt').limit(LIMIT);
     if (initialReq >= LIMIT) {
-      res.status(200).json({ recPosts });
+      res.status(200).json({ posts });
     } else {
       let reqIdList = [reqId];
       if (initialReq > 0) {
-        for (let i in recPosts) {
-          reqIdList.push(recPosts[i]._id);
+        for (let i in posts) {
+          reqIdList.push(posts[i]._id);
         }
       }
-      //const latestPosts = await PostMessage.find({ _id: { $nin: reqIdList } }).select('-othersImg -mainImg').limit(LIMIT - initialReq).sort('-createdAt');
-      const latestPosts = await PostMessage.find({ _id: { $nin: reqIdList } }).select('-othersImg').limit(LIMIT - initialReq).sort('-createdAt');
-      recPosts = recPosts.concat(latestPosts);
-      res.status(200).json({ recPosts });
+      const latestPosts = await PostMessage.find({ _id: { $nin: reqIdList } }).select('-othersImg').sort('-createdAt').limit(LIMIT - initialReq);
+      posts = posts.concat(latestPosts);
+      res.status(200).json({ posts });
     }
     
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
+  
 }
 
 

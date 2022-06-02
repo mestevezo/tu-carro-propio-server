@@ -5,6 +5,7 @@ import Contact from "./Contact"
 
 
 function Cita() {
+
     return (
         <>
             <GlobalStyle />
@@ -13,6 +14,7 @@ function Cita() {
             <Footer />
         </>
     );
-}
+
+};
 
 export default Cita;

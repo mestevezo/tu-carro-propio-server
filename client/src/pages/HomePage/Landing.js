@@ -3,7 +3,9 @@ import GlobalStyle from "../../globalStyles";
 import { Navbar, Footer } from "../../components";
 import Home from "./Home";
 
+
 function Landing() {
+
     return (
         <>
             <GlobalStyle />
@@ -12,6 +14,7 @@ function Landing() {
             <Footer />
         </>
     );
-}
+    
+};
 
 export default Landing;

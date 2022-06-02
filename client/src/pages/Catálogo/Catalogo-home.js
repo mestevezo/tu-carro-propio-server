@@ -1,49 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Posts from './Posts/Posts';
 import Container from '@mui/material/Container';
 import Pagination from './Pagination';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { useSelector } from "react-redux";
 
 
-function useQuery() {
-    return new URLSearchParams(useLocation().search)
-}
-
 const CatalogoHome = () => {
-    const [currentId, setCurrentId] = useState(0);
-    const query = useQuery();
+
+    const query = new URLSearchParams(useLocation().search);
     const page = query.get('page') || 1;
-
-    const {filters,posts} = useSelector((state) => state.posts);
-    let noPosts = false;
-
-
-    if(filters !== undefined && posts !== undefined){
-
-       if(Object.keys(filters).length > 0 && Object.keys(posts).length == 0){
-
-        noPosts = true;
-       }else{noPosts = false}
-
-    }
-   
+    const { posts } = useSelector((state) => state.posts);
 
     return (
         <>
-
             <Container>
-                { noPosts ? <h2  justify-content = "center" margin-top = "15rem">No hay resultados</h2> : <Posts setCurrentId={setCurrentId} />}
+                { posts.length === 0 ? <h2 justify-content = "center" margin-top = "15rem">No hay resultados</h2> : <Posts/>}
                 <PaginationLayout>
                     <Pagination page={page} />
                 </PaginationLayout>
             </Container>
-
         </>
-    )
-}
+    );
+
+};
 
 const PaginationLayout = styled.div`
     justify-content: center;

@@ -8,13 +8,14 @@ import { useNavigate } from 'react-router-dom';
 
 import useStyles from './styles';
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post }) => {
+
   const classes = useStyles();
   const navigate = useNavigate();
 
   const openPost = () => {
     navigate(`/catalogo/${post._id}`);
-  }
+  };
 
   return (
     <Card className={classes.card}>
@@ -36,9 +37,9 @@ const Post = ({ post, setCurrentId }) => {
           <p>{post.transmission + ' / ' + post.fuel}</p>
         </CardContent>
       </ButtonBase>
-
     </Card>
   );
+
 };
 
 export default Post;

@@ -6,8 +6,8 @@ import Productfilter from "./Product-filter";
 import { Footer } from "../../components";
 
 
-
 function Catalogo() {
+
     return (
         <>
             <GlobalStyle />
@@ -17,6 +17,7 @@ function Catalogo() {
             <Footer />
         </>
     );
-}
+    
+};
 
 export default Catalogo;
