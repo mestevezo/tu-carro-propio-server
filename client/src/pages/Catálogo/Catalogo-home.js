@@ -16,7 +16,7 @@ const CatalogoHome = () => {
     return (
         <>
             <Container>
-                { posts.length === 0 ? <h2 justify-content = "center" margin-top = "15rem">No hay resultados</h2> : <Posts/>}
+                { posts.length === 0 ? <h2 justify-content="center" margin-top="15rem">No hay resultados</h2> : <Posts/>}
                 <PaginationLayout>
                     <Pagination page={page} />
                 </PaginationLayout>

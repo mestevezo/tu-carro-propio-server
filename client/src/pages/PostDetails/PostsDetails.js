@@ -25,8 +25,10 @@ const Post = () => {
   useEffect(() => {
 
     if (post) {
-      const query = new URLSearchParams({ brand : post.brand,
-                                          id : post._id});
+      const query = new URLSearchParams({ 
+        brand : post.brand,
+        id : post._id
+      });
       dispatch(getRecommendationsPosts(query));
     };
 
@@ -75,7 +77,7 @@ const Post = () => {
           <RecommendedDiv>
             {recposts.map(({ brand, model, year, _id, mainImg }) => (
               <RecommendedContainer onClick={() => openPost(_id)} key={_id}>
-                <RecommendedImg src={mainImg} width='100%' alt='recomendados' />
+                <RecommendedImg src={mainImg} width='200px' alt='recomendados' />
                 <RecommendedDescription><h2>{brand + ' '}{model}</h2> {'Año ' + year}</RecommendedDescription>
               </RecommendedContainer>
             ))}
@@ -86,7 +88,7 @@ const Post = () => {
   );
 
 };
-//recposts.length > 0
+
 const Container = styled.div`
   display: flex;
   margin: 2rem;
@@ -100,8 +102,8 @@ const Container = styled.div`
 
 const CarSlide = styled.div` 
   position: relative;
-  height: 60%;
-  width: 60%;
+  height: 100%;
+  width: 50%;
 
   @media screen and (max-width: 780px) {
     width: 100%;
@@ -135,8 +137,8 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
   width: 50%;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 600;
 
   @media screen and (max-width: 780px) {
     width: 100%;
