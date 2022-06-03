@@ -7,6 +7,7 @@ import Post from '../Catálogo/Posts/Post/Post';
 import { useSelector } from 'react-redux';
 import { Services } from '../../components';
 import styled from 'styled-components';
+import LoadingLatest from '../../components/Loading/LoadingLatest';
 
 
 const Home = () => {
@@ -32,26 +33,41 @@ const Home = () => {
                 {lasposts !== undefined ?
                     <>
                         {lasposts.map((post) => (
-                            <div>
+                            <SingleLatestPost>
                                 <Post post={post} />
-                            </div>
+                            </SingleLatestPost>
                         ))}
                     </>
-                    : false}
+                    : <LoadingLatest />}
             </LatestPostsGrid>
         </>
     );
 
 };
 
-const LatestPostsGrid = styled.div`
-    width: 90%;
-    row-gap: 2%;
-    display: flex;
-    margin: 2%;
-`
 const LatestTitle = styled.h1`
     text-align: center;
+`
+
+const LatestPostsGrid = styled.div`
+    display: flex;
+    width: 100%;
+
+    @media screen and (max-width: 780px) {
+    display: grid;
+    justify-content: center;
+  }
+
+`
+
+const SingleLatestPost = styled.div` 
+    width: 30%;
+    margin: 2%;
+    margin-bottom: 10%;
+
+    @media screen and (max-width: 780px) {
+    width: 100%;
+  }
 `
 
 export default Home;

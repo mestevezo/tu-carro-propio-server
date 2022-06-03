@@ -4,7 +4,7 @@ export default makeStyles({
   media: {
     height: 0,
     paddingTop: '56.25%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     backgroundBlendMode: 'darken',
     objectFit: 'cover'
   },
@@ -21,6 +21,11 @@ export default makeStyles({
     borderRadius: '15px',
     height: '100%',
     position: 'relative',
+    '&:hover': {
+      transition: "all .2s ease-in-out",
+      transform: 'scale(1.01)',
+    }
+
   },
   overlay: {
     position: 'absolute',

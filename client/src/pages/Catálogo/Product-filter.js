@@ -41,6 +41,7 @@ const Select = styled.select`
     text-align: center;
     border: none;
     background: #202020;
+    cursor: pointer;
     color: #f7df1e;
     width: 8rem;
     border-radius: 5px;
@@ -85,8 +86,8 @@ const Productfilter = () => {
             } else {
                 params.delete(e.target.name);
             };
-        };   
-        navigate(location.pathname + '?' + params);   
+        };
+        navigate(location.pathname + '?' + params);
 
     };
 
