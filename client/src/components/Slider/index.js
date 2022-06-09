@@ -2,12 +2,13 @@ import React from "react";
 import EmblaCarousel from "./EmblaCarousel";
 
 
-const SLIDE_COUNT = 5;
-const slides = Array.from(Array(SLIDE_COUNT).keys());
-
 
 const Slider = (Imgs) => {
-    return (
+
+    const SLIDE_COUNT =Imgs.Imgs.length;
+    const slides = Array.from(Array(SLIDE_COUNT).keys());
+
+       return (
         <>
             <EmblaCarousel slides={slides} Imgs={Imgs} />
         </>

@@ -47,6 +47,8 @@ const Post = () => {
   const array = post.othersImg;
   array.unshift(post.mainImg);
 
+
+  
   let armor = post.armor ? 'Si' : 'No';
   let t4x4 = post.t4x4 ? 'Si' : 'No';
 
@@ -54,7 +56,8 @@ const Post = () => {
     <div >
       <Container>
         <CarSlide>
-          <Slider Imgs={array}></Slider>
+          <Slider Imgs={array}  ></Slider>
+         
         </CarSlide>
         <Information>
           <Title>{post.brand + ' ' + post.model}</Title>
