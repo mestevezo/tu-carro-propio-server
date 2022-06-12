@@ -1,15 +1,13 @@
 import React from "react";
 
 export const DotButton = ({ selected, onClick, media }) => (
-  
-  <img
-  
-    src={media}
+
+  <button
     className={`embla__dot ${selected ? "is-selected" : ""}`}
     type="button"
     onClick={onClick}
   />
-  
+
 );
 
 export const PrevButton = ({ enabled, onClick }) => (

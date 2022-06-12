@@ -1,4 +1,4 @@
-import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_POST, FETCH_LATEST, FETCH_RECOMMENDATION} from '../constants/actionTypes';
+import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_POST, FETCH_LATEST, FETCH_RECOMMENDATION } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 

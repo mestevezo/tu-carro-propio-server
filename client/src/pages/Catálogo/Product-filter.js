@@ -4,61 +4,6 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getPosts } from '../../actions/posts';
 
-const Container = styled.div`
-    text-align: center;
-    font-size: large;
-    border: none;
-    width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: space-evenly;
-    position: fixed;
-    z-index: 2000;
-    background: #202020;
-    color: #f7df1e;
-    padding: 1rem;
-
-    @media screen and (max-width: 768px) {
-        gap: 2px;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-`;
-
-const Title = styled.p`
-    
-    @media screen and (max-width: 768px) {
-    }
-`
-
-const Filter = styled.div`
-    background-color: #202020;
-    border-radius: 5px;
-`;
-
-const Select = styled.select`
-    text-align: center;
-    border: none;
-    background: #202020;
-    cursor: pointer;
-    color: #f7df1e;
-    width: 8rem;
-    border-radius: 5px;
-    font-size: 15px;
-
-    @media screen and (max-width: 768px) {
-        width: 8rem;
-        justify-items: center;
-        align-self: center;
-        flex-direction: column;
-        background: #202020;
-    }
-`;
-
-const Option = styled.option`
-    align-items: center;
-`;
 
 const Productfilter = () => {
 
@@ -155,5 +100,62 @@ const Productfilter = () => {
     );
 
 };
+
+const Container = styled.div`
+    text-align: center;
+    font-size: large;
+    border: none;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    position: fixed;
+    z-index: 2000;
+    background: #202020;
+    color: #f7df1e;
+    padding: 1rem;
+
+    @media screen and (max-width: 768px) {
+        gap: 2px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+`;
+
+const Title = styled.p`
+    
+    @media screen and (max-width: 768px) {
+    }
+`
+
+const Filter = styled.div`
+    background-color: #202020;
+    border-radius: 5px;
+`;
+
+const Select = styled.select`
+    text-align: center;
+    border: none;
+    background: #202020;
+    cursor: pointer;
+    color: #f7df1e;
+    width: 8rem;
+    border-radius: 5px;
+    font-size: 15px;
+
+    @media screen and (max-width: 768px) {
+        width: 8rem;
+        justify-items: center;
+        align-self: center;
+        flex-direction: column;
+        background: #202020;
+    }
+`;
+
+const Option = styled.option`
+    align-items: center;
+`;
+
 
 export default Productfilter;

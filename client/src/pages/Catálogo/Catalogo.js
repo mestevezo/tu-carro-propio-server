@@ -17,7 +17,7 @@ function Catalogo() {
             <Footer />
         </>
     );
-    
+
 };
 
 export default Catalogo;

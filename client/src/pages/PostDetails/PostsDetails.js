@@ -25,9 +25,9 @@ const Post = () => {
   useEffect(() => {
 
     if (post) {
-      const query = new URLSearchParams({ 
-        brand : post.brand,
-        id : post._id
+      const query = new URLSearchParams({
+        brand: post.brand,
+        id: post._id
       });
       dispatch(getRecommendationsPosts(query));
     };
@@ -48,7 +48,7 @@ const Post = () => {
   array.unshift(post.mainImg);
 
 
-  
+
   let armor = post.armor ? 'Si' : 'No';
   let t4x4 = post.t4x4 ? 'Si' : 'No';
 
@@ -57,7 +57,7 @@ const Post = () => {
       <Container>
         <CarSlide>
           <Slider Imgs={array}  ></Slider>
-         
+
         </CarSlide>
         <Information>
           <Title>{post.brand + ' ' + post.model}</Title>
@@ -85,7 +85,7 @@ const Post = () => {
               </RecommendedContainer>
             ))}
           </RecommendedDiv>
-        : false}
+          : false}
       </div>
     </div >
   );
@@ -98,7 +98,8 @@ const Container = styled.div`
 
   @media screen and (max-width: 780px) {
     width: 90%;
-    align-items: center;
+    margin: 1%;
+    justify-content: center;
     flex-direction: column;
   }
 `
@@ -170,6 +171,7 @@ const RecommendedTitle = styled.h2`
 const RecommendedDiv = styled.div` 
   display: flex;
   flex-direction: row;
+  justify-content: center;
   width: 100%;
   margin-bottom: 2rem;
 
@@ -184,7 +186,7 @@ const RecommendedDiv = styled.div`
 const RecommendedContainer = styled.div`
   cursor: pointer;
   flex-direction: row;
-  justify-content: space-between;
+
   margin: 2%;
 
   @media screen and (max-width: 780px) {
@@ -193,8 +195,8 @@ const RecommendedContainer = styled.div`
 `
 
 const RecommendedImg = styled.img`
-  width: 100%;
-  height: 70%;
+  width: 300px;
+  height: 220px;
   border-radius: 15px;
 
   @media screen and (max-width: 780px) {

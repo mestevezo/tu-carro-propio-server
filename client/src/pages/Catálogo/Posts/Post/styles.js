@@ -9,7 +9,7 @@ export default makeStyles({
     objectFit: 'cover'
   },
   border: {
-    border: 'solid',
+    border: 'none',
   },
   fullHeightCard: {
     height: '100%',

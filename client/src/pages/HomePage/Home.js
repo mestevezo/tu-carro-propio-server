@@ -9,8 +9,7 @@ import { Services } from '../../components';
 import styled from 'styled-components';
 import LoadingLatest from '../../components/Loading/LoadingLatest';
 
-
-const Home = () => {
+function Home() {
 
     const { lasposts } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
@@ -22,40 +21,46 @@ const Home = () => {
     }, [dispatch]);
 
     return (
-        <>
+        <Background>
             <InfoSection {...homeObjOne} />
             <InfoSection {...homeObjTwo} />
             <Services />
-            <br></br>
+            <br />
             <LatestTitle>¡Échale un vistazo a nuestras últimas incorporaciones!</LatestTitle>
-            <br></br>
+            <br />
             <LatestPostsGrid>
                 {lasposts !== undefined ?
                     <>
                         {lasposts.map((post) => (
-                            <SingleLatestPost>
+                            <SingleLatestPost key={post.id}>
                                 <Post post={post} />
                             </SingleLatestPost>
                         ))}
                     </>
                     : <LoadingLatest />}
             </LatestPostsGrid>
-        </>
+        </ Background>
     );
 
 };
 
+const Background = styled.div`
+`
+
 const LatestTitle = styled.h1`
     text-align: center;
+    margin: 1%;
+    
 `
 
 const LatestPostsGrid = styled.div`
     display: flex;
-    width: 100%;
+    
 
     @media screen and (max-width: 780px) {
     display: grid;
     justify-content: center;
+
   }
 
 `
@@ -66,7 +71,7 @@ const SingleLatestPost = styled.div`
     margin-bottom: 10%;
 
     @media screen and (max-width: 780px) {
-    width: 100%;
+    width: 90%;
   }
 `
 

@@ -4,14 +4,14 @@ import useEmblaCarousel from "embla-carousel-react";
 import styled from 'styled-components';
 
 const EmblaCarousel = ({ slides, Imgs }) => {
-  
+
   const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
   const media = Imgs.Imgs;
-  
+
   const mediaByIndex = index => media[index % media.length];
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
@@ -57,14 +57,14 @@ const EmblaCarousel = ({ slides, Imgs }) => {
       </div>
       <div className="embla__dots">
         {scrollSnaps.map((_, index) => (
-          
+
           <DotButton
-            media = {Imgs.Imgs[index]}
+            media={Imgs.Imgs[index]}
             key={index}
             selected={index === selectedIndex}
             onClick={() => scrollTo(index)}
           />
-          
+
         ))}
       </div>
     </Embla>
@@ -76,7 +76,7 @@ const Embla = styled.div`
     border-radius: 20px;
     position: relative;
     padding: 0px;
-    max-width: 90%;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -164,7 +164,7 @@ const Embla = styled.div`
     display: flex;
     list-style: none;
     justify-content: center;
-    padding-top: 10px;
+    padding-top: 0px;
   }
   
   .embla__dot {

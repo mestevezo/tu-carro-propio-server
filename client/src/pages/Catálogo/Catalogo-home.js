@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Posts from './Posts/Posts';
 import Container from '@mui/material/Container';
@@ -15,8 +16,8 @@ const CatalogoHome = () => {
 
     return (
         <>
-            <Container>
-                { posts.length === 0 ? <h2 justify-content="center" margin-top="15rem">No hay resultados</h2> : <Posts/>}
+            <Container bgcolor='#e3e3e3'>
+                {posts.length === 0 ? <h1>No hay resultados</h1> : <Posts />}
                 <PaginationLayout>
                     <Pagination page={page} />
                 </PaginationLayout>
@@ -29,7 +30,6 @@ const CatalogoHome = () => {
 const PaginationLayout = styled.div`
     justify-content: center;
     margin: 2rem;
-
     @media screen and (max-width: 780px) {
         justify-content: center;
 }

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const InfoSec = styled.div`
 color: #fff;
-padding: 160px 0;
+padding: 120px 0;
 background: ${({ lightBg }) => (lightBg ? '#fff' : '#202020')};
 `;
 
@@ -33,7 +33,7 @@ flex-basis: 50%;
 export const TextWrapper = styled.div`
 max-width: 540px;
 padding-top: 0;
-padding-bottom: 60px;
+padding-bottom: 30px;
 
 @media screen and (max-width: 768px){
     padding-bottom: 65px;
@@ -52,7 +52,7 @@ export const Heading = styled.h1`
 margin-bottom: 24px;
 font-size: 48px;
 line-height: 1.1;
-color: ${({ lightText }) => (lightText ? '#f7f8fa' : '#202020')};
+color: ${({ lightText }) => (lightText ? '#e3e3e3' : '#202020')};
 `
 
 export const Subtitle = styled.p`
@@ -69,11 +69,15 @@ justify-content: ${({ start }) => (start ? 'flex-start' : 'flex-end')};
 `;
 
 export const Img = styled.img`
-padding-right: 0;
+padding-right: 10%;
 border: 0;
 max-width: 100%;
 vertical-align: middle;
 display: inline-block;
-max-height: 500px;
+max-height: 600px;
+
+@media screen and (max-width: 768px){
+    padding-right: 0;
+}
 `;
 

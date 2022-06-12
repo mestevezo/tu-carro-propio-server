@@ -6,7 +6,7 @@ const Background = styled.div`
     left: 0;
     bottom: 0;
     right: 0;
-    background: #e3e3e3;
+    background: #fff;
     z-index: 1000;
 `
 const LoaderContainer = styled.div`
@@ -102,37 +102,22 @@ const Loader = styled.div`
 }
 
 
-@-webkit-keyframes shine-loading-image {
-  0% {
-    background-position: -32px;
-  }
-  100% {
-    background-position: 480px;
-  }
-}
+
 
 
 @keyframes shine-loading-image {
   0% {
-    background-position: -32px;
+    background-position: 0%;
   }
   100% {
-    background-position: 480px;
+    background-position: 500px;
   }
 }
 
-@-webkit-keyframes shine-loading-container-items {
-  0% {
-    background-position: -32px;
-  }
-  100% {
-    background-position: 280px;
-  }
-}
 
 @keyframes shine-loading-container-items {
   0% {
-    background-position: -32px;
+    background-position: 0px;
   }
   100% {
     background-position: 280px;
