@@ -12,18 +12,19 @@ import { useNavigate } from 'react-router-dom';
 const Post = () => {
 
   const { recposts, isLoading } = useSelector((state) => state.posts);
-  let post = recposts[0];
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log(post)
+
   useEffect(() => {
 
     dispatch(getSpcRecommendationsPosts(id));
 
   }, [dispatch, id]);
 
-  if (!post) return null;
+  if (recposts === undefined) return null;
+  let post = recposts[0] || undefined;
 
   const openPost = (_id) => navigate(`/catalogo/${_id}`);
 
