@@ -32,7 +32,7 @@ function Home() {
                 {lasposts !== undefined ?
                     <>
                         {lasposts.map((post) => (
-                            <SingleLatestPost key={post.id}>
+                            <SingleLatestPost key={post._id}>
                                 <Post post={post} />
                             </SingleLatestPost>
                         ))}

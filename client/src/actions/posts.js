@@ -64,3 +64,19 @@ export const getRecommendationsPosts = (query) => async (dispatch) => {
   }
 
 };
+
+
+export const getSpcRecommendationsPosts = (id) => async (dispatch) => {
+
+  try {
+
+    dispatch({ type: START_LOADING });
+    const { data } = await api.fetchSpcRecommendationPosts(id);
+    dispatch({ type: FETCH_RECOMMENDATION, payload: { data } });
+    dispatch({ type: END_LOADING });
+
+  } catch (error) {
+    console.log(error.message);
+  }
+
+};

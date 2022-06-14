@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getPost, getRecommendationsPosts } from '../../actions/posts';
+import { getPost, getRecommendationsPosts, getSpcRecommendationsPosts} from '../../actions/posts';
 import Slider from '../../components/Slider/index';
 import styled from 'styled-components';
 import { LoadingDots } from '../../components';
@@ -11,28 +11,17 @@ import { useNavigate } from 'react-router-dom';
 
 const Post = () => {
 
-  const { post, recposts, isLoading } = useSelector((state) => state.posts);
+  const { recposts, isLoading } = useSelector((state) => state.posts);
+  let post = recposts[0];
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-
+  console.log(post)
   useEffect(() => {
 
-    dispatch(getPost(id));
+    dispatch(getSpcRecommendationsPosts(id));
 
   }, [dispatch, id]);
-
-  useEffect(() => {
-
-    if (post) {
-      const query = new URLSearchParams({
-        brand: post.brand,
-        id: post._id
-      });
-      dispatch(getRecommendationsPosts(query));
-    };
-
-  }, [dispatch, post]);
 
   if (!post) return null;
 
@@ -47,8 +36,6 @@ const Post = () => {
   const array = post.othersImg;
   array.unshift(post.mainImg);
 
-
-
   let armor = post.armor ? 'Si' : 'No';
   let t4x4 = post.t4x4 ? 'Si' : 'No';
 
@@ -57,7 +44,6 @@ const Post = () => {
       <Container>
         <CarSlide>
           <Slider Imgs={array}  ></Slider>
-
         </CarSlide>
         <Information>
           <Title>{post.brand + ' ' + post.model}</Title>
@@ -78,7 +64,7 @@ const Post = () => {
       <div>
         {recposts !== undefined ?
           <RecommendedDiv>
-            {recposts.map(({ brand, model, year, _id, mainImg }) => (
+            {recposts.slice(1,).map(({ brand, model, year, _id, mainImg }) => (
               <RecommendedContainer onClick={() => openPost(_id)} key={_id}>
                 <RecommendedImg src={mainImg} width='200px' alt='recomendados' />
                 <RecommendedDescription><h2>{brand + ' '}{model}</h2> {'Año ' + year}</RecommendedDescription>

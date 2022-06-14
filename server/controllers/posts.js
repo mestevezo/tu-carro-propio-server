@@ -88,7 +88,7 @@ export const getRecommendationPosts = async (req, res) => {
     query = { $and: [query, { _id: { $ne: reqId } } ] }; 
 
     const initialReq = await PostMessage.countDocuments(query);
-    let posts = await PostMessage.find(query).select('-othersImg').sort('-createdAt').limit(LIMIT);
+    let posts = await PostMessage.find(query).select('-othersImg -addInfo').sort('-createdAt').limit(LIMIT);
     if (initialReq >= LIMIT) {
       res.status(200).json({ posts });
     } else {
@@ -98,10 +98,43 @@ export const getRecommendationPosts = async (req, res) => {
           reqIdList.push(posts[i]._id);
         }
       }
-      const latestPosts = await PostMessage.find({ _id: { $nin: reqIdList } }).select('-othersImg').sort('-createdAt').limit(LIMIT - initialReq);
+      const latestPosts = await PostMessage.find({ _id: { $nin: reqIdList } }).select('-othersImg -addInfo').sort('-createdAt').limit(LIMIT - initialReq);
       posts = posts.concat(latestPosts);
       res.status(200).json({ posts });
     }
+    
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+  
+}
+
+
+export const getSpcRecommendationPosts = async (req, res) => {
+
+  try {
+
+    const { id } = req.params;
+    const post = await PostMessage.findById(id);
+
+    const LIMIT = 3;
+    const reqId = post._id;
+    let query = { $and: [ { brand: post.brand }, { _id: { $ne: reqId } } ] }; 
+
+    const initialReq = await PostMessage.countDocuments(query);
+    let posts = await PostMessage.find(query).select('-othersImg').sort('-createdAt').limit(LIMIT);
+    if (initialReq < LIMIT) {
+      let reqIdList = [reqId];
+      if (initialReq > 0) {
+        for (let i in posts) {
+          reqIdList.push(posts[i]._id);
+        }
+      }
+      const latestPosts = await PostMessage.find({ _id: { $nin: reqIdList } }).select('-othersImg').sort('-createdAt').limit(LIMIT - initialReq);
+      posts = posts.concat(latestPosts);
+    }
+    posts = [post].concat(posts);
+    res.status(200).json({ posts });
     
   } catch (error) {
     res.status(404).json({ message: error.message });
