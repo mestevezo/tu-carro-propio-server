@@ -28,7 +28,7 @@ function Home() {
             <br />
             <LatestTitle>¡Échale un vistazo a nuestras últimas incorporaciones!</LatestTitle>
             <br />
-            {posts !== undefined ? <Posts /> : false}
+            {posts !== undefined ? <Posts /> : <LoadingLatest/>}
         </ Background>
     );
 

@@ -2,11 +2,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getPost, getRecommendationsPosts, getSpcRecommendationsPosts} from '../../actions/posts';
+import { getSpcRecommendationsPosts} from '../../actions/posts';
 import Slider from '../../components/Slider/index';
 import styled from 'styled-components';
 import { LoadingDots } from '../../components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,  Link  } from 'react-router-dom';
+
+import { Button } from '../../globalStyles';
+import './Postdetails.css';
 
 
 const Post = () => {
@@ -47,18 +50,44 @@ const Post = () => {
           <Slider Imgs={array}  ></Slider>
         </CarSlide>
         <Information>
-          <Title>{post.brand + ' ' + post.model}</Title>
-          <Subtitle>{post.price + ' USD'}</Subtitle>
-          <Description>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Description>
-          <Description>{'Transmision ' + post.transmission}</Description>
-          <Description>{'Blindaje ' + armor}</Description>
-          <Description>{'4x4 ' + t4x4}</Description>
-          <Description>{'Combustible ' + post.fuel}</Description>
+          
+          <div className='card'>
+
+          <div >
+              <div>
+                <Title>{post.brand + ' ' + post.model + ' ' + post.version}</Title>
+                <Description>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Description>
+                <br></br>
+                <Subtitle>{post.price + ' USD'}</Subtitle>
+                <br></br>
+              </div>
+
+              <div>
+                <Link to='/cita'>
+                  <Button buttonDisplay='true' big fontBig primary= 'true'>Agenda una Cita</Button>
+                </Link>
+              </div>
+            </div>
+            
+          </div>
+
+        </Information>
+
+      </Container>
+
+      
+      <div className='caracteristics'>
+          <h1>Caracteristicas</h1>
+  
+          <Description>{'Transmision: ' + post.transmission}</Description>
+          <Description>{'Blindaje: ' + armor}</Description>
+          <Description>{'4x4: ' + t4x4}</Description>
+          <Description>{'Combustible: ' + post.fuel}</Description>
           <br></br>
           <h3>Informacion Adicional</h3>
           <Description>{post.addInfo}</Description>
-        </Information>
-      </Container>
+
+      </div>
 
       <RecommendedTitle>También te pueden interesar estos vehículos</RecommendedTitle>
 
@@ -126,10 +155,11 @@ const Title = styled.h1`
   }
 `
 
-const Subtitle = styled.p`
+const Subtitle = styled.div`
   width: 50%;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 2.0rem;
+  font-weight: 300;
+
 
   @media screen and (max-width: 780px) {
     width: 100%;
