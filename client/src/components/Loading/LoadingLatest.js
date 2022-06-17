@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const LoaderContainer = styled.div`
     display: flex;
-    width: 100%;
+    width: 95%;
     justify-content: center;
     gap: 5%;
     margin: 1%;
@@ -107,38 +107,38 @@ const Loader = styled.div`
 
 @-webkit-keyframes shine-loading-image {
   0% {
-    background-position:left;
+    background-position:-32px;
   }
   100% {
-    background-position: right;
+    background-position: 340px;
   }
 }
 
 
 @keyframes shine-loading-image {
   0% {
-    background-position:left;
+    background-position:-32px;
   }
   100% {
-    background-position: right;
+    background-position: 340px;
   }
 }
 
 @-webkit-keyframes shine-loading-container-items {
   0% {
-    background-position:left;
+    background-position:-32px;
   }
   100% {
-    background-position: right;
+    background-position: 340px;
   }
 }
 
 @keyframes shine-loading-container-items {
   0% {
-    background-position:left;
+    background-position:-32px;
   }
   100% {
-    background-position: right;
+    background-position: 340px;
   }
 } `
 
