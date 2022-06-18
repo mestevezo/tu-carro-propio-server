@@ -23,11 +23,13 @@ const Loader = styled.div`
 
 @media screen and (max-width: 780px) {
         width: 50vh;
-        margin: 1%
+        margin: 5%;
+        margin-bottom: 10%;
+        margin-top: 20%;
 }
 
 .movie--isloading {
-  max-width: 560px;
+  max-width: 100%;
   border-radius: 20px;
   overflow: hidden;
 }
@@ -37,8 +39,8 @@ const Loader = styled.div`
   background-image: -webkit-linear-gradient(left, #ececec 0px, #f4f4f4 40px, #ececec 80px);
   background-image: -o-linear-gradient(left, #ececec 0px, #f4f4f4 40px, #ececec 80px);
   background-image: linear-gradient(90deg, #ececec 0px, #f4f4f4 40px, #ececec 80px);
-  -webkit-animation: shine-loading-image 1s infinite ease-out;
-          animation: shine-loading-image 1s infinite ease-out;
+  -webkit-animation: shine-loading-image 2s infinite ease-out;
+          animation: shine-loading-image 2s infinite ease-out;
 }
 
 .movie--isloading .loading-content {
@@ -71,8 +73,8 @@ const Loader = styled.div`
   background-image: linear-gradient(90deg, #ececec 0px, #f4f4f4 40px, #ececec 80px);
   background-size: 250px;
   border-radius: 10px;
-  -webkit-animation: shine-loading-container-items 1s infinite ease-out;
-          animation: shine-loading-container-items 1s infinite ease-out;
+  -webkit-animation: shine-loading-container-items 10s infinite ease-out;
+          animation: shine-loading-container-items 10s infinite ease-out;
 }
 
 .movie--isloading .loading-content .loading-sub-text {
@@ -84,8 +86,8 @@ const Loader = styled.div`
   background-image: linear-gradient(90deg, #ececec 0px, #f4f4f4 40px, #ececec 80px);
   background-size: 250px;
   border-radius: 10px;
-  -webkit-animation: shine-loading-container-items 1s infinite ease-out;
-          animation: shine-loading-container-items 1s infinite ease-out;
+  -webkit-animation: shine-loading-container-items 10s infinite ease-out;
+          animation: shine-loading-container-items 10s infinite ease-out;
 }
 
 .movie--isloading .loading-content .loading-btn {
@@ -97,8 +99,8 @@ const Loader = styled.div`
   background-image: linear-gradient(90deg, #ececec 0px, #f4f4f4 40px, #ececec 80px);
   background-size: 250px;
   border-radius: 3px;
-  -webkit-animation: shine-loading-container-items 1s infinite ease-out;
-          animation: shine-loading-container-items 1s infinite ease-out;
+  -webkit-animation: shine-loading-container-items 10s infinite ease-out;
+          animation: shine-loading-container-items 10s infinite ease-out;
 }
 
 
@@ -106,21 +108,21 @@ const Loader = styled.div`
 
 
 @keyframes shine-loading-image {
-  0% {
-    background-position: 0%;
+  from {
+    background-position: 0vh;
   }
-  100% {
-    background-position: 500px;
+  to {
+    background-position: 100vh;
   }
 }
 
 
 @keyframes shine-loading-container-items {
-  0% {
-    background-position: 0px;
+  from {
+    background-position: 0vh;
   }
-  100% {
-    background-position: 280px;
+  to {
+    background-position: 100vh;
   }
 } `
 

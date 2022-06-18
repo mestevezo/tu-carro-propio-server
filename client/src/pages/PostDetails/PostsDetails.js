@@ -1,15 +1,12 @@
-
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Button } from '../../globalStyles';
 import { getSpcRecommendationsPosts } from '../../actions/posts';
+import { LoadingDots } from '../../components';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import Slider from '../../components/Slider/index';
 import styled from 'styled-components';
-import { LoadingDots } from '../../components';
-import { useNavigate, Link } from 'react-router-dom';
-
-import { Button } from '../../globalStyles';
-import './Postdetails.css';
 
 
 const Post = () => {
@@ -56,10 +53,11 @@ const Post = () => {
             <div >
               <div>
                 <Title>{post.brand + ' ' + post.model + ' ' + post.version}</Title>
+                <Description>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Description>
                 <br />
                 <Subtitle>{post.price + ' USD'}</Subtitle>
-                <br />
-                <Description>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Description>
+
+
                 <br />
               </div>
 
@@ -78,7 +76,7 @@ const Post = () => {
 
 
       <Characteristics>
-        <h1>Caracteristicas</h1>
+        <h1>Características</h1>
 
         <Description>{'Transmision: ' + post.transmission}</Description>
         <Description>{'Blindaje: ' + armor}</Description>
@@ -111,11 +109,11 @@ const Post = () => {
 
 const Container = styled.div`
   display: flex;
-  margin: 2rem;
+  margin: 0.5rem;
 
   @media screen and (max-width: 780px) {
     width: 90%;
-    margin: 1%;
+    margin: 0;
     justify-content: center;
     flex-direction: column;
   }
@@ -127,6 +125,7 @@ const CarSlide = styled.div`
   width: 50%;
 
   @media screen and (max-width: 780px) {
+    margin-top: 5%;
     width: 100%;
     margin-left: 5%;
   }
@@ -148,6 +147,8 @@ const Information = styled.div`
 `
 
 const Title = styled.h1`
+  margin-top: 10%;
+  text-align: center;
   font-size: 2rem;
   line-height: 1em;
 
@@ -158,6 +159,7 @@ const Title = styled.h1`
 
 const Subtitle = styled.div`
   width: 100%;
+  text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
 
@@ -170,6 +172,7 @@ const Subtitle = styled.div`
 const Description = styled.p`
   font-size: 1.2rem;
   font-weight: 300;
+  text-align: center;
 `
 
 const RecommendedTitle = styled.h2`
@@ -213,8 +216,8 @@ const RecommendedContainer = styled.div`
 `
 
 const RecommendedImg = styled.img`
-  width: 300px;
-  height: 220px;
+  width: 280px;
+  height: 230px;
   border-radius: 15px;
 
   @media screen and (max-width: 780px) {
@@ -231,25 +234,34 @@ const RecommendedDescription = styled.p`
 `
 
 const Card = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  justify-content: center;
   flex: 0.7;
-  padding: 10px;
+  padding: 0;
+  margin-top: 5%;
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   border-radius: 10px;
-  height: 100px
+  height: 100px;
+
+  @media screen and (max-width: 780px) {
+    padding: 0;
+    margin-top: 0;
+  }
+
 `
 
 const Characteristics = styled.div`
+  text-align: center;
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 20px;
   margin: 20px;
   border-radius: 10px;
 `
+
 const ButtonLayout = styled.div`
-  margin-left: 30%;
+  margin-bottom: 5%;
 `
 
 export default Post;
