@@ -90,13 +90,15 @@ const Post = () => {
         <Description>{'Blindaje: ' + armor}</Description>
         <Description>{'4x4: ' + t4x4}</Description>
         <Description>{'Combustible: ' + post.fuel}</Description>
+        <h3>Informacion Adicional</h3>
+        <Description>{post.addInfo}</Description>
         <div>
           <br /> 
           <h1>Especificaciones</h1>
             <Description>{'Potencia: ' + post.power +' HP'}</Description>
             <Description>{'Aceleracion: ' + post.accel }</Description>
             <Description>{'Consumo de combustible: ' + post.fuelConsumption }</Description>
-            <Description>{'Capacidad de tanque: ' + post.fuelCapacity }</Description>
+            <Description>{'Capacidad de tanque: ' + post.fuelCapacity +'L' }</Description>
           <br></br>
 
         <h2>Detalles</h2>
