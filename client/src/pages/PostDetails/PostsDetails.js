@@ -82,11 +82,28 @@ const Post = () => {
         <Description>{'Blindaje: ' + armor}</Description>
         <Description>{'4x4: ' + t4x4}</Description>
         <Description>{'Combustible: ' + post.fuel}</Description>
-        <br></br>
-        <h3>Informacion Adicional</h3>
-        <Description>{post.addInfo}</Description>
+        <Description>{'⚙ Motor: ' + post.motor}</Description>
+        <Description>{'👤 Dueños: ' + post.owners}</Description>
+        <Description>{'▪ Tapizado: ' + post.tapizado}</Description>
+        <Description>{'📍 Ubicacion: ' + post.location}</Description>
+        <Description>{'Transmision: ' + post.transmission}</Description>
+        <Description>{'Blindaje: ' + armor}</Description>
+        <Description>{'4x4: ' + t4x4}</Description>
+        <Description>{'Combustible: ' + post.fuel}</Description>
+        <div>
+          <br /> 
+          <h1>Especificaciones</h1>
+            <Description>{'Potencia: ' + post.power +' HP'}</Description>
+            <Description>{'Aceleracion: ' + post.accel }</Description>
+            <Description>{'Consumo de combustible: ' + post.fuelConsumption }</Description>
+            <Description>{'Capacidad de tanque: ' + post.fuelCapacity }</Description>
+          <br></br>
 
+        <h2>Detalles</h2>
+          <Description>{post.details}</Description>
+      </div>
       </Characteristics>
+
       <br />
       <RecommendedTitle>También te pueden interesar estos vehículos</RecommendedTitle>
 
