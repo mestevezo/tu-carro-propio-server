@@ -1,6 +1,6 @@
 import { Button } from '../../globalStyles';
 import { getSpcRecommendationsPosts } from '../../actions/posts';
-import { LoadingDots } from '../../components';
+import LoadingDetails from '../../components/Loading/LoadingDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -23,16 +23,16 @@ const Post = () => {
 
   }, [dispatch, id]);
 
+  if (isLoading) {
+    return (
+      <LoadingDetails />
+    );
+  };
+
   if (recposts === undefined) return null;
   let post = recposts[0] || undefined;
 
   const openPost = (_id) => navigate(`/catalogo/${_id}`);
-
-  if (isLoading) {
-    return (
-      <LoadingDots />
-    );
-  };
 
   const array = post.othersImg;
   array.unshift(post.mainImg);
@@ -73,37 +73,44 @@ const Post = () => {
         </Information>
 
       </Container>
+      <br />
 
+      <AditionalInfoTitle>Información Adicional</AditionalInfoTitle>
 
       <Characteristics>
-        <h1>Características</h1>
+        <BlockInfo1>
+          <h2>Características</h2>
+          <Description>{'Transmision: ' + post.transmission}</Description>
+          <Description>{'Blindaje: ' + armor}</Description>
+          <Description>{'4x4: ' + t4x4}</Description>
+          <Description>{'Combustible: ' + post.fuel}</Description>
+          <Description>{'⚙ Motor: ' + post.motor}</Description>
+          <Description>{'👤 Dueños: ' + post.owners}</Description>
+          <Description>{'▪ Tapizado: ' + post.tapizado}</Description>
+          <Description>{'📍 Ubicacion: ' + post.location}</Description>
+          <Description>{'Transmision: ' + post.transmission}</Description>
+          <Description>{'Blindaje: ' + armor}</Description>
+          <Description>{'4x4: ' + t4x4}</Description>
+          <Description>{'Combustible: ' + post.fuel}</Description>
+          <Description>{post.addInfo}</Description>
+        </BlockInfo1>
 
-        <Description>{'Transmision: ' + post.transmission}</Description>
-        <Description>{'Blindaje: ' + armor}</Description>
-        <Description>{'4x4: ' + t4x4}</Description>
-        <Description>{'Combustible: ' + post.fuel}</Description>
-        <Description>{'⚙ Motor: ' + post.motor}</Description>
-        <Description>{'👤 Dueños: ' + post.owners}</Description>
-        <Description>{'▪ Tapizado: ' + post.tapizado}</Description>
-        <Description>{'📍 Ubicacion: ' + post.location}</Description>
-        <Description>{'Transmision: ' + post.transmission}</Description>
-        <Description>{'Blindaje: ' + armor}</Description>
-        <Description>{'4x4: ' + t4x4}</Description>
-        <Description>{'Combustible: ' + post.fuel}</Description>
-        <h3>Informacion Adicional</h3>
-        <Description>{post.addInfo}</Description>
-        <div>
-          <br /> 
-          <h1>Especificaciones</h1>
-            <Description>{'Potencia: ' + post.power +' HP'}</Description>
-            <Description>{'Aceleracion: ' + post.accel }</Description>
-            <Description>{'Consumo de combustible: ' + post.fuelConsumption }</Description>
-            <Description>{'Capacidad de tanque: ' + post.fuelCapacity +'L' }</Description>
-          <br></br>
+        <br />
 
-        <h2>Detalles</h2>
+        <BlockInfo2>
+          <h2>Especificaciones</h2>
+          <Description>{'Potencia: ' + post.power + ' HP'}</Description>
+          <Description>{'Aceleracion: ' + post.accel}</Description>
+          <Description>{'Consumo de combustible: ' + post.fuelConsumption}</Description>
+          <Description>{'Capacidad de tanque: ' + post.fuelCapacity + 'L'}</Description>
+        </BlockInfo2>
+
+        <br />
+
+        <BlockInfo3>
+          <h2>Detalles</h2>
           <Description>{post.details}</Description>
-      </div>
+        </BlockInfo3>
       </Characteristics>
 
       <br />
@@ -159,20 +166,23 @@ const Information = styled.div`
   font-family: Poppins;
 
   @media screen and (max-width: 780px) {
-    margin-top: 10%;
+    margin-top: 0%;
     width: 100%;
     text-align: center;
   }
 `
 
 const Title = styled.h1`
-  margin-top: 10%;
+  margin-top: 15%;
   text-align: center;
   font-size: 2rem;
   line-height: 1em;
+  padding-left: 5%;
+  padding-right: 5%;
 
   @media screen and (max-width: 780px) {
     line-height: 1em;
+    margin-top: 15%;
   }
 `
 
@@ -254,7 +264,10 @@ const RecommendedDescription = styled.p`
 
 const Card = styled.div`
   display: grid;
+  padding-left: 5%;
+  padding-right: 5%;
   justify-content: center;
+  text-align: center;
   flex: 0.7;
   padding: 0;
   margin-top: 5%;
@@ -270,17 +283,64 @@ const Card = styled.div`
 
 `
 
+const AditionalInfoTitle = styled.h1`
+text-align: center;
+`
+
 const Characteristics = styled.div`
-  text-align: center;
+  display: flex;
+  gap: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 20px;
   margin: 20px;
   border-radius: 10px;
+
+  @media screen and (max-width: 780px) {
+    text-align: center;
+    display: grid;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 1200px;
+  }
+
 `
 
 const ButtonLayout = styled.div`
   margin-bottom: 5%;
+`
+
+const BlockInfo1 = styled.div`
+  text-align: center;
+  white-space: pre-line;
+  width: 30%;
+
+  @media screen and (max-width: 780px) {
+    width: 80%;
+  }
+
+`
+const BlockInfo2 = styled.div`
+  text-align: center;
+  white-space: pre-line;
+  width: 30%;
+
+  @media screen and (max-width: 780px) {
+    width: 80%;
+  }
+
+`
+const BlockInfo3 = styled.div`
+  text-align: center;
+  white-space: pre-line;
+  width: 30%;
+
+  @media screen and (max-width: 780px) {
+    width: 80%;
+  }
+
 `
 
 export default Post;

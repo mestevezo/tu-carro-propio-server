@@ -76,9 +76,10 @@ const Embla = styled.div`
     border-radius: 20px;
     position: relative;
     padding: 0px;
-    max-width: 90%;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 2%;
   }
   
   .embla__viewport {
@@ -110,7 +111,11 @@ const Embla = styled.div`
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    height: 300px;
+    height: 450px;
+
+    @media screen and (max-width: 960px) {
+    height: 400px;
+}
   }
   
   .embla__slide__img {

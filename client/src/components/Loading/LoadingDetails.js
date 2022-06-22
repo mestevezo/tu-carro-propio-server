@@ -1,13 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const LoaderContainer = styled.div`
     display: flex;
     width: 95%;
     justify-content: center;
     gap: 5%;
-    margin: 1%;
+    margin-top: 10%;
     margin-left: 3%;
     margin-right: 3%;
+    margin-bottom: 10%;
 
     @media screen and (max-width: 1200px) {
     flex-wrap: wrap;
@@ -21,10 +22,8 @@ const LoaderContainer = styled.div`
 `
 
 const Loader = styled.div`
-    width: 30%;
+    width: 50%;
     margin-bottom: 5%;
-
-  
 
     @media screen and (max-width: 780px) {
     width: 40vh;
@@ -40,8 +39,8 @@ const Loader = styled.div`
   background-image: -webkit-linear-gradient(left, #ececec 0px, #f4f4f4 40px, #ececec 80px);
   background-image: -o-linear-gradient(left, #ececec 0px, #f4f4f4 40px, #ececec 80px);
   background-image: linear-gradient(90deg, #ececec 0px, #f4f4f4 40px, #ececec 80px);
-  -webkit-animation: shine-loading-image 1s infinite ease-out;
-          animation: shine-loading-image 1s infinite ease-out;
+  -webkit-animation: shine-loading-image 2s infinite ease-out;
+          animation: shine-loading-image 2s infinite ease-out;
 }
 
 .movie--isloading .loading-content {
@@ -107,93 +106,62 @@ const Loader = styled.div`
 
 @-webkit-keyframes shine-loading-image {
   0% {
-    background-position:-32px;
+    background-position: 0vh;
   }
   100% {
-    background-position: 340px;
+    background-position: 60vh;
   }
 }
 
 
 @keyframes shine-loading-image {
-  0% {
-    background-position:-32px;
+    0% {
+    background-position: 0vh;
   }
   100% {
-    background-position: 340px;
+    background-position: 60vh;
   }
 }
 
 @-webkit-keyframes shine-loading-container-items {
-  0% {
-    background-position:-32px;
+    0% {
+    background-position: 0vh;
   }
   100% {
-    background-position: 340px;
+    background-position: 60vh;
   }
 }
 
 @keyframes shine-loading-container-items {
-  0% {
-    background-position:-32px;
+    0% {
+    background-position: 0vh;
   }
   100% {
-    background-position: 340px;
+    background-position: 60vh;
   }
 } `
 
-const LoadingLatest = () => {
-  return (
+const LoadingDetails = () => {
+    return (
 
-    <>
-
-      <LoaderContainer>
-        <Loader>
-          <div className="container">
-            <div className="movie--isloading">
-              <div className="loading-image"></div>
-              <div className="loading-content">
-                <div className="loading-text-container">
-                  <div className="loading-main-text"></div>
-                  <div className="loading-sub-text"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Loader>
-        <Loader>
-          <div className="container">
-            <div className="col-sm-6 col-md-3">
-              <div className="movie--isloading">
-                <div className="loading-image"></div>
-                <div className="loading-content">
-                  <div className="loading-text-container">
-                    <div className="loading-main-text"></div>
-                    <div className="loading-sub-text"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Loader>
-        <Loader>
-          <div className="container">
-            <div className="col-sm-6 col-md-3">
-              <div className="movie--isloading">
-                <div className="loading-image"></div>
-                <div className="loading-content">
-                  <div className="loading-text-container">
-                    <div className="loading-main-text"></div>
-                    <div className="loading-sub-text"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Loader>
-      </LoaderContainer>
-    </>
-  )
+        <>
+            <LoaderContainer>
+                <Loader>
+                    <div className="container">
+                        <div className="movie--isloading">
+                            <div className="loading-image"></div>
+                            <div className="loading-content">
+                                <div className="loading-text-container">
+                                    <div className="loading-main-text"></div>
+                                    <div className="loading-sub-text"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Loader>
+            </LoaderContainer>
+        </>
+    )
 }
 
-export default LoadingLatest;
+export default LoadingDetails;

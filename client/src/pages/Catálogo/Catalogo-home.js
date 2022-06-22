@@ -17,7 +17,7 @@ const CatalogoHome = () => {
     return (
         <>
             <Container bgcolor='#e3e3e3'>
-                {posts.length === 0 ? <h1>No hay resultados</h1> : <Posts />}
+                {posts.length === 0 ? <p>No hay resultados</p> : <Posts />}
                 <PaginationLayout>
                     <Pagination page={page} />
                 </PaginationLayout>
