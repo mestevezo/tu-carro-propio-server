@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { DotButton, PrevButton, NextButton } from "./EmblaCarouselButton";
 import useEmblaCarousel from "embla-carousel-react";
 import styled from 'styled-components';
+import ReactImageMagnify from 'react-image-magnify';
 
 const EmblaCarousel = ({ slides, Imgs }) => {
 
@@ -42,11 +43,26 @@ const EmblaCarousel = ({ slides, Imgs }) => {
             {slides.map((index) => (
               <div className="embla__slide" key={index}>
                 <div className="embla__slide__inner">
-                  <img
-                    className="embla__slide__img"
-                    src={mediaByIndex(index)}
-                    alt="car"
-                  />
+                  <ReactImageMagnify className="embla__slide__img"
+                            {...{
+                                smallImage: {
+                                    
+                                    isFluidWidth: true,
+                                    src: mediaByIndex(index),
+                                    width:100,
+                                    height:110
+                                
+                                },
+                                largeImage: {
+                                    src: mediaByIndex(index),
+                                    width: 1500,
+                                    height: 2000,
+                                    
+                                },
+                                lensStyle: { backgroundColor: 'rgba(0,0,0,.6)' },
+                                enlargedImagePosition:"over"           
+                            }}
+                        />
                 </div>
               </div>
             ))}
