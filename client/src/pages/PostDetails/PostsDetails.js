@@ -8,7 +8,7 @@ import React, { useEffect } from 'react';
 import Slider from '../../components/Slider/index';
 import styled from 'styled-components';
 
-import ReactImageMagnify from 'react-image-magnify';
+//import ReactImageMagnify from 'react-image-magnify';
 
 
 
