@@ -29,11 +29,12 @@ const EmblaCarousel = ({ slides, Imgs }) => {
   });
 
   const onSelect = useCallback(() => {
-    if (!embla) return;
+    if (!embla || !emblaThumbs) return;
     setSelectedIndex(embla.selectedScrollSnap());
     setPrevBtnEnabled(embla.canScrollPrev());
     setNextBtnEnabled(embla.canScrollNext());
-  }, [embla, setSelectedIndex]);
+    emblaThumbs.scrollTo(embla.selectedScrollSnap());
+  }, [embla, emblaThumbs,setSelectedIndex]);
 
   const onThumbClick = useCallback(
     (index) => {
