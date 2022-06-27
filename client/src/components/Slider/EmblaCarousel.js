@@ -275,7 +275,7 @@ const Embla = styled.div`
   
   .embla__slide__thumbnail {
     position: absolute;
-   
+    opacity: 0.5;
     top: 0;
     bottom: 0;
     left: -10000%;
