@@ -3,7 +3,8 @@ import { DotButton, PrevButton, NextButton } from "./EmblaCarouselButton";
 import useEmblaCarousel from "embla-carousel-react";
 import styled from 'styled-components';
 //import ReactImageMagnify from 'react-image-magnify';
-import ReactImageMagnify from '../ReactImageMagnify/ReactImageMagnify'
+import ReactImageMagnify from '../ReactImageMagnify/ReactImageMagnify';
+import { Thumb } from "./EmblaCarouselButton";
 
 const EmblaCarousel = ({ slides, Imgs }) => {
 
@@ -21,6 +22,11 @@ const EmblaCarousel = ({ slides, Imgs }) => {
   const scrollTo = useCallback((index) => embla && embla.scrollTo(index), [
     embla
   ]);
+  const [thumbViewportRef, emblaThumbs] = useEmblaCarousel({
+    containScroll: "keepSnaps",
+    selectedClass: "",
+    dragFree: true
+  });
 
   const onSelect = useCallback(() => {
     if (!embla) return;
@@ -28,6 +34,14 @@ const EmblaCarousel = ({ slides, Imgs }) => {
     setPrevBtnEnabled(embla.canScrollPrev());
     setNextBtnEnabled(embla.canScrollNext());
   }, [embla, setSelectedIndex]);
+
+  const onThumbClick = useCallback(
+    (index) => {
+      if (!embla || !emblaThumbs) return;
+      if (emblaThumbs.clickAllowed()) embla.scrollTo(index);
+    },
+    [embla, emblaThumbs]
+  );
 
   useEffect(() => {
     if (!embla) return;
@@ -72,18 +86,27 @@ const EmblaCarousel = ({ slides, Imgs }) => {
         <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
         <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
       </div>
-      <div className="embla__dots">
-        {scrollSnaps.map((_, index) => (
-
-          <DotButton
-            media={Imgs.Imgs[index]}
-            key={index}
-            selected={index === selectedIndex}
-            onClick={() => scrollTo(index)}
-          />
-
-        ))}
+     
+      <div className="embla embla--thumb">
+        <div className="embla__viewport" ref={thumbViewportRef}>
+          <div className="embla__container embla__container--thumb">
+            {slides.map((index) => (
+              <Thumb
+              onClick={() => onThumbClick(index)}
+              selected={index === selectedIndex}
+              imgSrc={mediaByIndex(index)}
+              key={index}
+            />
+            ))}
+          </div>
+        </div>
       </div>
+
+
+
+
+
+
     </Embla>
   );
 };
@@ -217,6 +240,61 @@ const Embla = styled.div`
     background-color: #202020;
     opacity: 1;
   }
+
+
+  .embla--thumb {
+    padding-top: 20px;
+    margin-top: -12px;
+  }
+  
+  .embla__container--thumb {
+    cursor: default;
+    margin-left: -8px;
+  }
+  
+  .embla__slide--thumb {
+    padding-left: 8px;
+    min-width: 20%;
+  }
+  
+  .embla__slide__inner--thumb {
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    height: 100px;
+    width: 100%;
+    
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+  
+  .embla__slide__thumbnail {
+    position: absolute;
+   
+    top: 0;
+    bottom: 0;
+    left: -10000%;
+    right: -10000%;
+    margin: auto;
+    min-width: 1000%;
+    min-height: 1000%;
+    max-width: none;
+    transform: scale(0.1);
+    transition: opacity 0.2s;
+  }
+  
+  .embla__slide--thumb.is-selected .embla__slide__thumbnail {
+    opacity: 1;
+  }
+  
+
 `
+
+
+
 
 export default EmblaCarousel;

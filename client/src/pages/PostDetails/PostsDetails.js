@@ -49,11 +49,6 @@ const Post = () => {
         <CarSlide>
           <Slider Imgs={array}  > </Slider>
 
-        
-          
-                
-            
-
         </CarSlide>
         <Information>
 
