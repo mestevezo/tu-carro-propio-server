@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { DotButton, PrevButton, NextButton } from "./EmblaCarouselButton";
+import { PrevButton, NextButton } from "./EmblaCarouselButton";
 import useEmblaCarousel from "embla-carousel-react";
 import styled from 'styled-components';
 //import ReactImageMagnify from 'react-image-magnify';
@@ -34,7 +34,7 @@ const EmblaCarousel = ({ slides, Imgs }) => {
     setPrevBtnEnabled(embla.canScrollPrev());
     setNextBtnEnabled(embla.canScrollNext());
     emblaThumbs.scrollTo(embla.selectedScrollSnap());
-  }, [embla, emblaThumbs,setSelectedIndex]);
+  }, [embla, emblaThumbs, setSelectedIndex]);
 
   const onThumbClick = useCallback(
     (index) => {
@@ -59,26 +59,26 @@ const EmblaCarousel = ({ slides, Imgs }) => {
             {slides.map((index) => (
               <div className="embla__slide" key={index}>
                 <div className="embla__slide__inner">
-                <ReactImageMagnify className="embla__slide__img"
-                            {...{
-                                smallImage: {
-                                    
-                                    isFluidWidth: true,
-                                    src: mediaByIndex(index),
-                                    width:100,
-                                    height:110
-                                
-                                },
-                                largeImage: {
-                                    src: mediaByIndex(index),
-                                    width: 1500,
-                                    height: 2000,
-                                    
-                                },
-                                lensStyle: { backgroundColor: 'rgba(0,0,0,.6)' },
-                                enlargedImagePosition:"over"           
-                            }}
-                        />
+                  <ReactImageMagnify className="embla__slide__img"
+                    {...{
+                      smallImage: {
+
+                        isFluidWidth: true,
+                        src: mediaByIndex(index),
+                        width: 100,
+                        height: 110
+
+                      },
+                      largeImage: {
+                        src: mediaByIndex(index),
+                        width: 1500,
+                        height: 2000,
+
+                      },
+                      lensStyle: { backgroundColor: 'rgba(0,0,0,.6)' },
+                      enlargedImagePosition: "over"
+                    }}
+                  />
                 </div>
               </div>
             ))}
@@ -87,17 +87,17 @@ const EmblaCarousel = ({ slides, Imgs }) => {
         <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
         <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
       </div>
-     
+
       <div className="embla embla--thumb">
         <div className="embla__viewport" ref={thumbViewportRef}>
           <div className="embla__container embla__container--thumb">
             {slides.map((index) => (
               <Thumb
-              onClick={() => onThumbClick(index)}
-              selected={index === selectedIndex}
-              imgSrc={mediaByIndex(index)}
-              key={index}
-            />
+                onClick={() => onThumbClick(index)}
+                selected={index === selectedIndex}
+                imgSrc={mediaByIndex(index)}
+                key={index}
+              />
             ))}
           </div>
         </div>
@@ -153,10 +153,10 @@ const Embla = styled.div`
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    height: 450px;
+    height: 300px;
 
     @media screen and (max-width: 960px) {
-    height: 400px;
+    height: 200px;
 }
   }
   
@@ -254,8 +254,13 @@ const Embla = styled.div`
   }
   
   .embla__slide--thumb {
-    padding-left: 8px;
-    min-width: 20%;
+    padding-left: 20px;
+    min-width: 18%;
+
+    @media screen and (max-width: 960px) {
+    min-width: 30%;
+}
+
   }
   
   .embla__slide__inner--thumb {
@@ -265,8 +270,8 @@ const Embla = styled.div`
     outline: 0;
     margin: 0;
     padding: 0;
-    height: 100px;
-    width: 100%;
+    height: 80px;
+    width: 80px;
     
     position: relative;
     display: block;
@@ -275,7 +280,7 @@ const Embla = styled.div`
   
   .embla__slide__thumbnail {
     position: absolute;
-    opacity: 0.5;
+    opacity: 0.6;
     top: 0;
     bottom: 0;
     left: -10000%;

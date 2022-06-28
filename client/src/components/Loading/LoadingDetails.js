@@ -10,6 +10,7 @@ const LoaderContainer = styled.div`
     margin-right: 3%;
     margin-bottom: 10%;
 
+
     @media screen and (max-width: 1200px) {
     flex-wrap: wrap;
   }
@@ -24,6 +25,7 @@ const LoaderContainer = styled.div`
 const Loader = styled.div`
     width: 50%;
     margin-bottom: 5%;
+    cursor: wait;
 
     @media screen and (max-width: 780px) {
     width: 40vh;
@@ -142,26 +144,26 @@ const Loader = styled.div`
 } `
 
 const LoadingDetails = () => {
-    return (
+  return (
 
-        <>
-            <LoaderContainer>
-                <Loader>
-                    <div className="container">
-                        <div className="movie--isloading">
-                            <div className="loading-image"></div>
-                            <div className="loading-content">
-                                <div className="loading-text-container">
-                                    <div className="loading-main-text"></div>
-                                    <div className="loading-sub-text"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Loader>
-            </LoaderContainer>
-        </>
-    )
+    <>
+      <LoaderContainer>
+        <Loader>
+          <div className="container">
+            <div className="movie--isloading">
+              <div className="loading-image"></div>
+              <div className="loading-content">
+                <div className="loading-text-container">
+                  <div className="loading-main-text"></div>
+                  <div className="loading-sub-text"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Loader>
+      </LoaderContainer>
+    </>
+  )
 }
 
 export default LoadingDetails;

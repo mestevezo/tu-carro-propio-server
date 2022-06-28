@@ -23,8 +23,7 @@ const LoaderContainer = styled.div`
 const Loader = styled.div`
     width: 30%;
     margin-bottom: 5%;
-
-  
+    cursor: wait;
 
     @media screen and (max-width: 780px) {
     width: 40vh;

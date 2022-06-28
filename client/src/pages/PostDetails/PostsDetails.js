@@ -57,9 +57,9 @@ const Post = () => {
             <div >
               <div>
                 <Title>{post.brand + ' ' + post.model + ' ' + post.version}</Title>
-                <Description>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Description>
+                <Subtitle>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Subtitle>
                 <br />
-                <Subtitle>{post.price + ' USD'}</Subtitle>
+                <Subtitle2>{post.price + ' USD'}</Subtitle2>
 
 
                 <br />
@@ -84,6 +84,7 @@ const Post = () => {
       <Characteristics>
         <BlockInfo1>
           <h2>Características</h2>
+          <br />
           <Description>{'Transmision: ' + post.transmission}</Description>
           <Description>{'Blindaje: ' + armor}</Description>
           <Description>{'4x4: ' + t4x4}</Description>
@@ -103,6 +104,7 @@ const Post = () => {
 
         <BlockInfo2>
           <h2>Especificaciones</h2>
+          <br />
           <Description>{'Potencia: ' + post.power + ' HP'}</Description>
           <Description>{'Aceleracion: ' + post.accel}</Description>
           <Description>{'Consumo de combustible: ' + post.fuelConsumption}</Description>
@@ -113,10 +115,11 @@ const Post = () => {
 
         <BlockInfo3>
           <h2>Detalles</h2>
+          <br />
           <Description>{post.details}</Description>
         </BlockInfo3>
       </Characteristics>
-
+      <br />
       <br />
       <RecommendedTitle>También te pueden interesar estos vehículos</RecommendedTitle>
 
@@ -171,7 +174,7 @@ const Information = styled.div`
 
   @media screen and (max-width: 780px) {
     margin-top: 0%;
-    width: 100%;
+    width: 90%;
     text-align: center;
   }
 `
@@ -191,6 +194,12 @@ const Title = styled.h1`
 `
 
 const Subtitle = styled.div`
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 300;
+`
+
+const Subtitle2 = styled.div`
   width: 100%;
   text-align: center;
   font-size: 1.5rem;
@@ -205,12 +214,12 @@ const Subtitle = styled.div`
 const Description = styled.p`
   font-size: 1.2rem;
   font-weight: 300;
-  text-align: center;
+  text-align: left;
 `
 
 const RecommendedTitle = styled.h2`
   margin-bottom: 2rem;
-  width: 100%;
+  width: 80%;
   text-align: center;
   line-height: 1em;
   font-size: 1.8rem;
@@ -226,11 +235,11 @@ const RecommendedDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
+  width: 90%;
   margin-bottom: 2rem;
 
   @media screen and (max-width: 780px) {
-    width: 100%;
+    width: 90%;
     align-items: center;
     text-align: center;
     flex-direction: column;
@@ -274,15 +283,14 @@ const Card = styled.div`
   text-align: center;
   flex: 0.7;
   padding: 0;
-  margin-top: 5%;
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  margin-top: 10%;
   border-radius: 10px;
-  height: 100px;
+  height: 300px;
 
   @media screen and (max-width: 780px) {
     padding: 0;
     margin-top: 0;
+    justify-content: center;
   }
 
 `
@@ -296,18 +304,14 @@ const Characteristics = styled.div`
   gap: 2%;
   margin-left: 10%;
   margin-right: 10%;
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 20px;
   margin: 20px;
-  border-radius: 10px;
 
   @media screen and (max-width: 780px) {
     text-align: center;
     display: grid;
-    margin-left: 20%;
-    margin-right: 20%;
-    height: 1200px;
+    height: 100%;
+    margin-bottom: 20%;
   }
 
 `

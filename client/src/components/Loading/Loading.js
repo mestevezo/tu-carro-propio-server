@@ -10,11 +10,12 @@ const Background = styled.div`
     z-index: 1000;
 `
 const LoaderContainer = styled.div`
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-margin: 1%;
-margin-top: 15rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1%;
+  margin-top: 15rem;
+  cursor: wait
 `
 
 const Loader = styled.div`
