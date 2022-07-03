@@ -44,7 +44,7 @@ const Post = () => {
   let t4x4 = post.t4x4 ? 'Si' : 'No';
 
   return (
-    <div >
+    <>
       <Container>
         <CarSlide>
           <Slider Imgs={array}  > </Slider>
@@ -135,7 +135,7 @@ const Post = () => {
           </RecommendedDiv>
           : false}
       </div>
-    </div >
+    </>
   );
 
 };
@@ -219,7 +219,7 @@ const Description = styled.p`
 
 const RecommendedTitle = styled.h2`
   margin-bottom: 2rem;
-  width: 80%;
+  width: 100%;
   text-align: center;
   line-height: 1em;
   font-size: 1.8rem;
@@ -235,11 +235,11 @@ const RecommendedDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 90%;
+  width: 100%;
   margin-bottom: 2rem;
 
   @media screen and (max-width: 780px) {
-    width: 90%;
+    width: 100%;
     align-items: center;
     text-align: center;
     flex-direction: column;
@@ -249,7 +249,6 @@ const RecommendedDiv = styled.div`
 const RecommendedContainer = styled.div`
   cursor: pointer;
   flex-direction: row;
-
   margin: 2%;
 
   @media screen and (max-width: 780px) {
@@ -262,6 +261,12 @@ const RecommendedImg = styled.img`
   height: 230px;
   border-radius: 15px;
 
+  &:hover {
+    transition: "all .2s ease-in-out";
+    transform: 'scale(1.01)';
+}
+
+
   @media screen and (max-width: 780px) {
     border-radius: 10px;
     width: 70%;
@@ -273,6 +278,13 @@ const RecommendedDescription = styled.p`
   font-size: 1.2rem;
   font-weight: 300;
   text-align: center;
+
+  &:hover {
+    transition: "all .2s ease-in-out";
+    transform: 'scale(1.01)';
+}
+
+
 `
 
 const Card = styled.div`
@@ -287,10 +299,12 @@ const Card = styled.div`
   border-radius: 10px;
   height: 300px;
 
+
   @media screen and (max-width: 780px) {
     padding: 0;
     margin-top: 0;
     justify-content: center;
+    margin-left: 15%;
   }
 
 `
@@ -302,10 +316,11 @@ text-align: center;
 const Characteristics = styled.div`
   display: flex;
   gap: 2%;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
   padding: 20px;
   margin: 20px;
+  width: 100%;
 
   @media screen and (max-width: 780px) {
     text-align: center;
@@ -326,7 +341,7 @@ const BlockInfo1 = styled.div`
   width: 30%;
 
   @media screen and (max-width: 780px) {
-    width: 80%;
+    width: 100%;
   }
 
 `
@@ -336,7 +351,7 @@ const BlockInfo2 = styled.div`
   width: 30%;
 
   @media screen and (max-width: 780px) {
-    width: 80%;
+    width: 100%;
   }
 
 `
@@ -346,7 +361,7 @@ const BlockInfo3 = styled.div`
   width: 30%;
 
   @media screen and (max-width: 780px) {
-    width: 80%;
+    width: 100%;
   }
 
 `

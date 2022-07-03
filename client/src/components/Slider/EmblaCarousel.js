@@ -244,13 +244,13 @@ const Embla = styled.div`
 
 
   .embla--thumb {
+    cursor: grab;
     padding-top: 20px;
     margin-top: -12px;
   }
   
   .embla__container--thumb {
-    cursor: default;
-    margin-left: -8px;
+    cursor: grab;
   }
   
   .embla__slide--thumb {
@@ -258,22 +258,22 @@ const Embla = styled.div`
     min-width: 18%;
 
     @media screen and (max-width: 960px) {
-    min-width: 30%;
+    min-width: 20%;
 }
 
   }
   
   .embla__slide__inner--thumb {
     touch-action: manipulation;
-    cursor: pointer;
+    cursor: grab;
     border: 0;
     outline: 0;
     margin: 0;
     padding: 0;
-    height: 80px;
-    width: 80px;
-    
+    height: 60px;
+    width: 60px;
     position: relative;
+    align-self: center;
     display: block;
     overflow: hidden;
   }
