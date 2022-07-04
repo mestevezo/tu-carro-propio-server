@@ -295,7 +295,7 @@ const Card = styled.div`
   text-align: center;
   flex: 0.7;
   padding: 0;
-  margin-top: 10%;
+  margin-top: 3vh;
   border-radius: 10px;
   height: 300px;
 

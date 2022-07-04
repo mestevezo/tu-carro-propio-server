@@ -65,7 +65,7 @@ const Productfilter = () => {
                         <Option value={'Honda'}>Honda</Option>
                         <Option value={'Hyundai'}>Hyundai</Option>
                         <Option value={'Jeep'}>Jeep</Option>
-                        <Option value={'Kia'}>Jeep</Option>
+                        <Option value={'Kia'}>Kia</Option>
                         <Option value={'Mitsubishi'}>Mitsubishi</Option>
                         <Option value={'Toyota'}>Toyota</Option>
                     </Select>
