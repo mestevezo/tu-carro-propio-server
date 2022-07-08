@@ -47,14 +47,13 @@ const Contact = () => {
       </form>
     </StyledContactForm>
   );
-  
+
 };
 
 export default Contact;
 
-// Styles
 const StyledContactForm = styled.div`
-  width: 50%;
+  width: 70%;
   align-self: center;
   margin: auto;
   padding: 5%;
