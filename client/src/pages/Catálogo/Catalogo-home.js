@@ -14,11 +14,12 @@ const CatalogoHome = () => {
     const query = new URLSearchParams(useLocation().search);
     const page = query.get('page') || 1;
     const { posts } = useSelector((state) => state.posts);
+    const searchLength = useLocation().search.length
 
     return (
         <>
             <Container bgcolor='#e3e3e3'>
-                {posts.length === 0 ?
+                {posts.length === 0 && searchLength > 7 ?
                     <NoResultsContainer>
                         <SvgContainer>
                             <SvgComponent />
