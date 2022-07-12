@@ -9,8 +9,8 @@ function CitaInformation() {
                 <TopImageBackground src={background} alt='' loading='lazy' />
                 <InformationLayout>
                     <h1>¿Cómo agendar una cita con nosotros?</h1>
-                    <p> Agendar una cita con nosotros es muy sencillo, sólo debes contactarnos vía whatsapp o email
-                        para poder pautar la fecha y hora de inspección del vehículo de tu interés.</p>
+                    <p> Agendar una cita es muy sencillo, tan sólo contáctanos vía whatsapp o email
+                        para pautar la fecha de inspección del vehículo de tu interés.</p>
                 </InformationLayout>
             </ImageTextLayout>
         </>
@@ -25,6 +25,7 @@ const ImageTextLayout = styled.div`
 const TopImageBackground = styled.img`
     height: 40vh;
     width: 100%;
+    opacity: 0.3;
     object-fit: cover;
     position: absolute;
     -webkit-mask:linear-gradient(#fff,transparent);

@@ -14,6 +14,7 @@ function Whatsapp() {
                 <WhatsappIconLink href="https://api.whatsapp.com/send?phone=4140120467&text=Buenas,%20quisiera%20agendar%20una%20cita." target="_blank" aria-label="Whatsapp">
                     <SiWhatsapp />
                 </WhatsappIconLink>
+
             </FullLayout>
             <FormText>
                 <h1>Otra opción es llenar este formulario que será enviado a nuestro correo</h1>
@@ -30,15 +31,16 @@ margin-top: 1%;
 const WhatsappContactLayout = styled.div`
     width: 70%;
     h1 {
-        
         font-size: 50px;
         margin-top: 3%;
         margin-left: 10%;
         text-align: left;
 
         @media screen and (max-width: 780px) {
-    font-size: 2rem;
-    line-height: 100%;
+        margin-top: 18%;
+        font-size: 2rem;
+        line-height: 100%;
+        margin-bottom: 5%;
   }
     }
     p { 
@@ -55,13 +57,17 @@ const WhatsappContactLayout = styled.div`
     `
 
 const WhatsappIconLink = styled.a` 
+    padding-top: 2%;
     color: #202020;
     font-size: 120px;
     margin-left: 8%;
 
     @media screen and (max-width: 780px) {
-    font-size: 80px;
-    margin-top: 4%;
+    padding-top: 20%;
+    display: flexbox;
+    font-size: 65px;
+    margin-bottom: 10%;
+    
   }
 
 &:hover {
@@ -81,5 +87,6 @@ const FormText = styled.div`
     font-size: 14px;
   }
 `
+
 
 export default Whatsapp
