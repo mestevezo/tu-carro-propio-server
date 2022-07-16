@@ -17,7 +17,7 @@ import ClickActivation from './lib/ClickActivation';
 
 export { INTERACTIONS };
 
-export default class extends React.Component {
+class ReactCursorPosition extends React.Component {
     constructor(props) {
         super(props);
 
@@ -472,8 +472,12 @@ export default class extends React.Component {
     }
 
     getPassThroughProps() {
-        const ownPropNames = Object.keys(this.constructor.propTypes);
-        return omit(this.props, ownPropNames);
+        if (this.constructor.propTypes !== undefined) {
+            const ownPropNames = Object.keys(this.constructor.propTypes);
+            return omit(this.props, ownPropNames);
+        } else {
+            return this.props;
+        }
     }
 
     render() {
@@ -497,3 +501,5 @@ export default class extends React.Component {
         );
     }
 }
+
+export default ReactCursorPosition;

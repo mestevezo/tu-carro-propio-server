@@ -14,7 +14,7 @@ import {
     getEnlargedImageStyle
 } from './lib/styles';
 
-export default class extends React.Component {
+class EnlargedImage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -214,3 +214,5 @@ export default class extends React.Component {
         return component;
     }
 }
+
+export default EnlargedImage;
