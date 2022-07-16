@@ -1,5 +1,5 @@
 import { Button } from '../../globalStyles';
-import { getSpcRecommendationsPosts } from '../../actions/posts';
+import { getPost, getRecommendationsPosts, getSpcRecommendationsPosts } from '../../actions/posts';
 import LoadingDetails from '../../components/Loading/LoadingDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
@@ -14,17 +14,28 @@ import styled from 'styled-components';
 
 const Post = () => {
 
-  const { recposts, isLoading } = useSelector((state) => state.posts);
-
+  const { post, recposts, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  console.log('1')
+  useEffect(() => {
+
+    dispatch(getPost(id));
+
+  }, [dispatch, id]);
 
   useEffect(() => {
 
-    dispatch(getSpcRecommendationsPosts(id));
+    if (post) {
+      const query = new URLSearchParams({
+        brand: post.brand,
+        id: post._id
+      });
+      dispatch(getRecommendationsPosts(query));
+    };
 
-  }, [dispatch, id]);
+  }, [dispatch, post]);
 
   if (isLoading) {
     return (
@@ -32,8 +43,7 @@ const Post = () => {
     );
   };
 
-  if (recposts === undefined) return null;
-  let post = recposts[0] || undefined;
+  if (post === undefined) return null;
 
   const openPost = (_id) => navigate(`/catalogo/${_id}`);
 
@@ -126,7 +136,7 @@ const Post = () => {
       <div>
         {recposts !== undefined ?
           <RecommendedDiv>
-            {recposts.slice(1,).map(({ brand, model, year, _id, mainImg }) => (
+            {recposts.map(({ brand, model, year, _id, mainImg }) => (
               <RecommendedContainer onClick={() => openPost(_id)} key={_id}>
                 <RecommendedImg src={mainImg} width='200px' alt='recomendados' />
                 <RecommendedDescription><h2>{brand + ' '}{model}</h2> {'Año ' + year}</RecommendedDescription>
