@@ -1,5 +1,5 @@
 import { Button } from '../../globalStyles';
-import { getPost, getRecommendationsPosts, getSpcRecommendationsPosts } from '../../actions/posts';
+import { getPost, getRecommendationsPosts } from '../../actions/posts';
 import LoadingDetails from '../../components/Loading/LoadingDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
@@ -18,7 +18,7 @@ const Post = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log('1')
+  
   useEffect(() => {
 
     dispatch(getPost(id));

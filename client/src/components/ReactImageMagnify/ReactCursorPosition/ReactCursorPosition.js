@@ -220,7 +220,7 @@ class ReactCursorPosition extends React.Component {
             this.enable();
         }
     }
-
+    /*
     componentWillReceiveProps({ isEnabled: willBeEnabled }) {
         const { isEnabled } = this.props;
         const isEnabledWillChange = isEnabled !== willBeEnabled;
@@ -235,7 +235,7 @@ class ReactCursorPosition extends React.Component {
             this.disable();
         }
     }
-
+    */
     componentWillUnmount() {
         this.disable();
     }
