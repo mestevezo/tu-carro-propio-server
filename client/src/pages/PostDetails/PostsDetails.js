@@ -130,7 +130,6 @@ const Post = () => {
         </BlockInfo3>
       </Characteristics>
       <br />
-      <br />
       <RecommendedTitle>También te pueden interesar estos vehículos</RecommendedTitle>
 
       <div>
@@ -330,10 +329,11 @@ const Characteristics = styled.div`
   margin-right: 20%;
   padding: 20px;
   margin: 20px;
-  width: 100%;
+  width: 98%;
 
   @media screen and (max-width: 780px) {
     text-align: center;
+    width: 90%;
     display: grid;
     height: 100%;
     margin-bottom: 20%;

@@ -1,6 +1,22 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import styled from "styled-components";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { FcOk } from "react-icons/fc";
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 500,
+  bgcolor: 'background.paper',
+  borderRadius: 3,
+  textAlign: 'center',
+  p: 4,
+};
 
 const Contact = () => {
   const form = useRef();
@@ -10,10 +26,10 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        "replace with service id",
-        "replace with template id",
+        "service_sz67iqz",
+        // "template_98svg2u",
         form.current,
-        "replace with user id"
+        "mUEJuZrxXhjglerDO"
       )
       .then(
         (result) => {
@@ -26,35 +42,57 @@ const Contact = () => {
       );
   };
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
-    <StyledContactForm>
-      <form ref={form} onSubmit={sendEmail}>
-        <label>Nombre</label>
-        <input
-          placeholder="Escribe tu nombre"
-          type="text"
-          name="user_name" />
-        <label>Email</label>
-        <input
-          placeholder="ejemplo@gmail.com"
-          type="email"
-          name="user_email" />
-        <label>Mensaje</label>
-        <textarea name="message" placeholder="Escribe tu mensaje" />
-        <input
-          type="submit"
-          value="Enviar" />
-      </form>
-    </StyledContactForm>
+    <>
+      <StyledContactForm>
+        <form ref={form} onClick={sendEmail}>
+          <label>Nombre</label>
+          <input
+            placeholder="Escribe tu nombre"
+            type="text"
+            name="from_name" />
+          <label>Email</label>
+          <input
+            placeholder="ejemplo@gmail.com"
+            type="email"
+            name="user_email" />
+          <label>Mensaje</label>
+          <textarea name="message" placeholder="Escribe tu mensaje (No olvides mencionar el auto de tu interés)" />
+          <input
+            onClick={handleOpen}
+            type="submit"
+            value="Enviar" />
+        </form>
+      </StyledContactForm>
+      <div>
+
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              ¡Tu mensaje ha sido enviado con éxito!
+            </Typography>
+            <CheckSvg><FcOk /></CheckSvg>
+          </Box>
+        </Modal>
+      </div>
+    </>
   );
-  
+
 };
 
 export default Contact;
 
-// Styles
 const StyledContactForm = styled.div`
-  width: 50%;
+  width: 70%;
   align-self: center;
   margin: auto;
   padding: 5%;
@@ -110,3 +148,8 @@ const StyledContactForm = styled.div`
     }
   }
 `;
+
+const CheckSvg = styled.div`
+  margin-top: 5%;
+  font-size: 28px;
+`

@@ -266,7 +266,7 @@ class ReactCursorPosition extends React.Component {
             pressMoveThreshold,
             tapDurationInMs,
             tapMoveThreshold
-        }= this.props;
+        } = this.props;
 
         const {
             TOUCH,
@@ -275,26 +275,26 @@ class ReactCursorPosition extends React.Component {
         } = INTERACTIONS;
 
         switch (interaction) {
-            case PRESS :
+            case PRESS:
                 this.touchActivation = new PressActivation({
                     onIsActiveChanged: this.onIsActiveChanged,
                     pressDurationInMs,
                     pressMoveThreshold
                 });
                 break;
-            case TAP :
+            case TAP:
                 this.touchActivation = new TapActivation({
                     onIsActiveChanged: this.onIsActiveChanged,
                     tapDurationInMs,
                     tapMoveThreshold
                 });
                 break;
-            case TOUCH :
+            case TOUCH:
                 this.touchActivation = new TouchActivation({
                     onIsActiveChanged: this.onIsActiveChanged
                 });
                 break;
-            default :
+            default:
                 throw new Error('Must implement a touch activation strategy');
         }
     }
@@ -303,7 +303,7 @@ class ReactCursorPosition extends React.Component {
         const {
             hoverDelayInMs,
             hoverOffDelayInMs
-        }= this.props;
+        } = this.props;
 
         const {
             HOVER,
@@ -311,19 +311,19 @@ class ReactCursorPosition extends React.Component {
         } = INTERACTIONS;
 
         switch (interaction) {
-            case  HOVER :
+            case HOVER:
                 this.mouseActivation = new HoverActivation({
                     onIsActiveChanged: this.onIsActiveChanged,
                     hoverDelayInMs,
                     hoverOffDelayInMs
                 });
                 break;
-            case CLICK :
+            case CLICK:
                 this.mouseActivation = new ClickActivation({
                     onIsActiveChanged: this.onIsActiveChanged
                 });
                 break;
-            default :
+            default:
                 throw new Error('Must implement a mouse activation strategy');
         }
     }
@@ -423,7 +423,7 @@ class ReactCursorPosition extends React.Component {
             y > height
         );
 
-        return  isPositionOutside;
+        return isPositionOutside;
     }
 
     getTouchEvent(e) {
@@ -489,7 +489,7 @@ class ReactCursorPosition extends React.Component {
         );
 
         return (
-            <div { ...{
+            <div {...{
                 className,
                 ref: (el) => this.el = el,
                 style: objectAssign({}, style, {
