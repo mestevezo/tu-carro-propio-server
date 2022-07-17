@@ -36,7 +36,8 @@ const postSchema = mongoose.Schema({
   }
 },
   {
-    collection: 'cars2'
+    collection: 'cars2' // Imagenes en Servidor CDN
+    //collection: 'cars' // Imagenes en Mongo
 })
 
 var Cars = mongoose.model('Cars', postSchema);
