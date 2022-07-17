@@ -33,7 +33,10 @@ const postSchema = mongoose.Schema({
   createdAt: {
       type: Date,
       default: new Date(),
-  },
+  }
+},
+  {
+    collection: 'cars2'
 })
 
 var Cars = mongoose.model('Cars', postSchema);
