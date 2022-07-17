@@ -50,11 +50,11 @@ class EnlargedImage extends React.Component {
         isPortalRendered: PropTypes.bool,
         isInPlaceMode: PropTypes.bool
     };
-    /*
-    componentWillReceiveProps(nextProps) {
+    
+    UNSAFE_componentWillReceiveProps(nextProps) {
         this.scheduleCssTransition(nextProps);
     }
-    */
+    
     componentWillUnmount() {
         this.timers.forEach((timerId) => {
             clearTimeout(timerId);
