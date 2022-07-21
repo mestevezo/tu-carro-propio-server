@@ -4,6 +4,7 @@ import Landing from "./pages/HomePage/Landing";
 import Catalogo from "./pages/Catálogo/Catalogo";
 import Cita from "./pages/Cita/Cita";
 import Details from "./pages/PostDetails/Details";
+import Nosotros from "./pages/AcercaDeNosotros/Nosotros";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route exact path='/catalogo/search' element={<Catalogo />} />
         <Route exact path="/catalogo/:id" element={<Details />} />
         <Route exact path='/cita' element={<Cita />} />
+        <Route exact path='/nosotros' element={<Nosotros />} />
       </Routes>
     </Router>
   );

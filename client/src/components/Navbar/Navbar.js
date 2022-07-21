@@ -37,7 +37,7 @@ const Navbar = () => {
                             </NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='/'>
+                            <NavLinks to='/nosotros'>
                                 Acerca de nosotros
                             </NavLinks>
                         </NavItem>

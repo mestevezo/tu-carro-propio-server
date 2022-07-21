@@ -36,6 +36,7 @@ const TopImageBackground = styled.img`
 const InformationLayout = styled.div`
     text-align: center;
     position: relative;
+    color: #202020;
 
     h1 {
         font-size: 50px;

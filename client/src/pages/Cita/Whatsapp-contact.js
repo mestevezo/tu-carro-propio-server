@@ -30,6 +30,7 @@ margin-top: 1%;
 
 const WhatsappContactLayout = styled.div`
     width: 70%;
+    color: #202020;
     h1 {
         font-size: 50px;
         margin-top: 3%;
@@ -77,6 +78,7 @@ const WhatsappIconLink = styled.a`
  }
 `
 const FormText = styled.div`
+    color: #202020;
     margin-top: 5%;
     margin-left: 5%;
     margin-right: 5%;
