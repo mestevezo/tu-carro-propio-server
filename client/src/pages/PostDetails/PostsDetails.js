@@ -69,7 +69,7 @@ const Post = () => {
                 <Title>{post.brand + ' ' + post.model + ' ' + post.version}</Title>
                 <Subtitle>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Subtitle>
                 <br />
-                <Subtitle2>{post.price + ' USD'}</Subtitle2>
+                <Subtitle2>{post.price == 0 ? "Precio a consultar" : post.price + ' USD'}</Subtitle2>
 
 
                 <br />
