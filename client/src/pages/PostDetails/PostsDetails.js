@@ -69,7 +69,7 @@ const Post = () => {
                 <Title>{post.brand + ' ' + post.model + ' ' + post.version}</Title>
                 <Subtitle>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Subtitle>
                 <br />
-                <Subtitle2>{post.price == 0 ? "Precio a consultar" : post.price + ' USD'}</Subtitle2>
+                <Subtitle2>{post.price === 0 ? "Precio a consultar" : post.price + ' USD'}</Subtitle2>
 
 
                 <br />
@@ -312,7 +312,7 @@ const Card = styled.div`
     padding: 0;
     margin-top: 0;
     justify-content: center;
-    margin-left: 15%;
+    margin-left: 12%;
   }
 
 `

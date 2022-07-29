@@ -11,7 +11,7 @@ import LoadingLatest from '../../components/Loading/LoadingLatest';
 
 function Home() {
 
-    const { lasposts : posts } = useSelector((state) => state.posts);
+    const { lasposts: posts } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -28,7 +28,7 @@ function Home() {
             <br />
             <LatestTitle>¡Échale un vistazo a nuestras últimas incorporaciones!</LatestTitle>
             <br />
-            {posts !== undefined ? <Posts /> : <LoadingLatest/>}
+            {posts !== undefined ? <Posts /> : <LoadingLatest />}
         </ Background>
     );
 
@@ -41,6 +41,7 @@ const Background = styled.div`
 const LatestTitle = styled.h1`
     text-align: center;
     margin: 1%;
+    color: #202020;
 `
 
 

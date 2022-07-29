@@ -1,17 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
 import { TiMessage, TiBusinessCard, TiArrowMoveOutline, TiCreditCard, TiFolderOpen, TiZoom } from "react-icons/ti";
+import office from '../../images/oficina.jpg'
+import office2 from '../../images/oficina2.jpg'
+import office3 from '../../images/camry.jpg'
 
 function NosotrosInfo() {
     return (
         <>
             <InformationLayout>
                 <h1>TUCARROPROPIO</h1>
-                <p> Somos un concesionario de compra y venta de vehículos ubicado en las Mercedes, Caracas
-                    con las mejores opciones del mercado, además te brindamos una asesoría personalizada,
+                <p> Somos un concesionario de compra y venta de vehículos con las mejores opciones del mercado, ubicado en las Mercedes, Caracas,
+                    donde te brindamos una asesoría personalizada,
                     bien sea para adquirir o vender tu auto.</p>
             </InformationLayout>
             <br />
+            <OfficeTitle><h2>Epacios seguros para realizar los trámites necesarios</h2></OfficeTitle>
+
+            <OfficeInfo>
+                <OfficeImage src={office} alt='' loading='lazy' />
+                <OfficeImage src={office2} alt='' loading='lazy' />
+                <OfficeImage src={office3} alt='' loading='lazy' />
+            </OfficeInfo>
+
             <AboutTitle>
                 <h2>¿Por qué escogernos?</h2>
             </AboutTitle>
@@ -121,10 +132,15 @@ const InformationLayout = styled.div`
 `
 
 const AboutTitle = styled.h2`
-    margin-top: 5%;
+    margin: 5%;
     text-align: center;
     font: 80px;
     color: #202020;
+
+    @media screen and (max-width: 780px) {
+    margin-top: 20px;
+    font-size: 20px;
+}
 `
 
 const Description = styled.p`
@@ -184,6 +200,40 @@ width: 30%;
 const AboutLogo = styled.a`
     font-size: 50px;
     color: #202020;
+`
+
+const OfficeInfo = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 8%;
+    gap: 5%;
+
+    @media screen and (max-width: 780px) {
+    display: grid;
+    margin-bottom: 40%;
+
+}
+
+`
+const OfficeImage = styled.img`
+    width: 30%;
+    height: 30%;
+    border-radius: 20px;
+
+    @media screen and (max-width: 780px) {
+    width: 95%;
+    height: 95%; 
+    }
+`
+
+const OfficeTitle = styled.h2`
+    text-align: center;
+    color: #202020;
+    margin: 5%;
+
+    @media screen and (max-width: 780px) {
+    font-size: 100%;
+}
 `
 
 export default NosotrosInfo
