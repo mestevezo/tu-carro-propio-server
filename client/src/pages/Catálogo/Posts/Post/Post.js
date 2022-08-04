@@ -26,7 +26,7 @@ const Post = ({ post }) => {
       >
         <CardMedia className={classes.media} image={post.mainImg || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
         <div className={classes.overlay}>
-          <h2>{post.price + ' USD'}</h2>
+          <h2>{post.price == 0 ? "Precio a consultar" : post.price + ' USD'}</h2>
         </div>
         <br></br>
         <h2 className={classes.title} variant="h5" component="h2">{post.brand + ' ' + post.model + ' ' + post.version + ' ' +post.year}</h2>

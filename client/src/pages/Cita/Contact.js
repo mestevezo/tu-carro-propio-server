@@ -26,10 +26,10 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        "service_sz67iqz",
-        // "template_98svg2u",
+        "service_mq4cmsw",
+        "template_fy3deud",
         form.current,
-        "mUEJuZrxXhjglerDO"
+        "qexN7XQCL3162RQhi"
       )
       .then(
         (result) => {
@@ -49,7 +49,7 @@ const Contact = () => {
   return (
     <>
       <StyledContactForm>
-        <form ref={form} onClick={sendEmail}>
+        <form ref={form} onSubmit={sendEmail}>
           <label>Nombre</label>
           <input
             placeholder="Escribe tu nombre"
@@ -63,7 +63,7 @@ const Contact = () => {
           <label>Mensaje</label>
           <textarea name="message" placeholder="Escribe tu mensaje (No olvides mencionar el auto de tu interés)" />
           <input
-            onClick={handleOpen}
+            onSubmit={sendEmail}{...handleOpen}
             type="submit"
             value="Enviar" />
         </form>

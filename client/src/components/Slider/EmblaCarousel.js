@@ -118,10 +118,15 @@ const Embla = styled.div`
     border-radius: 20px;
     position: relative;
     padding: 0px;
-    max-width: 80%;
-    margin-left: auto;
+    max-width: 100%;
+    margin-left: 20%;
     margin-right: auto;
     margin-top: 2%;
+
+    @media screen and (max-width: 960px) {
+      margin-left: auto;
+    margin-right: auto;
+}
   }
   
   .embla__viewport {
@@ -153,10 +158,12 @@ const Embla = styled.div`
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    height: 300px;
+    height: 500px;
+    width: 500px;
 
     @media screen and (max-width: 960px) {
-    height: 200px;
+    height: 370px;
+    width: 370px;
 }
   }
   

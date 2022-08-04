@@ -18,7 +18,7 @@ const Post = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  
+
   useEffect(() => {
 
     dispatch(getPost(id));
@@ -69,7 +69,7 @@ const Post = () => {
                 <Title>{post.brand + ' ' + post.model + ' ' + post.version}</Title>
                 <Subtitle>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Subtitle>
                 <br />
-                <Subtitle2>{post.price + ' USD'}</Subtitle2>
+                <Subtitle2>{post.price === 0 ? "Precio a consultar" : post.price + ' USD'}</Subtitle2>
 
 
                 <br />
@@ -267,7 +267,7 @@ const RecommendedContainer = styled.div`
 
 const RecommendedImg = styled.img`
   width: 280px;
-  height: 230px;
+  height: 280px;
   border-radius: 15px;
 
   &:hover {
@@ -293,7 +293,6 @@ const RecommendedDescription = styled.p`
     transform: 'scale(1.01)';
 }
 
-
 `
 
 const Card = styled.div`
@@ -304,7 +303,7 @@ const Card = styled.div`
   text-align: center;
   flex: 0.7;
   padding: 0;
-  margin-top: 3vh;
+  margin-top: 12vh;
   border-radius: 10px;
   height: 300px;
 
@@ -313,12 +312,13 @@ const Card = styled.div`
     padding: 0;
     margin-top: 0;
     justify-content: center;
-    margin-left: 15%;
+    margin-left: 12%;
   }
 
 `
 
 const AditionalInfoTitle = styled.h1`
+margin-top: 2%;
 text-align: center;
 `
 
