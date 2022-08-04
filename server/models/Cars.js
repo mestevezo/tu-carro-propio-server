@@ -27,8 +27,8 @@ const postSchema = mongoose.Schema({
   createdAt: { type: Date, default: new Date() }
 },
 {
-  collection: 'cars2' // Imagenes en Servidor CDN
-  //collection: 'cars' // Imagenes en Mongo
+  //collection: 'cars2' // Imagenes en Servidor CDN
+  collection: 'cars' // Imagenes en Mongo
 })
 
 var Cars = mongoose.model('Cars', postSchema);

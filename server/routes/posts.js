@@ -7,7 +7,8 @@ import { getPosts,
          //getSpcRecommendationPosts, 
          createPost, 
          updatePost, 
-         deletePost } from '../controllers/posts.js';
+         deletePost, 
+         getPostsAdmin } from '../controllers/posts.js';
 
 
 const router = express.Router();
@@ -20,8 +21,12 @@ router.get('/', getLatestPosts);
 router.get('/recommendations', getRecommendationPosts);
 //router.get('/catalogo/:id', getSpcRecommendationPosts);
 
-router.post('/', auth,  createPost);
-router.patch('/:id', auth, updatePost);
-router.delete('/:id', auth, deletePost);
+router.get('/admin/posts', getPostsAdmin);
+router.post('/admin/', createPost);
+router.patch('/admin/:id', updatePost);
+router.delete('/admin/:id', deletePost);
+//router.post('/', auth, createPost);
+//router.patch('/:id', auth, updatePost);
+//router.delete('/:id', auth, deletePost);
 
 export default router;
