@@ -31,6 +31,14 @@ font-weight: bold;
 font-size: 1.5rem;
 display: flex;
 align-items: center;
+
+@media screen and (max-width: 960px) {
+    margin-top: 0.5rem;
+    margin-right: 2%;
+    width: 85%;
+    height: 85%;
+}
+
 `;
 
 export const Img = styled.img`

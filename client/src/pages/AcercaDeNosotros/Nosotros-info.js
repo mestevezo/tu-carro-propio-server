@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { TiMessage, TiBusinessCard, TiArrowMoveOutline, TiCreditCard, TiFolderOpen, TiZoom } from "react-icons/ti";
 import office from '../../images/oficina.jpg'
 import office2 from '../../images/oficina2.jpg'
-import office3 from '../../images/camry.jpg'
 
 function NosotrosInfo() {
     return (
@@ -20,7 +19,6 @@ function NosotrosInfo() {
             <OfficeInfo>
                 <OfficeImage src={office} alt='' loading='lazy' />
                 <OfficeImage src={office2} alt='' loading='lazy' />
-                <OfficeImage src={office3} alt='' loading='lazy' />
             </OfficeInfo>
 
             <AboutTitle>

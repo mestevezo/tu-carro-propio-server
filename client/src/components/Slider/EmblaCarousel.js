@@ -118,14 +118,15 @@ const Embla = styled.div`
     border-radius: 20px;
     position: relative;
     padding: 0px;
-    max-width: 100%;
+    max-width: 66%;
     margin-left: 20%;
     margin-right: auto;
     margin-top: 2%;
 
     @media screen and (max-width: 960px) {
-      margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
+    width: 50vh;
 }
   }
   
@@ -160,10 +161,11 @@ const Embla = styled.div`
     overflow: hidden;
     height: 500px;
     width: 500px;
+  
 
     @media screen and (max-width: 960px) {
-    height: 370px;
-    width: 370px;
+    height: 350px;
+    width: 50vh;
 }
   }
   
@@ -173,7 +175,6 @@ const Embla = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    object-fit: fill;
     width: 100%;
     height: 100%;
   }
