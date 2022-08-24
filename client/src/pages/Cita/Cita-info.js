@@ -9,7 +9,6 @@ function CitaInformation() {
                 <TopImageBackground src={background} alt='' loading='lazy' />
                 <InformationLayout>
                     <h1>¿Cómo agendar una cita con nosotros?</h1>
-                    <br />
                     <p> Agendar una cita es muy sencillo, tan sólo contáctanos vía whatsapp o email
                         para pautar la fecha de inspección del vehículo de tu interés.</p>
                 </InformationLayout>
@@ -45,6 +44,7 @@ const InformationLayout = styled.div`
         margin-top: 15%;
         margin-left: 5%;
         margin-right: 5%;
+        margin-bottom: 3%;
         
     @media screen and (max-width: 780px) {
     font-size: 2rem;
@@ -52,13 +52,13 @@ const InformationLayout = styled.div`
   }
     }
     p {
-        font-size: 20px;
+        font-size: 1.5rem;
         margin-left: 15%;
         margin-right: 15%;
         margin-bottom: 5%;
 
     @media screen and (max-width: 780px) {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-top: 7%;
     margin-left: 5%;
     margin-right: 5%;

@@ -24,7 +24,6 @@ function VentaWhatsapp() {
 }
 
 const FullLayout = styled.div`
-margin-top: 1%;
     display: flex;
 `
 
@@ -33,7 +32,7 @@ const WhatsappContactLayout = styled.div`
     color: #202020;
     h1 {
         font-size: 50px;
-        margin-top: 3%;
+        margin-top: 1%;
         margin-left: 10%;
         text-align: left;
 

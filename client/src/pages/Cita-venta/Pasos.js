@@ -7,8 +7,6 @@ const Pasos = () => {
     <PasosTitle>Pasos para vender tu vehículo</PasosTitle>
     <Characteristics>
         <BlockInfo1>
-         
-          <br />
           <Description><HiCheck /> Trae tu carro limpio a nuestras instalaciones.</Description>
           <Description><HiCheck /> Le haremos un avalúo a tu vehículo (revisión mecánica y legal).</Description>
           <Description><HiCheck /> Debes ser el propietario del carro y al momento de la inspección debes tener la documentación en mano (título de propiedad y cédula).</Description>
@@ -17,9 +15,7 @@ const Pasos = () => {
           <Description><HiCheck /> El proceso de revisión y fotografía se realiza en un máximo de 20 minutos.</Description>
           <Description><HiCheck /> Somos un concesionario virtual, por lo que no tienes que dejarnos tu carro a consignación.</Description>
           <Description><HiCheck /> Te ofrecemos un lugar seguro donde hacer negocios.</Description>
-          
         </BlockInfo1>
-
 </Characteristics>
     </>
    
@@ -39,11 +35,10 @@ const PasosTitle = styled.h1`
 
 const Characteristics = styled.div`
   display: flex;
-  gap: 2%;
   margin-left: 20%;
   margin-right: 20%;
   padding: 20px;
-  margin: 20px;
+  margin: 1rem;
   width: 98%;
 
   @media screen and (max-width: 780px) {

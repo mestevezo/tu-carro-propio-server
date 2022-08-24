@@ -118,7 +118,7 @@ const Embla = styled.div`
     border-radius: 20px;
     position: relative;
     padding: 0px;
-    max-width: 66%;
+    max-width: 100%;
     margin-left: 20%;
     margin-right: auto;
     margin-top: 2%;
@@ -159,8 +159,8 @@ const Embla = styled.div`
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    height: 500px;
-    width: 500px;
+    height: 600px;
+    width: 600px;
   
 
     @media screen and (max-width: 960px) {
