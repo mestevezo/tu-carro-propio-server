@@ -95,13 +95,13 @@ const Post = () => {
         <BlockInfo1>
           <h2>Características</h2>
           <br />
-          <Description>{'Transmision: ' + post.transmission}</Description>
-          <Description>{'Blindaje: ' + armor}</Description>
-          <Description>{'4x4: ' + t4x4}</Description>
-          <Description>{'Combustible: ' + post.fuel}</Description>
-          <Description>{'⚙ Motor: ' + post.motor}</Description>
-          <Description>{'👤 Dueños: ' + post.owners}</Description>
-          <Description>{'▪ Tapizado: ' + post.tapizado}</Description>
+          <Description>{'⚙️ Transmision: ' + post.transmission}</Description>
+          <Description>{'🛡️ Blindaje: ' + armor}</Description>
+          <Description>{'⛰️ 4x4: ' + t4x4}</Description>
+          <Description>{'⛽ Combustible: ' + post.fuel}</Description>
+          <Description>{'🚗 Motor: ' + post.motor}</Description>
+          <Description>{'👨 Dueños: ' + post.owners}</Description>
+          <Description>{'💼 Tapizado: ' + post.tapizado}</Description>
           <Description>{'📍 Ubicacion: ' + post.location}</Description>
           <Description>{post.addInfo}</Description>
         </BlockInfo1>
