@@ -75,19 +75,23 @@ export const customersGrid = [
     width: '120',
     textAlign: 'Center',
     isPrimaryKey: true },
-
+/*
   { field: '',
     headerText: '',
     width: '120',
     textAlign: 'Center',
     template: customerGridStatus },
-
+*/
 ];
 
 export const links = [
   {
     title: 'Dashboard',
     links: [
+      {
+        name: 'auth',
+        icon: <FiShoppingBag />,
+      },      
       {
         name: 'ecommerce',
         icon: <FiShoppingBag />,
