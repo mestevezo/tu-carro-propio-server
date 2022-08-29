@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
-import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor, AddEdit } from './pages';
+import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor, AddEdit, Auth } from './pages';
 import './App.css';
+
+//import Auth from './components/Auth/Auth'
 
 import { useStateContext } from './contexts/ContextProvider';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
   const [currentId, setCurrentId] = useState(0);
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
     const currentThemeColor = localStorage.getItem('colorMode');
@@ -66,6 +69,7 @@ const App = () => {
 
               <Routes>
                 {/* dashboard  */}
+                <Route path="/auth" element={(!user ? <Auth /> : <Navigate replace to="/inventario" />)} />
                 <Route path="/" element={(<Ecommerce />)} />
                 <Route path="/ecommerce" element={(<Ecommerce />)} />
 
@@ -102,3 +106,5 @@ const App = () => {
 };
 
 export default App;
+
+//<Route path="/auth" exact component={() => (!user ? <Auth /> : <Navigate replace to="/inventario" />)} />

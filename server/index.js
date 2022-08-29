@@ -14,7 +14,7 @@ app.use(express.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
 
 app.use('/', postRoutes);
-//app.use('/admin', adminRouter);
+app.use('/admin', adminRouter);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
