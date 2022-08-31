@@ -37,12 +37,14 @@ const InformationLayout = styled.div`
     text-align: center;
     position: relative;
     color: #202020;
+    line-height: 2rem;
 
     h1 {
         font-size: 50px;
         margin-top: 15%;
         margin-left: 5%;
         margin-right: 5%;
+        margin-bottom: 3%;
         
     @media screen and (max-width: 780px) {
     font-size: 2rem;
@@ -50,13 +52,13 @@ const InformationLayout = styled.div`
   }
     }
     p {
-        font-size: 20px;
+        font-size: 1.5rem;
         margin-left: 15%;
         margin-right: 15%;
         margin-bottom: 5%;
 
     @media screen and (max-width: 780px) {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-top: 7%;
     margin-left: 5%;
     margin-right: 5%;

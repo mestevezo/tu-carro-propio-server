@@ -95,18 +95,14 @@ const Post = () => {
         <BlockInfo1>
           <h2>Características</h2>
           <br />
-          <Description>{'Transmision: ' + post.transmission}</Description>
-          <Description>{'Blindaje: ' + armor}</Description>
-          <Description>{'4x4: ' + t4x4}</Description>
-          <Description>{'Combustible: ' + post.fuel}</Description>
-          <Description>{'⚙ Motor: ' + post.motor}</Description>
-          <Description>{'👤 Dueños: ' + post.owners}</Description>
-          <Description>{'▪ Tapizado: ' + post.tapizado}</Description>
+          <Description>{'⚙️ Transmision: ' + post.transmission}</Description>
+          <Description>{'🛡️ Blindaje: ' + armor}</Description>
+          <Description>{'⛰️ 4x4: ' + t4x4}</Description>
+          <Description>{'⛽ Combustible: ' + post.fuel}</Description>
+          <Description>{'🚗 Motor: ' + post.motor}</Description>
+          <Description>{'👨 Dueños: ' + post.owners}</Description>
+          <Description>{'💼 Tapizado: ' + post.tapizado}</Description>
           <Description>{'📍 Ubicacion: ' + post.location}</Description>
-          <Description>{'Transmision: ' + post.transmission}</Description>
-          <Description>{'Blindaje: ' + armor}</Description>
-          <Description>{'4x4: ' + t4x4}</Description>
-          <Description>{'Combustible: ' + post.fuel}</Description>
           <Description>{post.addInfo}</Description>
         </BlockInfo1>
 
@@ -152,6 +148,7 @@ const Post = () => {
 const Container = styled.div`
   display: flex;
   margin: 0.5rem;
+  color: #202020;
 
   @media screen and (max-width: 780px) {
     width: 90%;
@@ -180,6 +177,7 @@ const Information = styled.div`
   margin-left: 5%;
   margin-right: 5%;
   font-family: Poppins;
+  color: #202020;
 
   @media screen and (max-width: 780px) {
     margin-top: 0%;
@@ -191,7 +189,7 @@ const Information = styled.div`
 const Title = styled.h1`
   margin-top: 15%;
   text-align: center;
-  font-size: 2rem;
+  font-size: 3rem;
   line-height: 1em;
   padding-left: 5%;
   padding-right: 5%;
@@ -204,14 +202,14 @@ const Title = styled.h1`
 
 const Subtitle = styled.div`
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 300;
 `
 
 const Subtitle2 = styled.div`
   width: 100%;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 3rem;
   font-weight: 700;
 
 
@@ -224,6 +222,7 @@ const Description = styled.p`
   font-size: 1.2rem;
   font-weight: 300;
   text-align: left;
+  color: #202020;
 `
 
 const RecommendedTitle = styled.h2`
@@ -232,6 +231,7 @@ const RecommendedTitle = styled.h2`
   text-align: center;
   line-height: 1em;
   font-size: 1.8rem;
+  color: #202020;
 
   @media screen and (max-width: 780px) {
     width: 90%;
@@ -246,6 +246,7 @@ const RecommendedDiv = styled.div`
   justify-content: center;
   width: 100%;
   margin-bottom: 2rem;
+  color: #202020;
 
   @media screen and (max-width: 780px) {
     width: 100%;

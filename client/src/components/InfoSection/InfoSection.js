@@ -18,7 +18,7 @@ const InfoSection = ({ primary, lightBg, imgStart, lightTopLine, lightTextDesc, 
                                     {buttonLabel1}
                                 </Button>
                             </Link>
-                            <Link to='/cita'>
+                            <Link to='/venta'>
                                 <Button buttonDisplay={buttonDisplay} big fontBig primary={primary}>
                                     {buttonLabel2}
                                 </Button>

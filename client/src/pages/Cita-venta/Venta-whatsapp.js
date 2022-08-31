@@ -3,7 +3,7 @@ import { SiWhatsapp } from 'react-icons/si'
 import styled from 'styled-components'
 
 
-function Whatsapp() {
+function VentaWhatsapp() {
     return (
         <>
             <FullLayout>
@@ -11,7 +11,7 @@ function Whatsapp() {
                     <h1>Contáctanos vía whatsapp</h1>
                     <p>Pulsa sobre el logo de whatsapp y serás redirigido a nuestro chat.</p>.
                 </WhatsappContactLayout>
-                <WhatsappIconLink href="https://api.whatsapp.com/send?phone=584242234621&text=Buenas%20quisiera%20agendar%20una%20cita" target="_blank" aria-label="Whatsapp">
+                <WhatsappIconLink href="https://api.whatsapp.com/send?phone=4140120467&text=Buenas,%20quisiera%20agendar%20una%20cita" target="_blank" aria-label="Whatsapp">
                     <SiWhatsapp />
                 </WhatsappIconLink>
 
@@ -24,7 +24,6 @@ function Whatsapp() {
 }
 
 const FullLayout = styled.div`
-margin-top: 1%;
     display: flex;
 `
 
@@ -33,7 +32,7 @@ const WhatsappContactLayout = styled.div`
     color: #202020;
     h1 {
         font-size: 50px;
-        margin-top: 3%;
+        margin-top: 1%;
         margin-left: 10%;
         text-align: left;
 
@@ -91,4 +90,4 @@ const FormText = styled.div`
 `
 
 
-export default Whatsapp
+export default VentaWhatsapp

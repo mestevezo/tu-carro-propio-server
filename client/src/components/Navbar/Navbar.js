@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Nav, NavbarContainer, NavLogo, Img, MobileIcon, NavMenu, NavItem, NavLinks } from './Navbar-elements';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
-import logo from '../../images/logo.png';
+import logo from './../../images/logo.png'
 
 const Navbar = () => {
     const [click, setClick] = useState(false)
@@ -32,8 +32,8 @@ const Navbar = () => {
                             </NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='/cita'>
-                                Agenda una cita
+                            <NavLinks to='/venta'>
+                                Vende tu auto
                             </NavLinks>
                         </NavItem>
                         <NavItem>
