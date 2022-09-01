@@ -95,35 +95,40 @@ const Post = () => {
         <BlockInfo1>
           <h2>Características</h2>
           <br />
-          <Description>{'⚙️ Transmision: ' + post.transmission}</Description>
+          {post.transmission ? <Description>{'⚙️ Transmision: ' + post.transmission}</Description> : null}
           <Description>{'🛡️ Blindaje: ' + armor}</Description>
           <Description>{'⛰️ 4x4: ' + t4x4}</Description>
-          <Description>{'⛽ Combustible: ' + post.fuel}</Description>
-          <Description>{'🚗 Motor: ' + post.motor}</Description>
-          <Description>{'👨 Dueños: ' + post.owners}</Description>
-          <Description>{'💼 Tapizado: ' + post.tapizado}</Description>
-          <Description>{'📍 Ubicacion: ' + post.location}</Description>
-          <Description>{post.addInfo}</Description>
+          {post.fuel ? <Description>{'⛽ Combustible: ' + post.fuel}</Description> : null}
+          {post.motor ? <Description>{'🚗 Motor: ' + post.motor}</Description> : null}
+          {post.owners ? <Description>{'👨 Dueños: ' + post.owners}</Description> : null}
+          {post.tapizado ? <Description>{'💼 Tapizado: ' + post.tapizado}</Description> : null}
+          {post.location ? <Description>{'📍 Ubicacion: ' + post.location}</Description> : null}
+          {post.addInfo ? <Description>{post.addInfo}</Description> : null}
         </BlockInfo1>
 
         <br />
 
+        { post.power | post.accel | post.fuelConsumption | post.fuelCapacity ?
         <BlockInfo2>
           <h2>Especificaciones</h2>
           <br />
-          <Description>{'Potencia: ' + post.power + ' HP'}</Description>
-          <Description>{'Aceleracion: ' + post.accel}</Description>
-          <Description>{'Consumo de combustible: ' + post.fuelConsumption}</Description>
-          <Description>{'Capacidad de tanque: ' + post.fuelCapacity + 'L'}</Description>
-        </BlockInfo2>
+          {post.power ? <Description>{'Potencia: ' + post.power + ' HP'}</Description> : null}
+          {post.accel ? <Description>{'Aceleracion: ' + post.accel}</Description> : null}
+          {post.fuelConsumption ? <Description>{'Consumo de combustible: ' + post.fuelConsumption}</Description> : null}
+          {post.fuelCapacity ? <Description>{'Capacidad de tanque: ' + post.fuelCapacity + 'L'}</Description> : null}
+        </BlockInfo2> 
+        : null}
 
         <br />
-
+        
+        { post.details ?
         <BlockInfo3>
           <h2>Detalles</h2>
           <br />
           <Description>{post.details}</Description>
         </BlockInfo3>
+        : null}
+
       </Characteristics>
       <br />
       <RecommendedTitle>También te pueden interesar estos vehículos</RecommendedTitle>
