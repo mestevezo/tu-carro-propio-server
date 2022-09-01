@@ -282,7 +282,7 @@ const RecommendedDiv = styled.div`
   margin-bottom: 2rem;
   color: #202020;
 
-  @media screen and (max-width: 780px) {
+  @media screen and (max-width: 950px) {
     width: 100%;
     align-items: center;
     text-align: center;
@@ -297,6 +297,7 @@ const RecommendedContainer = styled.div`
 
   @media screen and (max-width: 780px) {
     font-size: medium;
+    text-align: center;
   }
 `;
 
@@ -323,6 +324,12 @@ const RecommendedDescription = styled.p`
   font-weight: 300;
   text-align: center;
   width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (max-width: 780px) {
+    text-align: center;
+  }
 
   &:hover {
     transition: "all .2s ease-in-out";
