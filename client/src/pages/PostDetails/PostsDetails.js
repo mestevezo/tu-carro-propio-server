@@ -1,47 +1,38 @@
-import { Button } from '../../globalStyles';
-import { getPost, getRecommendationsPosts } from '../../actions/posts';
-import LoadingDetails from '../../components/Loading/LoadingDetails';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import React, { useEffect } from 'react';
-import Slider from '../../components/Slider/index';
-import styled from 'styled-components';
+import { Button } from "../../globalStyles";
+import { getPost, getRecommendationsPosts } from "../../actions/posts";
+import LoadingDetails from "../../components/Loading/LoadingDetails";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import Slider from "../../components/Slider/index";
+import styled from "styled-components";
 
 //import ReactImageMagnify from 'react-image-magnify';
 
-
-
 const Post = () => {
-
   const { post, recposts, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-
     dispatch(getPost(id));
-
   }, [dispatch, id]);
 
   useEffect(() => {
-
     if (post) {
       const query = new URLSearchParams({
         brand: post.brand,
-        id: post._id
+        id: post._id,
       });
       dispatch(getRecommendationsPosts(query));
-    };
-
+    }
   }, [dispatch, post]);
 
   if (isLoading) {
-    return (
-      <LoadingDetails />
-    );
-  };
+    return <LoadingDetails />;
+  }
 
   if (post === undefined) return null;
 
@@ -50,42 +41,45 @@ const Post = () => {
   const array = post.othersImg;
   array.unshift(post.mainImg);
 
-  let armor = post.armor ? 'Si' : 'No';
-  let t4x4 = post.t4x4 ? 'Si' : 'No';
+  let armor = post.armor ? "Si" : "No";
+  let t4x4 = post.t4x4 ? "Si" : "No";
 
   return (
     <>
       <Container>
         <CarSlide>
-          <Slider Imgs={array}  > </Slider>
-
+          <Slider Imgs={array}> </Slider>
         </CarSlide>
         <Information>
-
           <Card>
-
-            <div >
+            <div>
               <div>
-                <Title>{post.brand + ' ' + post.model + ' ' + post.version}</Title>
-                <Subtitle>{'Año ' + post.year + ' • ' + post.km + ' Km'}</Subtitle>
+                <Title>
+                  {post.brand + " " + post.model + " " + post.version}
+                </Title>
+                <Subtitle>
+                  {"Año " + post.year + " • " + post.km + " Km"}
+                </Subtitle>
                 <br />
-                <Subtitle2>{post.price === 0 ? "Precio a consultar" : post.price + ' USD'}</Subtitle2>
-
+                <Subtitle2>
+                  {post.price === 0
+                    ? "Precio a consultar"
+                    : post.price + " USD"}
+                </Subtitle2>
 
                 <br />
               </div>
 
               <ButtonLayout>
-                <Link to='/cita'>
-                  <Button buttonDisplay='true' big fontBig primary='true'>Agenda una Cita</Button>
+                <Link to="/cita">
+                  <Button buttonDisplay="true" big fontBig primary="true">
+                    Agenda una Cita
+                  </Button>
                 </Link>
               </ButtonLayout>
             </div>
-
           </Card>
-
         </Information>
-
       </Container>
       <br />
 
@@ -95,54 +89,95 @@ const Post = () => {
         <BlockInfo1>
           <h2>Características</h2>
           <br />
-          <Description>{'⚙️ Transmision: ' + post.transmission}</Description>
-          <Description>{'🛡️ Blindaje: ' + armor}</Description>
-          <Description>{'⛰️ 4x4: ' + t4x4}</Description>
-          <Description>{'⛽ Combustible: ' + post.fuel}</Description>
-          <Description>{'🚗 Motor: ' + post.motor}</Description>
-          <Description>{'👨 Dueños: ' + post.owners}</Description>
-          <Description>{'💼 Tapizado: ' + post.tapizado}</Description>
-          <Description>{'📍 Ubicacion: ' + post.location}</Description>
-          <Description>{post.addInfo}</Description>
+          {post.transmission ? (
+            <Description>{"⚙️ Transmision: " + post.transmission}</Description>
+          ) : null}
+          <Description>{"🛡️ Blindaje: " + armor}</Description>
+          <Description>{"⛰️ 4x4: " + t4x4}</Description>
+          {post.fuel ? (
+            <Description>{"⛽ Combustible: " + post.fuel}</Description>
+          ) : null}
+          {post.motor ? (
+            <Description>{"🚗 Motor: " + post.motor}</Description>
+          ) : null}
+          {post.owners ? (
+            <Description>{"👨 Dueños: " + post.owners}</Description>
+          ) : null}
+          {post.tapizado ? (
+            <Description>{"💼 Tapizado: " + post.tapizado}</Description>
+          ) : null}
+          {post.location ? (
+            <Description>{"📍 Ubicacion: " + post.location}</Description>
+          ) : null}
+          {post.addInfo ? <Description>{post.addInfo}</Description> : null}
         </BlockInfo1>
 
         <br />
 
-        <BlockInfo2>
-          <h2>Especificaciones</h2>
-          <br />
-          <Description>{'Potencia: ' + post.power + ' HP'}</Description>
-          <Description>{'Aceleracion: ' + post.accel}</Description>
-          <Description>{'Consumo de combustible: ' + post.fuelConsumption}</Description>
-          <Description>{'Capacidad de tanque: ' + post.fuelCapacity + 'L'}</Description>
-        </BlockInfo2>
+        {post.power | post.accel | post.fuelConsumption | post.fuelCapacity ? (
+          <BlockInfo2>
+            <h2>Especificaciones</h2>
+            <br />
+            {post.power ? (
+              <Description>{"Potencia: " + post.power + " HP"}</Description>
+            ) : null}
+            {post.accel ? (
+              <Description>{"Aceleracion: " + post.accel}</Description>
+            ) : null}
+            {post.fuelConsumption ? (
+              <Description>
+                {"Consumo de combustible: " + post.fuelConsumption}
+              </Description>
+            ) : null}
+            {post.fuelCapacity ? (
+              <Description>
+                {"Capacidad de tanque: " + post.fuelCapacity + "L"}
+              </Description>
+            ) : null}
+          </BlockInfo2>
+        ) : null}
 
         <br />
 
-        <BlockInfo3>
-          <h2>Detalles</h2>
-          <br />
-          <Description>{post.details}</Description>
-        </BlockInfo3>
+        {post.details ? (
+          <BlockInfo3>
+            <h2>Detalles</h2>
+            <br />
+            <Description>{post.details}</Description>
+          </BlockInfo3>
+        ) : null}
       </Characteristics>
       <br />
-      <RecommendedTitle>También te pueden interesar estos vehículos</RecommendedTitle>
+      <RecommendedTitle>
+        También te pueden interesar estos vehículos
+      </RecommendedTitle>
 
       <div>
-        {recposts !== undefined ?
+        {recposts !== undefined ? (
           <RecommendedDiv>
             {recposts.map(({ brand, model, year, _id, mainImg }) => (
               <RecommendedContainer onClick={() => openPost(_id)} key={_id}>
-                <RecommendedImg src={mainImg} width='200px' alt='recomendados' />
-                <RecommendedDescription><h2>{brand + ' '}{model}</h2> {'Año ' + year}</RecommendedDescription>
+                <RecommendedImg
+                  src={mainImg}
+                  width="200px"
+                  alt="recomendados"
+                />
+                <RecommendedDescription>
+                  <h2>
+                    {brand + " "}
+                    {model}
+                  </h2>{" "}
+                  {"Año " + year}
+                </RecommendedDescription>
               </RecommendedContainer>
             ))}
           </RecommendedDiv>
-          : false}
+        ) : (
+          false
+        )}
       </div>
     </>
   );
-
 };
 
 const Container = styled.div`
@@ -156,9 +191,9 @@ const Container = styled.div`
     justify-content: center;
     flex-direction: column;
   }
-`
+`;
 
-const CarSlide = styled.div` 
+const CarSlide = styled.div`
   position: relative;
   height: 100%;
   width: 50%;
@@ -168,9 +203,9 @@ const CarSlide = styled.div`
     width: 100%;
     margin-left: 5%;
   }
-`
+`;
 
-const Information = styled.div` 
+const Information = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -184,7 +219,7 @@ const Information = styled.div`
     width: 90%;
     text-align: center;
   }
-`
+`;
 
 const Title = styled.h1`
   margin-top: 15%;
@@ -198,13 +233,13 @@ const Title = styled.h1`
     line-height: 1em;
     margin-top: 15%;
   }
-`
+`;
 
 const Subtitle = styled.div`
   text-align: center;
   font-size: 2rem;
   font-weight: 300;
-`
+`;
 
 const Subtitle2 = styled.div`
   width: 100%;
@@ -212,18 +247,17 @@ const Subtitle2 = styled.div`
   font-size: 3rem;
   font-weight: 700;
 
-
   @media screen and (max-width: 780px) {
     width: 100%;
   }
-`
+`;
 
 const Description = styled.p`
   font-size: 1.2rem;
   font-weight: 300;
   text-align: left;
   color: #202020;
-`
+`;
 
 const RecommendedTitle = styled.h2`
   margin-bottom: 2rem;
@@ -238,9 +272,9 @@ const RecommendedTitle = styled.h2`
     margin: 5%;
     line-height: 2rem;
   }
-`
+`;
 
-const RecommendedDiv = styled.div` 
+const RecommendedDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -248,13 +282,13 @@ const RecommendedDiv = styled.div`
   margin-bottom: 2rem;
   color: #202020;
 
-  @media screen and (max-width: 780px) {
+  @media screen and (max-width: 950px) {
     width: 100%;
     align-items: center;
     text-align: center;
     flex-direction: column;
   }
-`
+`;
 
 const RecommendedContainer = styled.div`
   cursor: pointer;
@@ -263,38 +297,45 @@ const RecommendedContainer = styled.div`
 
   @media screen and (max-width: 780px) {
     font-size: medium;
+    text-align: center;
   }
-`
+`;
 
 const RecommendedImg = styled.img`
   width: 280px;
   height: 280px;
   border-radius: 15px;
+  align-self: center;
 
   &:hover {
     transition: "all .2s ease-in-out";
-    transform: 'scale(1.01)';
-}
-
+    transform: "scale(1.01)";
+  }
 
   @media screen and (max-width: 780px) {
     border-radius: 10px;
     width: 70%;
     height: 70%;
   }
-`
+`;
 
 const RecommendedDescription = styled.p`
   font-size: 1.2rem;
   font-weight: 300;
   text-align: center;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (max-width: 780px) {
+    text-align: center;
+  }
 
   &:hover {
     transition: "all .2s ease-in-out";
-    transform: 'scale(1.01)';
-}
-
-`
+    transform: "scale(1.01)";
+  }
+`;
 
 const Card = styled.div`
   display: grid;
@@ -308,20 +349,18 @@ const Card = styled.div`
   border-radius: 10px;
   height: 300px;
 
-
   @media screen and (max-width: 780px) {
     padding: 0;
     margin-top: 0;
     justify-content: center;
     margin-left: 12%;
   }
-
-`
+`;
 
 const AditionalInfoTitle = styled.h1`
-margin-top: 2%;
-text-align: center;
-`
+  margin-top: 2%;
+  text-align: center;
+`;
 
 const Characteristics = styled.div`
   display: flex;
@@ -339,12 +378,11 @@ const Characteristics = styled.div`
     height: 100%;
     margin-bottom: 20%;
   }
-
-`
+`;
 
 const ButtonLayout = styled.div`
   margin-bottom: 5%;
-`
+`;
 
 const BlockInfo1 = styled.div`
   text-align: center;
@@ -354,8 +392,7 @@ const BlockInfo1 = styled.div`
   @media screen and (max-width: 780px) {
     width: 100%;
   }
-
-`
+`;
 const BlockInfo2 = styled.div`
   text-align: center;
   white-space: pre-line;
@@ -364,8 +401,7 @@ const BlockInfo2 = styled.div`
   @media screen and (max-width: 780px) {
     width: 100%;
   }
-
-`
+`;
 const BlockInfo3 = styled.div`
   text-align: center;
   white-space: pre-line;
@@ -374,7 +410,6 @@ const BlockInfo3 = styled.div`
   @media screen and (max-width: 780px) {
     width: 100%;
   }
-
-`
+`;
 
 export default Post;
