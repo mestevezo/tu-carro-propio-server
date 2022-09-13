@@ -151,40 +151,54 @@ export const getSpcRecommendationPosts = async (req, res) => {
 
 }
 
+
 export const createPost = async (req, res) => {
 
   const { brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor, addInfo,
-      mainImg, othersImg, motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details } = req.body;
-
-  var imagekit = new ImageKit({
-    publicKey : process.env.IMAGEKIT_PUBLIC_KEY,
-    privateKey : process.env.IMAGEKIT_PRIVATE_KEY,
-    urlEndpoint : process.env.IMAGEKIT_URL_ENDPOINT
-  });
-    
-    var base64Img = "iVBORw0KGgoAAAAN";
-    
-    imagekit.upload({
-        file : base64Img, //required
-        fileName : "my_file_name.jpg",   //required
-        folder: "test"
-    }, function(error, result) {
-        if(error) console.log(error);
-        else console.log(result);
-    });
-
-
-  const newPostMessage = new PostMessage({ brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor, addInfo,
-      mainImg, othersImg, motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details })
+          motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details,
+          folder, mainImgN, othersImgN, mainImgD, othersImgD } = req.body;
 
   try {
-      await newPostMessage.save();
 
-      res.status(201).json(newPostMessage);
+    var imagekit = new ImageKit({
+      publicKey : process.env.IMAGEKIT_PUBLIC_KEY,
+      privateKey : process.env.IMAGEKIT_PRIVATE_KEY,
+      urlEndpoint : process.env.IMAGEKIT_URL_ENDPOINT
+    });
+      
+    let imgN = [mainImgN].concat(othersImgN)
+    let imgD = [mainImgD].concat(othersImgD)
+    var url = [];
+
+    for (var i = 0; i < imgN.length; i++) {
+      
+      let info = { file : imgD[i], //required
+                  fileName : imgN[i], //required
+                  folder: process.env.IMAGEKIT_MAIN_FOLDER + folder }
+
+      await imagekit.upload(info
+      ).then(response => {
+        url.push(response.url); 
+      }).catch(error => {
+          console.log(error);
+      });
+      
+    };
+
+    var mainImg = url[0];
+    var othersImg = url.slice(1,);
+      
+    const newPostMessage = new PostMessage({ brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor, addInfo,
+        mainImg, othersImg, motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details })
+
+    await newPostMessage.save();
+
+    res.status(201).json(newPostMessage);
   } catch (error) {
-      res.status(409).json({ message: error.message });
+    res.status(409).json({ message: error.message });
   }
 }
+
 
 export const updatePost = async (req, res) => {
   const { id } = req.params;
@@ -201,6 +215,7 @@ export const updatePost = async (req, res) => {
   res.json(updatedPost);
 }
 
+
 export const deletePost = async (req, res) => {
   const { id } = req.params;
 
@@ -210,6 +225,7 @@ export const deletePost = async (req, res) => {
 
   res.json({ message: "Post deleted successfully." });
 }
+
 
 export const getPostsAdmin = async (req, res) => { 
 

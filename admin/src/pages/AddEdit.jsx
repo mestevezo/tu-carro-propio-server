@@ -20,27 +20,28 @@ const AddEdit = ({ currentId, setCurrentId }) => {
       model: '', 
       version: '', 
       type: '', 
-      year: 0,
-      km: 0,
-      motor: 0,
+      year: '',
+      km: '',
+      motor: '',
       owners: '',
       tapizado: '',
       location: '',
-      power: 0,
+      power: '',
       accel: '',
       fuelConsumption: '',
-      fuelCapacity: 0,
-      price: 0,
+      fuelCapacity: '',
+      price: '',
       transmission: '', 
       fuel: '', 
       t4x4: false,
       armor: false,
-      addInfo: '',
-      details: '',
-      mainImg: '',
-      othersImg: []
+      folder: '',
+      mainImgN: '',
+      mainImgD: '',
+      othersImgN: [],
+      othersImgD: []
   });
-  const [folder, setFolder] = useState("");
+  //const [folder, setFolder] = useState("");
   const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -56,29 +57,32 @@ const AddEdit = ({ currentId, setCurrentId }) => {
       model: '', 
       version: '', 
       type: '', 
-      year: 0,
-      km: 0,
-      motor: 0,
+      year: '',
+      km: '',
+      motor: '',
       owners: '',
       tapizado: '',
       location: '',
-      power: 0,
+      power: '',
       accel: '',
       fuelConsumption: '',
-      fuelCapacity: 0,
-      price: 0,
+      fuelCapacity: '',
+      price: '',
       transmission: '', 
       fuel: '', 
       t4x4: false,
       armor: false,
       addInfo: '',
       details: '',
-      mainImg: '',
-      othersImg: []
+      folder: '',
+      mainImgN: '',
+      mainImgD: '',
+      othersImgN: [],
+      othersImgD: []
     });
   };
 
-    const endpoint = "https://ik.imagekit.io/cdty/tcp/";
+    //const endpoint = "https://ik.imagekit.io/cdty/tcp/";
 
     const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,7 +102,8 @@ const AddEdit = ({ currentId, setCurrentId }) => {
     //console.log(e);
     const array = [];
     for (const img of e) {
-      array.push(endpoint + folder + "/" + img[prop]); 
+      //array.push(endpoint + folder + "/" + img[prop]); 
+      array.push(img[prop]);
     }
     console.log(array);
     return array;
@@ -152,14 +157,14 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           label="Año" 
           fullWidth 
           value={postData.year} 
-          onChange={(e) => setPostData({ ...postData, year: parseInt(e.target.value) })} />
+          onChange={(e) => setPostData({ ...postData, year: e.target.value })} />
 
         <TextField name="km" 
           variant="outlined" 
           label="Kilometraje" 
           fullWidth 
           value={postData.km} 
-          onChange={(e) => setPostData({ ...postData, km: parseInt(e.target.value) })} />
+          onChange={(e) => setPostData({ ...postData, km: e.target.value })} />
 
         <TextField name="motor" 
           variant="outlined" 
@@ -194,7 +199,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           label="Potencia" 
           fullWidth 
           value={postData.power} 
-          onChange={(e) => setPostData({ ...postData, power: parseInt(e.target.value) })} />
+          onChange={(e) => setPostData({ ...postData, power: e.target.value })} />
 
         <TextField name="accel" 
                   variant="outlined" 
@@ -215,14 +220,14 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           label="Capacidad del tanque" 
           fullWidth 
           value={postData.fuelCapacity} 
-          onChange={(e) => setPostData({ ...postData, fuelCapacity: parseInt(e.target.value) })} />
+          onChange={(e) => setPostData({ ...postData, fuelCapacity: e.target.value })} />
 
         <TextField name="price" 
           variant="outlined" 
           label="Precio" 
           fullWidth 
           value={postData.price} 
-          onChange={(e) => setPostData({ ...postData, price: parseInt(e.target.value) })} />
+          onChange={(e) => setPostData({ ...postData, price: e.target.value })} />
 
         <FormControl fullWidth>
           <InputLabel id="transmission-rgb">Trasmision</InputLabel>
@@ -287,19 +292,23 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           variant="outlined" 
           label="Folder" 
           fullWidth 
-          value={folder} 
-          onChange={(e) => setFolder(e.target.value)} />
+          //value={folder} 
+          value={postData.folder} 
+          //onChange={(e) => setFolder(e.target.value)} />
+          onChange={(e) => setPostData({ ...postData, folder: e.target.value })} />
 
         <div className={classes.fileInput}>
           <FileBase type="file" 
             multiple={false} 
-            onDone={({ name }) => setPostData({ ...postData, mainImg: endpoint + folder + "/" + name })}/>
+            //onDone={({ name }) => setPostData({ ...postData, mainImg: endpoint + folder + "/" + name })}/>
+            onDone={({ name, base64 }) => setPostData({ ...postData, mainImgN: name, mainImgD: base64 })}/>
         </div>
         
         <div className={classes.fileInput}>
           <FileBase type="file" 
             multiple={true} 
-            onDone={(e) => setPostData({ ...postData, othersImg: getImages(e, 'name') })} />        
+            //onDone={(e) => setPostData({ ...postData, othersImg: getImages(e, 'name')})} />       
+            onDone={(e) => setPostData({ ...postData, othersImgN: getImages(e, 'name'), othersImgD: getImages(e, 'base64')})} /> 
         </div>
         
         <Button className={classes.buttonSubmit} 

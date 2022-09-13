@@ -5,21 +5,21 @@ const postSchema = mongoose.Schema({
   model: String,
   version: String,
   type: String,
-  year: Number,
-  km: Number,
-  motor: Number,
+  year: String,
+  km: String,
+  motor: String,
   owners: String,
-  price: Number,
+  price: String,
   transmission: String,
   fuel: String,
   tapizado: String,
   location: String,
   t4x4: { type: Boolean, default: false },
   armor: { type: Boolean, default: false },
-  power: Number,
+  power: String,
   accel: String,
   fuelConsumption: String,
-  fuelCapacity: Number,
+  fuelCapacity: String,
   addInfo: String,
   details: String,
   mainImg: String,
@@ -27,8 +27,8 @@ const postSchema = mongoose.Schema({
   createdAt: { type: Date, default: new Date() }
 },
 {
-  //collection: 'cars2' // Imagenes en Servidor CDN
-  collection: 'cars' // Imagenes en Mongo
+  collection: 'cars2' // Imagenes en Servidor CDN
+  //collection: 'cars' // Imagenes en Mongo
 })
 
 var Cars = mongoose.model('Cars', postSchema);
