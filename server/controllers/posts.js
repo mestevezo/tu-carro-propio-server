@@ -221,6 +221,22 @@ export const deletePost = async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
+  const post = await PostMessage.findById(id);
+
+  let folder = post.mainImg.split('/')[5]
+
+  var imagekit = new ImageKit({
+    publicKey : process.env.IMAGEKIT_PUBLIC_KEY,
+    privateKey : process.env.IMAGEKIT_PRIVATE_KEY,
+    urlEndpoint : process.env.IMAGEKIT_URL_ENDPOINT
+  });
+
+  imagekit.deleteFolder(process.env.IMAGEKIT_MAIN_FOLDER + folder).then(response => {
+    //console.log(response);
+  }).catch(error => {
+    console.log(error);
+  });
+
   await PostMessage.findByIdAndRemove(id);
 
   res.json({ message: "Post deleted successfully." });
