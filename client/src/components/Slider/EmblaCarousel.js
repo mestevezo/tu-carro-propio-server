@@ -11,10 +11,9 @@ const EmblaCarousel = ({ slides, Imgs }) => {
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
-  const media = Imgs.Imgs;
+  const media = [...Imgs.Imgs];
 
   const mediaByIndex = (index) => media[index % media.length];
-  console.log(media.length);
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
