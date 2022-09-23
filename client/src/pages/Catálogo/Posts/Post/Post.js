@@ -3,18 +3,12 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { ButtonBase } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import useStyles from "./styles";
 
 const Post = ({ post }) => {
   const classes = useStyles();
-  const navigate = useNavigate();
-
-  const openPost = () => {
-    navigate(`/catalogo/${post._id}`);
-  };
 
   return (
     <>
@@ -34,7 +28,9 @@ const Post = ({ post }) => {
             />
             <div className={classes.overlay}>
               <h2>
-                {post.price === 0 ? "Precio a consultar" : post.price + " USD"}
+                {post.price === (0 || "" || null || undefined || "0")
+                  ? "Precio a consultar"
+                  : post.price + " USD"}
               </h2>
             </div>
             <br></br>

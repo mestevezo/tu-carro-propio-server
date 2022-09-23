@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { PrevButton, NextButton } from "./EmblaCarouselButton";
 import useEmblaCarousel from "embla-carousel-react";
-import styled from 'styled-components';
-//import ReactImageMagnify from 'react-image-magnify';
-import ReactImageMagnify from '../ReactImageMagnify/ReactImageMagnify';
+import styled from "styled-components";
+import ReactImageMagnify from "../ReactImageMagnify/ReactImageMagnify";
 import { Thumb } from "./EmblaCarouselButton";
 
 const EmblaCarousel = ({ slides, Imgs }) => {
-
   const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
@@ -15,17 +13,19 @@ const EmblaCarousel = ({ slides, Imgs }) => {
   const [scrollSnaps, setScrollSnaps] = useState([]);
   const media = Imgs.Imgs;
 
-  const mediaByIndex = index => media[index % media.length];
+  const mediaByIndex = (index) => media[index % media.length];
+  console.log(media.length);
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
-  const scrollTo = useCallback((index) => embla && embla.scrollTo(index), [
-    embla
-  ]);
+  const scrollTo = useCallback(
+    (index) => embla && embla.scrollTo(index),
+    [embla]
+  );
   const [thumbViewportRef, emblaThumbs] = useEmblaCarousel({
     containScroll: "keepSnaps",
     selectedClass: "",
-    dragFree: true
+    dragFree: true,
   });
 
   const onSelect = useCallback(() => {
@@ -59,24 +59,22 @@ const EmblaCarousel = ({ slides, Imgs }) => {
             {slides.map((index) => (
               <div className="embla__slide" key={index}>
                 <div className="embla__slide__inner">
-                  <ReactImageMagnify className="embla__slide__img"
+                  <ReactImageMagnify
+                    className="embla__slide__img"
                     {...{
                       smallImage: {
-
                         isFluidWidth: true,
                         src: mediaByIndex(index),
                         width: 100,
-                        height: 110
-
+                        height: 110,
                       },
                       largeImage: {
                         src: mediaByIndex(index),
                         width: 1500,
                         height: 2000,
-
                       },
-                      lensStyle: { backgroundColor: 'rgba(0,0,0,.6)' },
-                      enlargedImagePosition: "over"
+                      lensStyle: { backgroundColor: "rgba(0,0,0,.6)" },
+                      enlargedImagePosition: "over",
                     }}
                   />
                 </div>
@@ -102,16 +100,9 @@ const EmblaCarousel = ({ slides, Imgs }) => {
           </div>
         </div>
       </div>
-
-
-
-
-
-
     </Embla>
   );
 };
-
 
 const Embla = styled.div`
   .embla {
@@ -124,51 +115,50 @@ const Embla = styled.div`
     margin-top: 2%;
 
     @media screen and (max-width: 960px) {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-}
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 100%;
+    }
   }
-  
+
   .embla__viewport {
     border-radius: 20px;
     overflow: hidden;
   }
-  
+
   .embla__viewport.is-draggable {
     cursor: move;
     cursor: grab;
   }
-  
+
   .embla__viewport.is-dragging {
     cursor: grabbing;
   }
-  
+
   .embla__container {
     display: flex;
     margin-left: -10px;
   }
-  
+
   .embla__slide {
     position: relative;
     min-width: 100%;
     padding-left: 10px;
   }
-  
+
   .embla__slide__inner {
     border-radius: 20px;
     position: relative;
     overflow: hidden;
     height: 100%;
     width: 100%;
-  
 
     @media screen and (max-width: 960px) {
-    height: 100%;
-    width: 100%;
-}
+      height: 100%;
+      width: 100%;
+    }
   }
-  
+
   .embla__slide__img {
     position: absolute;
     display: block;
@@ -178,7 +168,7 @@ const Embla = styled.div`
     width: 100%;
     height: 100%;
   }
-  
+
   .embla__button {
     outline: 0;
     cursor: pointer;
@@ -196,32 +186,32 @@ const Embla = styled.div`
     fill: #f7df1e;
     padding: 0;
   }
-  
+
   .embla__button:disabled {
     cursor: default;
     opacity: 0.3;
   }
-  
+
   .embla__button__svg {
     width: 100%;
     height: 100%;
   }
-  
+
   .embla__button--prev {
     left: 27px;
   }
-  
+
   .embla__button--next {
     right: 27px;
   }
-  
+
   .embla__dots {
     display: flex;
     list-style: none;
     justify-content: center;
     padding-top: 0px;
   }
-  
+
   .embla__dot {
     background-color: transparent;
     cursor: pointer;
@@ -236,7 +226,7 @@ const Embla = styled.div`
     display: flex;
     align-items: center;
   }
-  
+
   .embla__dot:after {
     background-color: #efefef;
     width: 100%;
@@ -244,33 +234,31 @@ const Embla = styled.div`
     border-radius: 2px;
     content: "";
   }
-  
+
   .embla__dot.is-selected:after {
     background-color: #202020;
     opacity: 1;
   }
-
 
   .embla--thumb {
     cursor: grab;
     padding-top: 20px;
     margin-top: -12px;
   }
-  
+
   .embla__container--thumb {
     cursor: grab;
   }
-  
+
   .embla__slide--thumb {
     padding-left: 20px;
     min-width: 18%;
 
     @media screen and (max-width: 960px) {
-    min-width: 20%;
-}
-
+      min-width: 20%;
+    }
   }
-  
+
   .embla__slide__inner--thumb {
     touch-action: manipulation;
     cursor: grab;
@@ -285,7 +273,7 @@ const Embla = styled.div`
     display: block;
     overflow: hidden;
   }
-  
+
   .embla__slide__thumbnail {
     position: absolute;
     opacity: 0.6;
@@ -300,15 +288,10 @@ const Embla = styled.div`
     transform: scale(0.1);
     transition: opacity 0.2s;
   }
-  
+
   .embla__slide--thumb.is-selected .embla__slide__thumbnail {
     opacity: 1;
   }
-  
-
-`
-
-
-
+`;
 
 export default EmblaCarousel;
