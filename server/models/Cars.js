@@ -29,7 +29,7 @@ const postSchema = mongoose.Schema(
     fuelCapacity: String,
     addInfo: String,
     details: String,
-    mainImg: [String],
+    mainImg: String,
     othersImg: [String],
     createdAt: {
       type: Date,

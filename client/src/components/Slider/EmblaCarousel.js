@@ -11,7 +11,7 @@ const EmblaCarousel = ({ slides, Imgs }) => {
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
-  const media = [...Imgs.Imgs];
+  const media = Imgs.Imgs;
 
   const mediaByIndex = (index) => media[index % media.length];
 
