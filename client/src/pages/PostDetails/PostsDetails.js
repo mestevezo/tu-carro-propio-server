@@ -64,7 +64,7 @@ const Post = () => {
                 </Subtitle>
                 <br />
                 <Subtitle2>
-                  {post.price === (0 || "" || null || undefined || "0")
+                  {post.price == (0 || "" || null || undefined || "0")
                     ? "Precio a consultar"
                     : post.price + " USD"}
                 </Subtitle2>
@@ -82,6 +82,7 @@ const Post = () => {
                 <a
                   href={`https://api.whatsapp.com/send?phone=4140120467&text=Buenas,%20estoy%20interesado/a%20en%20este%20vehículo%20${route}`}
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <Button buttonDisplay="true" fontBig primary="true">
                     Consultar vía Whatsapp

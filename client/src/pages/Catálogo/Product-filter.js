@@ -9,7 +9,6 @@ const Productfilter = () => {
   const navigate = useNavigate();
   let location = useLocation();
   let route = location.pathname + location.search;
-  console.log(window.location.href);
   let params = new URLSearchParams(location.search);
 
   const writer = (e) => {
