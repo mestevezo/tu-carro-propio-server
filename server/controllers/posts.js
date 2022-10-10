@@ -8,11 +8,6 @@ const router = express.Router();
 
 
 import ImageKit from "imagekit";
-//var fs = require('fs');
-
-
-
-
 
 
 export const getPosts = async (req, res) => {
@@ -154,7 +149,7 @@ export const getSpcRecommendationPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
 
-  const { brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor, addInfo,
+  const { brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor,
           motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details,
           folder, mainImgN, othersImgN, mainImgD, othersImgD } = req.body;
 
@@ -188,7 +183,7 @@ export const createPost = async (req, res) => {
     var mainImg = url[0];
     var othersImg = url.slice(1,);
       
-    const newPostMessage = new PostMessage({ brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor, addInfo,
+    const newPostMessage = new PostMessage({ brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor, folder,
         mainImg, othersImg, motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details })
 
     await newPostMessage.save();
@@ -202,13 +197,13 @@ export const createPost = async (req, res) => {
 
 export const updatePost = async (req, res) => {
   const { id } = req.params;
-  const{ brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor, addInfo,
+  const{ brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor, folder,
       mainImg, othersImg, motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details } = req.body;
   
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
-  const updatedPost = { brand, model, version, type, year, km, price, transmission, fuel,  t4x4,
-      armor, addInfo, mainImg, othersImg, _id: id , motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details };
+  const updatedPost = { brand, model, version, type, year, km, price, transmission, fuel,  t4x4, armor, folder,
+       mainImg, othersImg, _id: id , motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details };
 
   await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
 
@@ -223,7 +218,8 @@ export const deletePost = async (req, res) => {
 
   const post = await PostMessage.findById(id);
 
-  let folder = post.mainImg.split('/')[5]
+  //let folder = post.mainImg.split('/')[5]
+  const { folder } = post;
 
   var imagekit = new ImageKit({
     publicKey : process.env.IMAGEKIT_PUBLIC_KEY,

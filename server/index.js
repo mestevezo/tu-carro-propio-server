@@ -4,17 +4,17 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js';
-import adminRouter from "./routes/admin.js";
+import adminRoutes from "./routes/admin.js";
 
 const app = express();
 dotenv.config();
 
-app.use(express.json({ limit: '30mb', extended: true }))
-app.use(express.urlencoded({ limit: '30mb', extended: true }))
+app.use(express.json({ limit: '100mb', extended: true }))
+app.use(express.urlencoded({ limit: '100mb', extended: true }))
 app.use(cors());
 
 app.use('/', postRoutes);
-app.use('/admin', adminRouter);
+app.use('/admin', adminRoutes);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
