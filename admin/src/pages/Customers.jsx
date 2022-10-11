@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { GridComponent,
+import {
+  GridComponent,
   ColumnsDirective,
   ColumnDirective,
   Page,
@@ -11,24 +12,30 @@ import { GridComponent,
   // Edit,
   Toolbar,
   Sort,
-  Filter } from '@syncfusion/ej2-react-grids';
+  Filter,
+} from "@syncfusion/ej2-react-grids";
 
-import { getPosts, deletePost } from '../actions/posts';
+import { getPosts, deletePost } from "../actions/posts";
 
 // import { customersData, customersGrid } from '../data/dummy';
-import { customersGrid } from '../Config/config';
-import { Header } from '../components';
+import { customersGrid } from "../Config/config";
+import { Header } from "../components";
 
 const Customers = ({ currentId, setCurrentId }) => {
   const selectionsettings = { persistSelection: false };
   //const toolbarOptions = [ 'Add', 'Edit', 'Delete', 'Search' ];
   const toolbarOptions = [
-    { text: 'Add', tooltipText: 'Add', id: 'Add'}, 
-    { text: 'Edit', tooltipText: 'Edit', id: 'Edit' }, 
-    { text: 'Delete', tooltipText: 'Delete', id: 'Delete' }, 
-    'Search'
+    { text: "Add", tooltipText: "Add", id: "Add" },
+    { text: "Edit", tooltipText: "Edit", id: "Edit" },
+    { text: "Delete", tooltipText: "Delete", id: "Delete" },
+    "Search",
   ];
-  const editing = { allowDeleting: true, allowEditing: true, allowAdding: true, showDeleteConfirmDialog: true };
+  const editing = {
+    allowDeleting: true,
+    allowEditing: true,
+    allowAdding: true,
+    showDeleteConfirmDialog: true,
+  };
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const navigate = useNavigate();
@@ -39,28 +46,28 @@ const Customers = ({ currentId, setCurrentId }) => {
   }, [dispatch]);
 
   const clickHandler = (args) => {
-    if (args.item.id === 'Add') {
+    if (args.item.id === "Add") {
       setCurrentId(0);
-      navigate('/inventarioe');
+      navigate("/inventarioe");
     }
-    if (args.item.id === 'Edit') {
+    if (args.item.id === "Edit") {
       //setCurrentId(0);
-      navigate('/inventarioe');
+      navigate("/inventarioe");
     }
-    if (args.item.id === 'Delete') {
+    if (args.item.id === "Delete") {
       //setCurrentId(0);
       dispatch(deletePost(currentId));
       //console.log('2')
       //navigate('/inventaroe');
-    }    
-  }
+    }
+  };
 
   const rowSelected = () => {
     //console.log(currentGrid.getSelectedRowIndexes());
     //console.log(currentGrid.getSelectedRecords());
     setCurrentId(currentGrid.getSelectedRecords()[0]._id);
-    console.log(currentGrid.getSelectedRecords()[0]._id)
-  }
+    console.log(currentGrid.getSelectedRecords()[0]._id);
+  };
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -77,11 +84,13 @@ const Customers = ({ currentId, setCurrentId }) => {
         allowPaging={true}
         selectedRowIndex={1}
         ref={setGrid}
-        rowSelected={rowSelected} 
+        rowSelected={rowSelected}
       >
         <ColumnsDirective>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          {customersGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}
+          {customersGrid.map((item, index) => (
+            <ColumnDirective key={index} {...item} />
+          ))}
         </ColumnsDirective>
         <Inject services={[Page, Selection, Toolbar, Sort, Filter]} />
       </GridComponent>
