@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Point from "./Point";
 import { SmallImageShape } from "./Image";
 
-export default Prop = {
+const Prop = {
   cursorOffset: Point,
   fadeDurationInMs: PropTypes.number,
   isActive: PropTypes.bool,
@@ -11,3 +11,5 @@ export default Prop = {
   smallImage: SmallImageShape,
   style: PropTypes.object,
 };
+
+export default Prop;

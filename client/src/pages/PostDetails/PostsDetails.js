@@ -64,7 +64,7 @@ const Post = () => {
                 </Subtitle>
                 <br />
                 <Subtitle2>
-                  {post.price == (0 || "" || null || undefined || "0")
+                  {post.price === 0 || "" || null || undefined || "0"
                     ? "Precio a consultar"
                     : post.price + " USD"}
                 </Subtitle2>

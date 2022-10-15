@@ -51,7 +51,8 @@ const Productfilter = () => {
             <Option value={"-"}>Todos</Option>
             <Option value={"Carro"}>Carro</Option>
             <Option value={"Camioneta"}>Camioneta</Option>
-            <Option value={"Camion"}>Camión</Option>
+            <Option value={"Camión"}>Camión</Option>
+            <Option value={"Moto"}>Moto</Option>
           </Select>
         </Filter>
         <Filter>
@@ -87,7 +88,7 @@ const Productfilter = () => {
             }
           >
             <Option value={"-"}>Todos</Option>
-            <Option value={"500-2000"}>500$ - 2000$</Option>
+            <Option value={"0-2000"}>0$ - 2000$</Option>
             <Option value={"2000-4000"}>2000$ - 4000$</Option>
             <Option value={"4000-8000"}>4000$ - 8000$</Option>
             <Option value={"8000-12000"}>8000$ - 12000$</Option>
@@ -103,7 +104,7 @@ const Productfilter = () => {
             value={params.get("transmission") || "-"}
           >
             <Option value={"-"}>-</Option>
-            <Option value={"Automatico"}>Automático</Option>
+            <Option value={"Automático"}>Automático</Option>
             <Option value={"Manual"}>Manual</Option>
           </Select>
         </Filter>
