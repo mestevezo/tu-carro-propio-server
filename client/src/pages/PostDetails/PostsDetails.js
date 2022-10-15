@@ -8,16 +8,16 @@ import React, { useEffect } from "react";
 import Slider from "../../components/Slider/index";
 import styled from "styled-components";
 
-//import ReactImageMagnify from 'react-image-magnify';
-
 const Post = () => {
   const { post, recposts, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  let route = window.location.href;
 
   useEffect(() => {
     dispatch(getPost(id));
+    window.scrollTo(0, 0);
   }, [dispatch, id]);
 
   useEffect(() => {
@@ -36,10 +36,12 @@ const Post = () => {
 
   if (post === undefined) return null;
 
-  const openPost = (_id) => navigate(`/catalogo/${_id}`);
+  const mainImgArray = [post.mainImg];
+  const othersImgArray = post.othersImg;
+  const sliderArray = mainImgArray.concat(othersImgArray);
+  console.log(sliderArray);
 
-  const array = post.othersImg;
-  array.unshift(post.mainImg);
+  const openPost = (_id) => navigate(`/catalogo/${_id}`);
 
   let armor = post.armor ? "Si" : "No";
   let t4x4 = post.t4x4 ? "Si" : "No";
@@ -48,7 +50,7 @@ const Post = () => {
     <>
       <Container>
         <CarSlide>
-          <Slider Imgs={array}> </Slider>
+          <Slider Imgs={sliderArray}> </Slider>
         </CarSlide>
         <Information>
           <Card>
@@ -62,7 +64,7 @@ const Post = () => {
                 </Subtitle>
                 <br />
                 <Subtitle2>
-                  {post.price === 0
+                  {post.price === 0 || "" || null || undefined || "0"
                     ? "Precio a consultar"
                     : post.price + " USD"}
                 </Subtitle2>
@@ -72,10 +74,20 @@ const Post = () => {
 
               <ButtonLayout>
                 <Link to="/cita">
-                  <Button buttonDisplay="true" big fontBig primary="true">
+                  <Button buttonDisplay="true" fontBig primary="true">
                     Agenda una Cita
                   </Button>
                 </Link>
+                <br />
+                <a
+                  href={`https://api.whatsapp.com/send?phone=4140120467&text=Buenas,%20estoy%20interesado/a%20en%20este%20vehículo%20${route}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Button buttonDisplay="true" fontBig primary="true">
+                    Consultar vía Whatsapp
+                  </Button>
+                </a>
               </ButtonLayout>
             </div>
           </Card>
@@ -345,7 +357,7 @@ const Card = styled.div`
   text-align: center;
   flex: 0.7;
   padding: 0;
-  margin-top: 12vh;
+  margin-top: 8vh;
   border-radius: 10px;
   height: 300px;
 

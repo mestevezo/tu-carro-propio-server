@@ -40,41 +40,54 @@ export const customersGrid = [
 //  { type: 'checkbox', width: '50' },
 
   { headerText: '',
-    width: '150',
+    width: '140',
     template: customerGridImage,
     textAlign: 'Center' },
 
   { field: 'brand',
     headerText: 'Marca',
-    width: '150',
+    width: '100',
     textAlign: 'Center' },
 
   { field: 'model',
     headerText: 'Modelo',
-    width: '150',
+    width: '100',
     textAlign: 'Center' },
+
+  { field: 'version',
+    headerText: 'Versión',
+    width: '100',
+    textAlign: 'Center' },    
 
   { field: 'price',
     headerText: 'Precio',
-    width: '100',
+    width: '90',
     format: 'C2',
     textAlign: 'Center' },
 
   { field: 'km',
     headerText: 'Kilometraje',
-    width: '100',
+    width: '110',
     textAlign: 'Center' },
 
+  { field: 'folder',
+    headerText: 'Folder',
+    width: '90',
+    textAlign: 'Center'},
+
+  { field: '_id',
+    headerText: 'ID',
+    width: '200',
+    textAlign: 'Center',
+    isPrimaryKey: true },
+
+/*
   { field: 'location',
     headerText: 'Ubicacion',
     width: '150',
     textAlign: 'Center' },
+*/
 
-  { field: '_id',
-    headerText: 'ID',
-    width: '120',
-    textAlign: 'Center',
-    isPrimaryKey: true },
 /*
   { field: '',
     headerText: '',

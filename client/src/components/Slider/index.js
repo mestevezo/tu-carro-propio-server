@@ -1,20 +1,14 @@
-import React from "react";
 import EmblaCarousel from "./EmblaCarousel";
 
-
-
 const Slider = (Imgs) => {
+  const slideCount = Imgs.Imgs.length;
+  const slides = Array.from(Array(slideCount).keys());
 
-    const SLIDE_COUNT =Imgs.Imgs.length;
-    const slides = Array.from(Array(SLIDE_COUNT).keys());
-
-       return (
-        <>
-            <EmblaCarousel slides={slides} Imgs={Imgs} />
-        </>
-    )
+  return (
+    <>
+      <EmblaCarousel slides={slides} Imgs={Imgs} />
+    </>
+  );
 };
 
-
-
-export default Slider
+export default Slider;

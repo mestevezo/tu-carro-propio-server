@@ -13,33 +13,36 @@ import {
 } from "../components/ListboxData.js";
 
 const AddEdit = ({ currentId, setCurrentId }) => {
-  const [postData, setPostData] = useState({
+
+  const defaultPost = {
     brand: "",
     model: "",
     version: "",
-    type: "",
+    type: "Carro",
     year: "",
     km: "",
     motor: "",
     owners: "",
     tapizado: "",
-    location: "",
+    location: "Las Mercedes",
     power: "",
     accel: "",
     fuelConsumption: "",
     fuelCapacity: "",
-    price: "",
-    transmission: "",
-    fuel: "",
+    price: 0,
+    transmission: "Automático",
+    fuel: "Gasolina",
     t4x4: false,
     armor: false,
     folder: "",
     mainImgN: "",
     mainImgD: "",
     othersImgN: [],
-    othersImgD: [],
-  });
-  //const [folder, setFolder] = useState("");
+    othersImgD: [],    
+  };
+
+  const [postData, setPostData] = useState(defaultPost);
+
   const post = useSelector((state) =>
     currentId ? state.posts.find((message) => message._id === currentId) : null
   );
@@ -51,37 +54,8 @@ const AddEdit = ({ currentId, setCurrentId }) => {
 
   const clear = () => {
     setCurrentId(0);
-    setPostData({
-      brand: "",
-      model: "",
-      version: "",
-      type: "",
-      year: "",
-      km: "",
-      motor: "",
-      owners: "",
-      tapizado: "",
-      location: "",
-      power: "",
-      accel: "",
-      fuelConsumption: "",
-      fuelCapacity: "",
-      price: "",
-      transmission: "",
-      fuel: "",
-      t4x4: false,
-      armor: false,
-      addInfo: "",
-      details: "",
-      folder: "",
-      mainImgN: "",
-      mainImgD: "",
-      othersImgN: [],
-      othersImgD: [],
-    });
+    setPostData(defaultPost);
   };
-
-  //const endpoint = "https://ik.imagekit.io/cdty/tcp/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,10 +72,8 @@ const AddEdit = ({ currentId, setCurrentId }) => {
   //console.log(postData);
 
   function getImages(e, prop) {
-    //console.log(e);
     const array = [];
     for (const img of e) {
-      //array.push(endpoint + folder + "/" + img[prop]);
       array.push(img[prop]);
     }
     console.log(array);
@@ -366,7 +338,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           >
             <div className="relative">
               <Listbox.Button className="relative h-12 w-full cursor-pointer rounded-md bg-gray-100 py-4 pl-3 pr-10 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                <span className="block truncate pl-2">{postData.t4x4}</span>
+                <span className="block truncate pl-2">{postData.t4x4 ? "Si" : "No"}</span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <ChevronUpDownIcon
                     className="h-5 w-5 text-gray-400"
@@ -433,7 +405,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           >
             <div className="relative">
               <Listbox.Button className="relative h-12 w-full cursor-pointer rounded-md bg-gray-100 py-4 pl-3 pr-10 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                <span className="block truncate pl-2">{postData.armor}</span>
+                <span className="block truncate pl-2">{postData.armor ? "Si" : "No"}</span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <ChevronUpDownIcon
                     className="h-5 w-5 text-gray-400"

@@ -25,9 +25,9 @@ router.get('/admin/posts', getPostsAdmin);
 router.post('/admin/', createPost);
 router.patch('/admin/:id', updatePost);
 router.delete('/admin/:id', deletePost);
-//router.post('/', auth, createPost);
 //router.get('/admin/posts', auth, getPostsAdmin);
-//router.patch('/:id', auth, updatePost);
-//router.delete('/:id', auth, deletePost);
+//router.post('/admin/', auth, createPost);
+//router.patch('/admin/:id', auth, updatePost);
+//router.delete('/admin/:id', auth, deletePost);
 
 export default router;
