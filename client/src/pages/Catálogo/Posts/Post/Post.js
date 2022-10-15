@@ -28,7 +28,7 @@ const Post = ({ post }) => {
             />
             <div className={classes.overlay}>
               <h2>
-                {post.price === 0 || "" || null || undefined || "0"
+                { [0, "", null, undefined, "0"].includes(post.price)
                   ? "Precio a consultar"
                   : post.price + " USD"}
               </h2>
