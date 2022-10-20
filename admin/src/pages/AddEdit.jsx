@@ -11,9 +11,9 @@ import {
   transmissionValues,
   booleanValues,
 } from "../components/ListboxData.js";
+import Modal from "../components/Modal";
 
 const AddEdit = ({ currentId, setCurrentId }) => {
-
   const defaultPost = {
     brand: "",
     model: "",
@@ -34,11 +34,12 @@ const AddEdit = ({ currentId, setCurrentId }) => {
     fuel: "Gasolina",
     t4x4: false,
     armor: false,
+    details: "",
     folder: "",
     mainImgN: "",
     mainImgD: "",
     othersImgN: [],
-    othersImgD: [],    
+    othersImgD: [],
   };
 
   const [postData, setPostData] = useState(defaultPost);
@@ -80,6 +81,8 @@ const AddEdit = ({ currentId, setCurrentId }) => {
     return array;
   }
   console.log(post);
+
+  const [visible, setVisible] = useState(false);
 
   return (
     <div className="bg-white p-8">
@@ -255,7 +258,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           </Listbox>
         </div>
 
-        <label className="inline-block text-gray-400 text-sm sm:text-base mt-4">
+        <label className="inline-block text-gray-400 text-sm sm:text-base mt-6">
           Características
         </label>
         <div class="w-full sm:border- sm:border-b mb-5 sm:mb-8 sm:col-span-2"></div>
@@ -323,7 +326,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
             }
           ></input>
         </div>
-        <div className="sm:col-span-2">
+        <div>
           <label
             for="type"
             className="inline-block text-gray-800 text-sm sm:text-base mb-2"
@@ -338,7 +341,9 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           >
             <div className="relative">
               <Listbox.Button className="relative h-12 w-full cursor-pointer rounded-md bg-gray-100 py-4 pl-3 pr-10 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                <span className="block truncate pl-2">{postData.t4x4 ? "Si" : "No"}</span>
+                <span className="block truncate pl-2">
+                  {postData.t4x4 ? "Si" : "No"}
+                </span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <ChevronUpDownIcon
                     className="h-5 w-5 text-gray-400"
@@ -390,7 +395,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           </Listbox>
         </div>
 
-        <div className="sm:col-span-2">
+        <div className="">
           <label
             for="type"
             className="inline-block text-gray-800 text-sm sm:text-base mb-2"
@@ -405,7 +410,9 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           >
             <div className="relative">
               <Listbox.Button className="relative h-12 w-full cursor-pointer rounded-md bg-gray-100 py-4 pl-3 pr-10 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                <span className="block truncate pl-2">{postData.armor ? "Si" : "No"}</span>
+                <span className="block truncate pl-2">
+                  {postData.armor ? "Si" : "No"}
+                </span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <ChevronUpDownIcon
                     className="h-5 w-5 text-gray-400"
@@ -457,7 +464,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           </Listbox>
         </div>
 
-        <div className="sm:col-span-2">
+        <div>
           <label
             for="type"
             className="inline-block text-gray-800 text-sm sm:text-base mb-2"
@@ -528,7 +535,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           </Listbox>
         </div>
 
-        <div className="sm:col-span-2">
+        <div>
           <label
             for="type"
             className="inline-block text-gray-800 text-sm sm:text-base mb-2"
@@ -593,7 +600,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           </Listbox>
         </div>
 
-        <label className="inline-block text-gray-400 text-sm sm:text-base mt-4">
+        <label className="inline-block text-gray-400 text-sm sm:text-base mt-6">
           Especificaciones
         </label>
         <div class="w-full sm:border- sm:border-b mb-5 sm:mb-8 sm:col-span-2"></div>
@@ -662,7 +669,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           ></input>
         </div>
 
-        <label className="inline-block text-gray-400 text-sm sm:text-base">
+        <label className="inline-block text-gray-400 text-sm sm:text-base mt-6">
           Detalles
         </label>
         <div class="w-full sm:border- sm:border-b mb-5 sm:mb-8 sm:col-span-2"></div>
@@ -683,7 +690,7 @@ const AddEdit = ({ currentId, setCurrentId }) => {
           ></textarea>
         </div>
 
-        <label className="inline-block text-gray-400 text-sm sm:text-base">
+        <label className="inline-block text-gray-400 text-sm sm:text-base mt-6">
           Subida de archivos
         </label>
         <div class="w-full sm:border- sm:border-b mb-5 sm:mb-8 sm:col-span-2"></div>
@@ -745,25 +752,42 @@ const AddEdit = ({ currentId, setCurrentId }) => {
         </div>
         <br />
 
+        <Modal
+          visible={visible}
+          setVisible={setVisible}
+          modalTitle="¿Seguro que quieres subir este item?"
+        >
+          <button
+            onClick={() => {
+              handleSubmit();
+              setVisible(!visible);
+            }}
+            className="w-3/4 text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 focus:z-10 dark:bg-gray-700 mb-2"
+          >
+            Sí, estoy seguro
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setVisible(!visible)}
+            className="w-3/4 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5  focus:z-10 dark:bg-gray-700 "
+          >
+            No, cancelar
+          </button>
+        </Modal>
         <button
-          type="submit"
-          className="w-38 py-3 font-bold rounded-md text-center px-2 text-white bg-emerald-400 active:duration-300 hover:bg-slate-100 hover:text-emerald-400 active:scale-95 cursor-pointer"
+          onClick={() => setVisible(!visible)}
+          className="w-38 py-3 font-bold rounded-md text-center px-2 text-white bg-blue-400 active:duration-300 hover:bg-blue-500 active:scale-95 cursor-pointer"
         >
           Enviar
         </button>
+
         <button
           onClick={clear}
           className="w-38 py-3 font-bold rounded-md text-center px-2 text-white active:duration-300 delay-100 bg-blue-400 hover:bg-slate-100 hover:text-blue-400 active:scale-95 cursor-pointer"
         >
           Limpiar
         </button>
-
-        <button
-          className="w-38 py-3 font-bold rounded-md text-center px-2 text-white bg-emerald-400 active:duration-300 hover:bg-slate-100 hover:text-emerald-400 active:scale-95 cursor-pointer"
-        >
-          Modal
-        </button>
-
       </form>
     </div>
   );

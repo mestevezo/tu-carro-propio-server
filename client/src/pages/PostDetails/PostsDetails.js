@@ -64,7 +64,7 @@ const Post = () => {
                 </Subtitle>
                 <br />
                 <Subtitle2>
-                  {post.price === 0
+                  {[0, "", null, undefined, "0"].includes(post.price)
                     ? "Precio a consultar"
                     : post.price + " USD"}
                 </Subtitle2>
