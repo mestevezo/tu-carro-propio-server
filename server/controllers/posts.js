@@ -195,6 +195,60 @@ export const createPost = async (req, res) => {
 
 
 export const updatePost = async (req, res) => {
+
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+
+  const { brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor,
+    motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details,
+    folder, mainImgN, othersImgN, mainImgD, othersImgD } = req.body;
+
+  try {
+
+    var imagekit = new ImageKit({
+      publicKey : process.env.IMAGEKIT_PUBLIC_KEY,
+      privateKey : process.env.IMAGEKIT_PRIVATE_KEY,
+      urlEndpoint : process.env.IMAGEKIT_URL_ENDPOINT
+    });
+      
+    let imgN = [mainImgN].concat(othersImgN)
+    let imgD = [mainImgD].concat(othersImgD)
+    var url = [];
+
+    for (var i = 0; i < imgN.length; i++) {
+      
+      let info = { file : imgD[i], //required
+                  fileName : imgN[i], //required
+                  folder: process.env.IMAGEKIT_MAIN_FOLDER + folder }
+
+      await imagekit.upload(info
+      ).then(response => {
+        url.push(response.url); 
+      }).catch(error => {
+          console.log(error);
+      });
+      
+    };
+
+    var mainImg = url[0];
+    var othersImg = url.slice(1,);
+
+    const updatedPost = { brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor, folder,
+          mainImg, othersImg, motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details };
+
+    await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
+
+    res.json(updatedPost);
+    //res.status(201).json(updatedPost);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+
+}
+
+/*
+export const updatePost = async (req, res) => {
   const { id } = req.params;
   const{ brand, model, version, type, year, km, price, transmission, fuel, t4x4, armor, folder,
       mainImg, othersImg, motor, owners, tapizado, location, power, accel, fuelConsumption, fuelCapacity, details } = req.body;
@@ -208,7 +262,7 @@ export const updatePost = async (req, res) => {
 
   res.json(updatedPost);
 }
-
+*/
 
 export const deletePost = async (req, res) => {
   const { id } = req.params;
