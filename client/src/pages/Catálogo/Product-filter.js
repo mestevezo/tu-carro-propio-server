@@ -116,7 +116,6 @@ const Productfilter = () => {
             value={params.get("sort") || "-"}
           >
             <Option value={"-"}>-</Option>
-            <Option value={"reciente"}>Más reciente</Option>
             <Option value={"ascendente"}>Precio ascendente</Option>
             <Option value={"descendente"}>Precio descendente</Option>
           </Select>

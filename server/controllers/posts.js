@@ -13,7 +13,6 @@ import ImageKit from "imagekit";
 export const getPosts = async (req, res) => {
 
   const SORT_CASES = {
-    'id': '-_id',
     'reciente': '-createdAt',
     'descendente': '-price',
     'ascendente': 'price'
@@ -24,12 +23,12 @@ export const getPosts = async (req, res) => {
     const LIMIT = 8;
     let query = { ...req.query };
     let filters = { ...req.query };
-    const { sort } = query || 'id';
-    const { page } = query || 1;
+    const sort = query.sort || 'reciente';
+    const page = query.page || 1;
     delete query.page;
     delete query.sort;
     const startIndex = (Number(page) - 1) * LIMIT;
-
+    
     if (query.hasOwnProperty('minPrice') && query.hasOwnProperty('maxPrice')) {
 
       const minPrice = Number(query.minPrice);
